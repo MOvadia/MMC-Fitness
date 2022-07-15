@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MMC Fitness</title>
+    <!-- Link the Bootstrap (from twitter) CSS framework in order to use its classes-->
+    <link rel="stylesheet" href="LoginStyle.css">
+    <script src="common/jquery-2.0.3.min.js"></script>
+    <script src="login.js"></script>
+</head>
+<body>
+<div class="container">
+    <form th:action="register" th:method="post" th:object="${userForm}" th:class="loginForm">
+        <h2>Login Form</h2>
+        <div class="inputBox">
+            <input type="text" th:field="*{username}" placeholder="Username" name="username">
+        </div>
+        <div class="inputBox">
+            <input type="text" th:field="*{password}" placeholder="Password" name="username"/>
+        </div>
+        <button class="btn btn-primary" id="submitButton" type="submit">Log In</button>
+    </form>
+    <div id="error-placeholder" class="alert-danger" role="alert"></div>
+</div>
+</body>
+</html>

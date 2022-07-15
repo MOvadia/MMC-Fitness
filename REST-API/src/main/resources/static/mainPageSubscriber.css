@@ -1,0 +1,115 @@
+body{
+    background-image: url("common/images/workout.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+.toolBar {
+    height: 50px;
+    background: #333;
+}
+
+.toolbarContent {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logoutButton {
+    position: absolute;
+    right: 20px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.userName {
+    margin: 20px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#userData{
+    height: 200px;
+}
+
+#user_details_container{
+    z-index: 1;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.45);
+    height: 150px;
+}
+
+#user_details_container.appBodyContent {
+    width: unset;
+    margin-top: 110px;
+    white-space: normal;
+    overflow: hidden;
+    padding: 10px 2px;
+    text-align: center;
+    max-width: 1300px;
+
+}
+.cat_elipse:first-child{
+    margin-left: 18px;
+}
+
+.cat_elipse.pr{
+    border-radius: 11vw!important;
+}
+
+.cat_elipse{
+    width: 30vw;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    max-width: unset;
+    padding: 6px;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+.appBodyContent{
+
+}
+
+.userDetails{
+    line-height: 3;
+    font-weight: 600;
+
+}
+#Fitness_container{
+    z-index: 1;
+    position: relative;
+    height: 500px;
+    text-align: center;
+}
+.board_container{
+    background-color: rgba(255, 255, 255, 0.79);
+    outline: #2e6da4 solid medium;
+    display: inline-block;
+    width: 40%;
+    height: 300px;
+}
+
+.board_headline{
+    outline: #2e6da4 solid medium;
+    color: rgba(105,163,213,0.76);
+
+}
+
+.table_headlines{
+    color: black;
+    font-weight: 600;
+    font-size: medium;
+}
+
+.board_container.training{
+    margin-left: 20px;
+}
+
+.board_container.menu{
+    margin-left: 40px;
+}

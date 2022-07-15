@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>MMC Fitness</title>
+    <!-- Link the Bootstrap (from twitter) CSS framework in order to use its classes-->
+    <link rel="stylesheet" href="mainPageSubscriber.css">
+    <link rel="stylesheet" href="common/bootstrap.min.css">
+    <script src="common/context-path-helper.js"></script>
+    <script src="common/jquery-2.0.3.min.js"></script>
+    <script src="mainPageSubscriber.js"></script>
+</head>
+<body>
+<div class="toolBar">
+    <div class="toolbarContent">
+        <a href="app/logout" class="logoutButton">Logout</a>
+        <span class="userName" th:text="'Hello ' + ${username}"></span>
+    </div>
+</div>
+<div id="userData">
+    <div id="user_details_container">
+        <div class="appBodyContent">
+            <div class="cat_elipse pr">
+                <div class="cat_elipse_inner_wrraper">
+                    <div class="userDetails" th:text="'Name: ' + ${username}"></div>
+                    <div class="userDetails" th:text="'Age: ' + ${age}"></div>
+                    <div class="userDetails" th:text="'Gender: ' + ${gender}"></div>
+                </div>
+            </div>
+            <div class="cat_elipse">
+                <div class="cat_elipse_inner_wrraper">
+                    <div class="userDetails" th:text="'Weight: ' + ${weight}"></div>
+                    <div class="userDetails" th:text="'Height: ' + ${height}"></div>
+                    <div class="userDetails" th:text="'BMI: ' + ${BMI}"></div>
+                </div>
+            </div>
+            <div class="cat_elipse">
+                <div class="cat_elipse_inner_wrraper">
+                    <div class="userDetails" th:text="'Fat Percentage: ' + ${fatPercentage}"></div>
+                    <div class="userDetails" th:text="'Weight Goal: ' + ${weightGoal}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="Fitness_container">
+    <div class="board_container training">
+        <div class="board_headline">
+            <label class="table_headlines" id="Workouts">Workouts</label>
+        </div>
+        <div class="board_content">
+
+        </div>
+    </div>
+    <div class="board_container menu">
+        <div class="board_headline">
+            <label class="table_headlines" id="Menu">Menu</label>
+        </div>
+        <div class="board_content">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
