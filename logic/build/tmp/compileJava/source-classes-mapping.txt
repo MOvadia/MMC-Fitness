@@ -1,29 +1,33 @@
-Subscriber.java
- Subscriber
- Subscriber$dietaryLimitations
- Subscriber$gender
- Subscriber$physicalLimitations
-User.java
- User
-Chat.java
- Chat
-Nutritionist.java
- Nutritionist
- Nutritionist$seniority
-SubscriberToMenu.java
- SubscriberToMenu
-Menu.java
- Menu
- Menu$type
-SubscriberToWorkout.java
- SubscriberToWorkout
-SystemEvents.java
- SystemEvents
-Trainer.java
- Trainer
- Trainer$seniority
- Trainer$specialty
-Workout.java
- Workout
- Workout$focus
- Workout$type
+constants/Constants.java
+ constants.Constants
+general/SubscriberToWorkout.java
+ general.SubscriberToWorkout
+general/Trainer.java
+ general.Trainer
+ general.Trainer$seniority
+ general.Trainer$specialty
+general/Workout.java
+ general.Workout
+ general.Workout$focus
+ general.Workout$type
+general/Nutritionist.java
+ general.Nutritionist
+ general.Nutritionist$seniority
+general/Chat.java
+ general.Chat
+general/SystemEvents.java
+ general.SystemEvents
+general/User.java
+ general.User
+general/Subscriber.java
+ general.Subscriber
+ general.Subscriber$dietaryLimitations
+ general.Subscriber$gender
+ general.Subscriber$physicalLimitations
+general/UserManager.java
+ general.UserManager
+general/Menu.java
+ general.Menu
+ general.Menu$type
+general/SubscriberToMenu.java
+ general.SubscriberToMenu
