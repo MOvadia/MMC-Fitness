@@ -2,8 +2,7 @@ package general;
 
 import java.util.Objects;
 
-public class Subscriber {
-    private Integer userId;
+public class Subscriber extends User {
     private Integer age;
     private Float height;
     private Float weight;
@@ -13,23 +12,19 @@ public class Subscriber {
     private Integer workoutAmount;
     private Float targetFatPercentage;
     private Float targetWeight;
+    private float BMI;
 
-    public Subscriber(Integer userId, Integer age, Float height, Float weight, Integer workoutAmount, Float targetFatPercentage, Float targetWeight) {
-        this.userId = userId;
+
+    public Subscriber(Integer userId, String firstName, String lastName, String phoneNumber, String email, Integer age, Float height,
+                      Float weight, Integer workoutAmount, Float targetFatPercentage, Float targetWeight, float BMI) {
+        super(userId, firstName, lastName, phoneNumber, email);
         this.age = age;
         this.height = height;
         this.weight = weight;
         this.workoutAmount = workoutAmount;
         this.targetFatPercentage = targetFatPercentage;
         this.targetWeight = targetWeight;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+        this.BMI = BMI;
     }
 
     public Integer getAge() {
@@ -80,16 +75,25 @@ public class Subscriber {
         this.targetWeight = targetWeight;
     }
 
+
+    public float getBMI() {
+        return BMI;
+    }
+
+    public void setBMI(float BMI) {
+        this.BMI = BMI;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Subscriber that = (Subscriber) o;
-        return userId.equals(that.userId) && age.equals(that.age) && height.equals(that.height) && weight.equals(that.weight) && workoutAmount.equals(that.workoutAmount) && targetFatPercentage.equals(that.targetFatPercentage) && targetWeight.equals(that.targetWeight);
+        return Objects.equals(age, that.age) && Objects.equals(height, that.height) && Objects.equals(weight, that.weight) && Objects.equals(workoutAmount, that.workoutAmount) && Objects.equals(targetFatPercentage, that.targetFatPercentage) && Objects.equals(targetWeight, that.targetWeight);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, age, height, weight, workoutAmount, targetFatPercentage, targetWeight);
+        return Objects.hash(super.hashCode(), age, height, weight, workoutAmount, targetFatPercentage, targetWeight);
     }
 }

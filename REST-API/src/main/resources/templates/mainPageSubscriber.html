@@ -4,17 +4,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>MMC Fitness</title>
     <!-- Link the Bootstrap (from twitter) CSS framework in order to use its classes-->
-    <link rel="stylesheet" href="mainPageSubscriber.css">
+    <link rel="stylesheet" href="mainMenuSubscriber/mainPageSubscriber.css">
     <link rel="stylesheet" href="common/bootstrap.min.css">
     <script src="common/context-path-helper.js"></script>
     <script src="common/jquery-2.0.3.min.js"></script>
-    <script src="mainPageSubscriber.js"></script>
+    <script src="mainMenuSubscriber/mainPageSubscriber.js"></script>
 </head>
 <body>
 <div class="toolBar">
     <div class="toolbarContent">
         <a href="app/logout" class="logoutButton">Logout</a>
-        <span class="userName" th:text="'Hello ' + ${username}"></span>
+        <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
     </div>
 </div>
 <div id="userData">
@@ -22,22 +22,22 @@
         <div class="appBodyContent">
             <div class="cat_elipse pr">
                 <div class="cat_elipse_inner_wrraper">
-                    <div class="userDetails" th:text="'Name: ' + ${username}"></div>
-                    <div class="userDetails" th:text="'Age: ' + ${age}"></div>
+                    <div class="userDetails" th:text="'Name: ' + ${subscriber.firstName}"></div>
+                    <div class="userDetails" th:text="'Age: ' + ${subscriber.age}"></div>
                     <div class="userDetails" th:text="'Gender: ' + ${gender}"></div>
                 </div>
             </div>
             <div class="cat_elipse">
                 <div class="cat_elipse_inner_wrraper">
-                    <div class="userDetails" th:text="'Weight: ' + ${weight}"></div>
-                    <div class="userDetails" th:text="'Height: ' + ${height}"></div>
-                    <div class="userDetails" th:text="'BMI: ' + ${BMI}"></div>
+                    <div class="userDetails" th:text="'Weight: ' + ${subscriber.weight}"></div>
+                    <div class="userDetails" th:text="'Height: ' + ${subscriber.height}"></div>
+                    <div class="userDetails" th:text="'BMI: ' + ${subscriber.BMI}"></div>
                 </div>
             </div>
             <div class="cat_elipse">
                 <div class="cat_elipse_inner_wrraper">
-                    <div class="userDetails" th:text="'Fat Percentage: ' + ${fatPercentage}"></div>
-                    <div class="userDetails" th:text="'Weight Goal: ' + ${weightGoal}"></div>
+                    <div class="userDetails" th:text="'Fat Percentage: ' + ${subscriber.targetFatPercentage}"></div>
+                    <div class="userDetails" th:text="'Weight Goal: ' + ${subscriber.targetWeight}"></div>
                 </div>
             </div>
         </div>
@@ -53,12 +53,18 @@
             <table class="table table-dark">
                 <thead>
                 <tr>
-                    <th scope="col">Workout Plan</th>
+                    <th scope="col">Workout Id</th>
+                    <th scope="col">Workout name</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="workout: ${workout}"></tr>
-                <td th:text="${workout.name}"></td>
+                <tr th:each="workout : ${workout}" >
+                    <td th:text="${workout.workoutId}"></td>
+                    <a th:href="${'MMC-Fitness/workout/' + {subscriber.userId} + '/' + {workout.workoutId}}">
+                        <button type="button"> some button text </button>
+                    </a>
+                    <td th:text="${workout.name}"></td>
+                </tr>
                 </tbody>
             </table>
 

@@ -1,12 +1,13 @@
 package general;
 
+import java.util.List;
 import java.util.Objects;
 
 public class SubscriberToWorkout {
     private Integer userId;
-    private Integer workoutId;
+    private List<Integer> workoutId;
 
-    public SubscriberToWorkout(Integer userId, Integer workoutId) {
+    public SubscriberToWorkout(Integer userId, List<Integer> workoutId) {
         this.userId = userId;
         this.workoutId = workoutId;
     }
@@ -19,11 +20,11 @@ public class SubscriberToWorkout {
         this.userId = userId;
     }
 
-    public Integer getWorkoutId() {
+    public List<Integer> getWorkoutId() {
         return workoutId;
     }
 
-    public void setWorkoutId(Integer workoutId) {
+    public void setWorkoutId(List<Integer> workoutId) {
         this.workoutId = workoutId;
     }
 

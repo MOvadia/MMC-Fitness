@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Workout {
     private Integer workoutId;
     private String name;
-    private Integer createdBy;
+    private String createdBy;
     private Timestamp timestamp;
     private String description;
     private enum focus{};
@@ -14,7 +14,7 @@ public class Workout {
     private String link;
     private Float popularity;
 
-    public Workout(Integer workoutId, String name, Integer createdBy, Timestamp timestamp, String description, String link, Float popularity) {
+    public Workout(Integer workoutId, String name, String createdBy, Timestamp timestamp, String description, String link, Float popularity) {
         this.workoutId = workoutId;
         this.name = name;
         this.createdBy = createdBy;
@@ -23,7 +23,6 @@ public class Workout {
         this.link = link;
         this.popularity = popularity;
     }
-
 
     public Integer getWorkoutId() {
         return workoutId;
@@ -41,11 +40,11 @@ public class Workout {
         this.name = name;
     }
 
-    public Integer getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(Integer createdBy) {
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 

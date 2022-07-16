@@ -1,8 +1,8 @@
 package general;
 
-public class Trainer extends Subscriber{
-    public Trainer(Integer userId, Integer age, Float height, Float weight, Integer workoutAmount, Float targetFatPercentage, Float targetWeight) {
-        super(userId, age, height, weight, workoutAmount, targetFatPercentage, targetWeight);
+public class Trainer extends User{
+    public Trainer(Integer userId, String firstName, String lastName, String phoneNumber, String email) {
+        super(userId, firstName, lastName, phoneNumber, email);
     }
 
     private enum specialty{};

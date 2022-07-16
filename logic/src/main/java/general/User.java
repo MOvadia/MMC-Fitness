@@ -2,28 +2,28 @@ package general;
 
 import java.util.Objects;
 
-public class User extends Subscriber{
+public class User{
+    private Integer userId;
     private String firstName;
     private String lastName;
     private String phoneNumber;
     private String email;
 
-    public User(Integer userId, Integer age, Float height, Float weight, Integer workoutAmount, Float targetFatPercentage, Float targetWeight, String firstName, String lastName, String phoneNumber, String email) {
-        super(userId, age, height, weight, workoutAmount, targetFatPercentage, targetWeight);
+    public User(Integer userId, String firstName, String lastName, String phoneNumber, String email) {
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
 
-
-    /*public Info.general.User(String firstName, String lastName, String phoneNumber, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-    }*/
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public String getFirstName() {
         return firstName;
