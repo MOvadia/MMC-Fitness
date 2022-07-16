@@ -1,26 +1,15 @@
 var USER_NAME = buildUrlWithContextPath("LoggedInUserServlet")
 window.onload = function ()
 {
-    showUserName();
+
 };
 
-function showUserName() {
-    //document.getElementById("userName").innerText = "Hello " + getUserName();
-}
 
-function getUserName() {
-    var result;
-    $.ajax
-    ({
-        async: false,
-        url: USER_NAME,
-        data: {
-            action: "status"
-        },
-        type: 'GET',
-        success: function (json) {
-            result = json;
-        }
+
+function urlMapping(userId, workoutId)
+{
+    $.ajax({
+        type : "GET",
+        url : "/MMC-Fitness/workout/" + userId.toString() + "/" + workoutId.toString()
     });
-    return result;
 }

@@ -58,12 +58,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="workout : ${workout}" >
-                    <td th:text="${workout.workoutId}"></td>
-                    <a th:href="${'MMC-Fitness/workout/' + {subscriber.userId} + '/' + {workout.workoutId}}">
-                        <button type="button"> some button text </button>
-                    </a>
-                    <td th:text="${workout.name}"></td>
+                <tr th:each="workout : ${workout}" style="cursor: pointer" th:onclick="|urlMapping('${subscriber.userId}','${workout.workoutId}')|"  >
+                        <td th:text="${workout.workoutId}"></td>
+                        <td th:text="${workout.name}"></td>
                 </tr>
                 </tbody>
             </table>
