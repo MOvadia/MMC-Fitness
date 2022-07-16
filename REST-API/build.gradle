@@ -13,11 +13,13 @@ repositories {
 }
 
 dependencies {
+    compile project(":logic")
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-devtools'
-    //compileOnly project('MMC-Fitness:logic')
+    //implementation project(":logic")
+    //compile project(":logic")
 }
 
 tasks.named('test') {

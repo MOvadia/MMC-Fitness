@@ -50,6 +50,17 @@
             <label class="table_headlines" id="Workouts">Workouts</label>
         </div>
         <div class="board_content">
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Workout Plan</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="workout: ${workout}"></tr>
+                <td th:text="${workout.name}"></td>
+                </tbody>
+            </table>
 
         </div>
     </div>

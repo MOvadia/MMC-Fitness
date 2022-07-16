@@ -1,3 +1,5 @@
 rootProject.name = 'MMC-Fitness'
 include 'logic'
+include 'REST-API'
+
 
