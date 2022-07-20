@@ -26,7 +26,7 @@ public class MenuController {
     @Autowired
     public JdbcTemplate jdbcTemplate;
     @GetMapping(value = "/get/{id}")
-    public ResponseEntity<Object> addMenu(@RequestParam String id) {
+    public ResponseEntity<Object> addMenu(@RequestParam int id) {
         //return null;
         return new ResponseEntity<>(menuService.getMenuById(id), HttpStatus.OK);
     }
@@ -42,6 +42,7 @@ public class MenuController {
         model.addAttribute("subscriber", SubscriberService.getSubscriberById(id));
         model.addAttribute("gender", "Male");
         model.addAttribute("workout", WorkoutService.getWorkoutPerUserId(123));
+        model.addAttribute("menu", MenuService.getMenuById(123));
 
         String sql = "SELECT * FROM test1";
         List<User> customers = jdbcTemplate.query(sql,
