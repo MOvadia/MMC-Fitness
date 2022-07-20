@@ -8,9 +8,11 @@ general/Workout.java
  general.Workout$type
 general/SubscriberToWorkout.java
  general.SubscriberToWorkout
-general/Menu.java
- general.Menu
- general.Menu$type
+general/Subscriber.java
+ general.Subscriber
+ general.Subscriber$dietaryLimitations
+ general.Subscriber$gender
+ general.Subscriber$physicalLimitations
 general/Chat.java
  general.Chat
 general/UserManager.java
@@ -26,8 +28,6 @@ general/Nutritionist.java
  general.Nutritionist$seniority
 general/User.java
  general.User
-general/Subscriber.java
- general.Subscriber
- general.Subscriber$dietaryLimitations
- general.Subscriber$gender
- general.Subscriber$physicalLimitations
+general/Menu.java
+ general.Menu
+ general.Menu$type

@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Menu {
     private Integer menuId;
     private String name;
-    private Integer createdBy;
+    private String createdBy;
     private Timestamp timestamp;
     private String description;
     private enum type{};
@@ -15,7 +15,7 @@ public class Menu {
     private Integer calories;
     private Integer protein;
 
-    public Menu(Integer menuId, String name, Integer createdBy, Timestamp timestamp, String description, Float popularity, Float fatPercentage, Integer calories, Integer protein) {
+    public Menu(Integer menuId, String name, String createdBy, Timestamp timestamp, String description, Float popularity, Float fatPercentage, Integer calories, Integer protein) {
         this.menuId = menuId;
         this.name = name;
         this.createdBy = createdBy;
@@ -43,11 +43,11 @@ public class Menu {
         this.name = name;
     }
 
-    public Integer getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(Integer createdBy) {
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
