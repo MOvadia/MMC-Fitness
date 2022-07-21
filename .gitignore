@@ -3,4 +3,4 @@
 /build/
 
 *.jar
-*/source-classes-mapping.txt
+logic/build/tmp/compileJava/source-classes-mapping.txt
