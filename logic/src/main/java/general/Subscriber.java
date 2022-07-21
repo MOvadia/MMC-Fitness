@@ -14,6 +14,8 @@ public class Subscriber extends User {
     private Float targetWeight;
     private float BMI;
 
+    public Subscriber() {
+    }
 
     public Subscriber(Integer userId, String firstName, String lastName, String phoneNumber, String email, Integer age, Float height,
                       Float weight, Integer workoutAmount, Float targetFatPercentage, Float targetWeight, float BMI) {
@@ -25,6 +27,17 @@ public class Subscriber extends User {
         this.targetFatPercentage = targetFatPercentage;
         this.targetWeight = targetWeight;
         this.BMI = BMI;
+    }
+
+    public Subscriber(User u,Subscriber s){
+        super(u.getUserId(),u.getFirstName(),u.getLastName(),u.getPhoneNumber(),u.getEmail());
+        this.age = s.getAge();
+        this.height = s.getHeight();
+        this.weight = s.getWeight();
+        this.workoutAmount = s.getWorkoutAmount();
+        this.targetFatPercentage = s.getTargetFatPercentage();
+        this.targetWeight = s.getTargetWeight();
+        this.BMI =s.getBMI();
     }
 
     public Integer getAge() {

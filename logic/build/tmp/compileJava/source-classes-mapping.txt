@@ -18,15 +18,15 @@ general/User.java
  general.User
 general/SystemEvents.java
  general.SystemEvents
-general/Subscriber.java
- general.Subscriber
- general.Subscriber$dietaryLimitations
- general.Subscriber$gender
- general.Subscriber$physicalLimitations
+general/SubscriberToMenu.java
+ general.SubscriberToMenu
 general/UserManager.java
  general.UserManager
 general/Menu.java
  general.Menu
  general.Menu$type
-general/SubscriberToMenu.java
- general.SubscriberToMenu
+general/Subscriber.java
+ general.Subscriber
+ general.Subscriber$dietaryLimitations
+ general.Subscriber$gender
+ general.Subscriber$physicalLimitations

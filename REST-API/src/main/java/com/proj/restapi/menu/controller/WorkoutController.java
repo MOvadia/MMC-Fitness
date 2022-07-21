@@ -14,7 +14,8 @@ public class WorkoutController {
     @GetMapping(value = "/workout/{userId}/{workoutId}")
     public String getWorkout(@PathVariable int userId, @PathVariable int workoutId, Model model) {
         //new ResponseEntity<>(WorkoutService.getWorkoutForUserByWorkoutId(userId, workoutId), HttpStatus.OK);
-        model.addAttribute("subscriber", SubscriberService.getSubscriberById(userId));
+        SubscriberService subscriberService = new SubscriberService();
+        model.addAttribute("subscriber", subscriberService.getSubscriberById(userId));
         return "workoutSubscriber";
     }
 }
