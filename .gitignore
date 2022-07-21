@@ -1,0 +1,6 @@
+### Gradle ###
+.gradle
+/build/
+
+*.jar
+*/source-classes-mapping.txt
