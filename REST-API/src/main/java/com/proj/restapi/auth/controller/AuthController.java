@@ -15,5 +15,21 @@ public class AuthController {
         return "index";
     }
 
+    @PostMapping(value = "/register", params="login")
+    public String login(@ModelAttribute LoginInformation user,Model model){
+        model.addAttribute("userForm", new LoginInformation());
+        //TODO - if the user already registered move to menu
+        //TODO - else need to add error
+        return "index";
+    }
+
+    @PostMapping(value = "/register", params="signin")
+    public String register(@ModelAttribute LoginInformation user, Model model){
+        model.addAttribute("userForm", new LoginInformation());
+        //TODO - move to signup page
+        return "registrationPage";
+    }
+
+
 
 }

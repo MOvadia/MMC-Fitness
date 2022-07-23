@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container">
-    <form th:action="menu" th:method="post" th:object="${userForm}" th:class="loginForm">
+    <form th:action="register" th:method="post" th:object="${userForm}" th:class="loginForm">
         <h2>Login Form</h2>
         <div class="inputBox">
             <input type="text" th:field="*{username}" placeholder="Username" name="username">
@@ -18,8 +18,8 @@
         <div class="inputBox">
             <input type="text" th:field="*{password}" placeholder="Password" name="username"/>
         </div>
-        <button class="btn btn-primary" id="submitButton" type="submit">Log In</button>
-        <button class="btn btn-primary" id="signupButton" type="submit">Sign Up</button>
+        <button th:value="login" th:name="login" class="btn btn-primary" id="submitButton" type="submit">Log In</button>
+        <button th:value="signin" th:name="signin" class="btn btn-primary" id="signupButton" type="submit">Sign Up</button>
     </form>
     <div id="error-placeholder" class="alert-danger" role="alert"></div>
 </div>
