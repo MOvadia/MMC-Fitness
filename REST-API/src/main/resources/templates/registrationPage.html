@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>MMC Fitness</title>
+    <!-- Link the Bootstrap (from twitter) CSS framework in order to use its classes-->
+    <link rel="stylesheet" href="registrationPage/registrationPage.css">
+    <link rel="stylesheet" href="common/bootstrap.min.css">
+    <script src="common/context-path-helper.js"></script>
+    <script src="common/jquery-2.0.3.min.js"></script>
+    <script src="registrationPage/registrationPage.js"></script>
+</head>
+<body>
+<div class="container">
+    <form class="registationForm">
+        <h1>Sign Up</h1>
+        <p>please choose user type</p>
+        <div class="radio-group">
+            <input type="radio" id="option-one" name="selector" checked><label for="option-one">Subscriber</label>
+            <input type="radio" id="option-two" name="selector"><label for="option-two">Nutritionist</label>
+            <input type="radio" id="option-three" name="selector"><label for="option-three">Trainer</label>
+        </div>
+        <hr>
+    <p>Please fill in this form to create an account.</p>
+    <b>First name</b><br>
+        <input type="text" placeholder="Enter First Name" name="firstname" required>
+    <br>
+    <b>Last name</b><br>
+    <input type="text" placeholder="Enter Last Name" name="lastname" required><br>
+    <b>Phone number</b><br>
+    <input type="text" placeholder="Enter Phone Number" name="phonenumber" required><br>
+        <b>Email</b><br>
+    <input type="text" placeholder="Enter Email" name="email" required><br>
+        <b>Password</b><br>
+    <input type="password" placeholder="Enter Password" name="psw" required><br>
+    <b>Repeat Password</b><br>
+    <input type="password" placeholder="Repeat Password" name="psw-repeat" required><br>
+
+    <label>
+        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+    </label>
+
+    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+    <div class="clearfix">
+        <button type="button" class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">Sign Up</button>
+    </div>
+    </form>
+</div>
+</body>
+</html>
