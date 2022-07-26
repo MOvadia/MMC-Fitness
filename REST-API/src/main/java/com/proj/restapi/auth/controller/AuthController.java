@@ -1,6 +1,7 @@
 package com.proj.restapi.auth.controller;
 
 import com.proj.restapi.auth.info.LoginInformation;
+import com.proj.restapi.auth.info.SubscriberInformation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,16 @@ public class AuthController {
         return "registrationPage";
     }
 
+    @PostMapping(value = "/registration", params="cancel")
+    public String registration(Model model){
+        model.addAttribute("userForm", new LoginInformation());
+        return "index";
+    }
 
+    @PostMapping(value = "/registration", params="submit")
+    public String submit(Model model){
+        model.addAttribute("userForm", new SubscriberInformation());
+        return "index";
+    }
 
 }

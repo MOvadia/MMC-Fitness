@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
     <title>MMC Fitness</title>
     <!-- Link the Bootstrap (from twitter) CSS framework in order to use its classes-->
     <link rel="stylesheet" href="registrationPage/registrationPage.css">
@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container">
-    <form class="registationForm">
+    <form class="registationForm" th:action="registration" th:method="post" th:object="${userForm}">
         <h1>Sign Up</h1>
         <p>please choose user type</p>
         <div class="radio-group">
@@ -22,20 +22,21 @@
         </div>
         <hr>
     <p>Please fill in this form to create an account.</p>
-    <b>First name</b><br>
-        <input type="text" placeholder="Enter First Name" name="firstname" required>
-    <br>
-    <b>Last name</b><br>
-    <input type="text" placeholder="Enter Last Name" name="lastname" required><br>
-    <b>Phone number</b><br>
-    <input type="text" placeholder="Enter Phone Number" name="phonenumber" required><br>
-        <b>Email</b><br>
-    <input type="text" placeholder="Enter Email" name="email" required><br>
-        <b>Password</b><br>
-    <input type="password" placeholder="Enter Password" name="psw" required><br>
-    <b>Repeat Password</b><br>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" required><br>
-
+        <div class="inputBox">
+            <input type="text" th:field="*{username}" placeholder="Username" name="firstname">
+        </div>
+        <div class="inputBox">
+            <input type="text" th:field="*{username}" placeholder="Password" name="lastname"/>
+        </div>
+        <div class="inputBox">
+            <input type="text" th:field="*{username}" placeholder="Phonenumber" name="phonenumber"/>
+        </div>
+        <div class="inputBox">
+            <input type="text" th:field="*{username}" placeholder="Email" name="email"/>
+        </div>
+        <div class="inputBox">
+            <input type="text" th:field="*{username}" placeholder="Password" name="psw"/>
+        </div>
     <label>
         <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
     </label>
@@ -43,8 +44,8 @@
     <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
     <div class="clearfix">
-        <button type="button" class="cancelbtn">Cancel</button>
-        <button type="submit" class="signupbtn">Sign Up</button>
+        <button th:value="cancel" th:name="cancel" type="button" class="cancelbtn">Cancel</button>
+        <button th:value="submit" th:name="submit" type="submit" class="signupbtn">Sign Up</button>
     </div>
     </form>
 </div>
