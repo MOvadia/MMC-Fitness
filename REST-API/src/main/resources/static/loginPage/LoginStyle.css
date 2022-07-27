@@ -114,3 +114,7 @@ label + input[type=radio] + label {
     border-radius: 10px;
     overflow: hidden;
 }
+
+.error-msg{
+    color: red;
+}

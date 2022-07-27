@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class AuthController {
@@ -17,11 +18,11 @@ public class AuthController {
     }
 
     @PostMapping(value = "/register", params="login")
-    public String login(@ModelAttribute LoginInformation user,Model model){
-        model.addAttribute("userForm", new LoginInformation());
+    public String login(RedirectAttributes attributes,LoginInformation user,  Model model){
+        //model.addAttribute("userForm", new LoginInformation());
         //TODO - if the user already registered move to menu
         //TODO - else need to add error
-        return "index";
+        return "redirect:/menu/1";
     }
 
     @PostMapping(value = "/register", params="signin")
