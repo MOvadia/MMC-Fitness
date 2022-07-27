@@ -28,14 +28,13 @@ public class MenuController {
         return new ResponseEntity<>(menuService.getMenuById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/menu")
-    public String registerUser(@ModelAttribute LoginInformation user, Model model)
+    @GetMapping("/menu/{userId}")
+    public String registerUser(@PathVariable int userId, Model model)
     {
-        System.out.println(user.toString());
         model.addAttribute("userForm", new LoginInformation());
         //TODO - need to get user data from DB
         //TODO - get from DB the userID - than get the Subscriber by UserId
-        int id = 1;
+        int id = userId;
         model.addAttribute("subscriber", subscriberService.getSubscriberById(id));
         model.addAttribute("gender", "Male");
         model.addAttribute("workout", WorkoutService.getWorkoutPerUserId(1));

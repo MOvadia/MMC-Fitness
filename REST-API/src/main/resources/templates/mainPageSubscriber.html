@@ -4,11 +4,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>MMC Fitness</title>
     <!-- Link the Bootstrap (from twitter) CSS framework in order to use its classes-->
-    <link rel="stylesheet" href="mainMenuSubscriber/mainPageSubscriber.css">
-    <link rel="stylesheet" href="common/bootstrap.min.css">
-    <script src="common/context-path-helper.js"></script>
-    <script src="common/jquery-2.0.3.min.js"></script>
-    <script src="mainMenuSubscriber/mainPageSubscriber.js"></script>
+    <link rel="stylesheet" href="/mainMenuSubscriber/mainPageSubscriber.css">
+    <link rel="stylesheet" href="/common/bootstrap.min.css">
+    <script src="/common/context-path-helper.js"></script>
+    <script src="/common/jquery-2.0.3.min.js"></script>
+    <script src="/mainMenuSubscriber/mainPageSubscriber.js"></script>
 </head>
 <body>
 <div class="toolBar">
@@ -70,6 +70,8 @@
     <div class="board_container menu">
         <div class="board_headline">
             <label class="table_headlines" id="Menu" th:text="${menu.name}">Menu</label>
+        </div>
+        <div class="board_content">
             <table class="table table-dark">
                 <thead>
                 <tr>
@@ -84,9 +86,6 @@
                 </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="board_content">
-
         </div>
     </div>
 </div>
