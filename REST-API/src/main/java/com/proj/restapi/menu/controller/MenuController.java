@@ -34,6 +34,6 @@ public class MenuController {
         model.addAttribute("gender", "Male");
         model.addAttribute("workout", WorkoutService.getWorkoutPerUserId(123));
 
-        return "mainPageSubscriber";
+        return "mainPageTrainer";
     }
 }
