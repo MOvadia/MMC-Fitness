@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container">
-    <form class="registationForm" th:action="registration" th:method="post" th:object="${userForm}">
+    <form class="registationForm" th:action="registration" th:method="post" th:object="${registrationForm}">
         <h1>Sign Up</h1>
         <p>please choose user type</p>
         <div class="radio-group">
@@ -23,19 +23,19 @@
         <hr>
     <p>Please fill in this form to create an account.</p>
         <div class="inputBox">
-            <input type="text" th:field="*{username}" placeholder="Username" name="firstname">
+            <input type="text" th:field="*{firstname}" placeholder="Username" name="firstname">
         </div>
         <div class="inputBox">
-            <input type="text" th:field="*{username}" placeholder="Password" name="lastname"/>
+            <input type="text" th:field="*{lastname}" placeholder="Password" name="lastname"/>
         </div>
         <div class="inputBox">
-            <input type="text" th:field="*{username}" placeholder="Phonenumber" name="phonenumber"/>
+            <input type="text" th:field="*{phonenumber}" placeholder="Phonenumber" name="phonenumber"/>
         </div>
         <div class="inputBox">
-            <input type="text" th:field="*{username}" placeholder="Email" name="email"/>
+            <input type="text" th:field="*{email}" placeholder="Email" name="email"/>
         </div>
         <div class="inputBox">
-            <input type="text" th:field="*{username}" placeholder="Password" name="psw"/>
+            <input type="text" th:field="*{psw}" placeholder="Password" name="psw"/>
         </div>
     <label>
         <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me

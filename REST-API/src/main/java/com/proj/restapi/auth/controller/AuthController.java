@@ -27,21 +27,21 @@ public class AuthController {
 
     @PostMapping(value = "/register", params="signin")
     public String register(@ModelAttribute LoginInformation user, Model model){
-        model.addAttribute("userForm", new LoginInformation());
+        model.addAttribute("registrationForm", new SubscriberInformation());
         //TODO - move to signup page
         return "registrationPage";
     }
 
     @PostMapping(value = "/registration", params="cancel")
-    public String registration(Model model){
+    public String registration(SubscriberInformation user, Model model){
         model.addAttribute("userForm", new LoginInformation());
         return "index";
     }
 
     @PostMapping(value = "/registration", params="submit")
-    public String submit(Model model){
-        model.addAttribute("userForm", new SubscriberInformation());
-        return "index";
+    public String submit(SubscriberInformation user, Model model){
+        model.addAttribute("userForm", new LoginInformation());
+        return "redirect:/";
     }
 
 }
