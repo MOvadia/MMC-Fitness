@@ -22,21 +22,17 @@
         </div>
         <hr>
     <p>Please fill in this form to create an account.</p>
-        <div class="inputBox">
-            <input type="text" th:field="*{firstname}" placeholder="Username" name="firstname">
-        </div>
-        <div class="inputBox">
-            <input type="text" th:field="*{lastname}" placeholder="Password" name="lastname"/>
-        </div>
-        <div class="inputBox">
-            <input type="text" th:field="*{phonenumber}" placeholder="Phonenumber" name="phonenumber"/>
-        </div>
-        <div class="inputBox">
-            <input type="text" th:field="*{email}" placeholder="Email" name="email"/>
-        </div>
-        <div class="inputBox">
-            <input type="text" th:field="*{psw}" placeholder="Password" name="psw"/>
-        </div>
+        <b>First name</b><br>
+        <input type="text" th:field="*{firstname}" placeholder="Enter First Name" name="firstname" required>
+        <br>
+        <b>Last name</b><br>
+        <input type="text" th:field="*{lastname}" placeholder="Enter Last Name" name="lastname" required><br>
+        <b>Phone number</b><br>
+        <input type="text" th:field="*{phonenumber}" placeholder="Enter Phone Number" name="phonenumber" required><br>
+        <b>Email</b><br>
+        <input type="text" th:field="*{email}" placeholder="Enter Email" name="email" required><br>
+        <b>Password</b><br>
+        <input type="password" th:field="*{psw}" placeholder="Enter Password" name="psw" required><br>
     <label>
         <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
     </label>
