@@ -22,7 +22,7 @@ public class AuthController {
         //model.addAttribute("userForm", new LoginInformation());
         //TODO - if the user already registered move to menu
         //TODO - else need to add error
-        return "redirect:/menu/1";
+        return "redirect:/trainer/login/1";
     }
 
     @PostMapping(value = "/register", params="signin")

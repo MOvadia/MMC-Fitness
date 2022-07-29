@@ -107,7 +107,9 @@ body{
     font-weight: 600;
     font-size: medium;
     flex-grow: 60;
-    padding-left: 170px;
+    flex-grow: 60;
+    padding-left: 45px;
+    padding-top: 20px;
 
 }
 
