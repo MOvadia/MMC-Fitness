@@ -41,6 +41,6 @@ public class MenuController {
         model.addAttribute("menu", MenuService.getMenuById(1));
 
 
-        return "mainPageSubscriber";
+        return "mainPageTrainer";
     }
 }
