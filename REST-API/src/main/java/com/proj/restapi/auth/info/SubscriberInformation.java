@@ -9,6 +9,7 @@ public class SubscriberInformation {
     private String phonenumber;
     private String email;
     private String psw;
+    private String type;
 
     public SubscriberInformation() {
     }
@@ -58,11 +59,20 @@ public class SubscriberInformation {
         if (this == o) return true;
         if (!(o instanceof SubscriberInformation)) return false;
         SubscriberInformation that = (SubscriberInformation) o;
-        return firstname.equals(that.firstname) && lastname.equals(that.lastname) && phonenumber.equals(that.phonenumber) && email.equals(that.email) && psw.equals(that.psw);
+        return firstname.equals(that.firstname) && lastname.equals(that.lastname) && phonenumber.equals(that.phonenumber)
+                && email.equals(that.email) && psw.equals(that.psw) && type.equals(that.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstname, lastname, phonenumber, email, psw);
+        return Objects.hash(firstname, lastname, phonenumber, email, psw, type);
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
