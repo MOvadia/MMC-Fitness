@@ -6,6 +6,7 @@
     <!-- Link the Bootstrap (from twitter) CSS framework in order to use its classes-->
     <link rel="stylesheet" href="/mainMenuTrainer/mainPageTrainer.css">
     <link rel="stylesheet" href="/common/bootstrap.min.css">
+    <link rel="stylesheet" href="/toolbar/toolbar.css">
     <script src="/common/context-path-helper.js"></script>
     <script src="/common/jquery-2.0.3.min.js"></script>
     <script src="/mainMenuTrainer/mainPageTrainer.js"></script>
@@ -15,6 +16,11 @@
 <div class="toolBar">
     <div class="toolbarContent">
         <a href="app/logout" class="logoutButton">Logout</a>
+        <span class="logoSpan">
+            <a th:href="@{'/settings/userId=' + ${subscriber.userId}}" class="settings">
+                <img th:src="@{/common/images/settings.png}" class="settings">
+            </a>
+        </span>
         <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
     </div>
 </div>

@@ -111,15 +111,3 @@ body{
 .board_container.menu{
     margin-left: 40px;
 }
-
-.settings {
-    height: 40px;
-    width: 60px;
-    margin-right: 50px;
-    margin-top: -5px;
-}
-
-.logoSpan {
-    position: absolute;
-    right: 0;
-}

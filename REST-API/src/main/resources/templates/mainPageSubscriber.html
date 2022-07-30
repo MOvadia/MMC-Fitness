@@ -5,6 +5,7 @@
     <title>MMC Fitness</title>
     <!-- Link the Bootstrap (from twitter) CSS framework in order to use its classes-->
     <link rel="stylesheet" href="/mainMenuSubscriber/mainPageSubscriber.css">
+    <link rel="stylesheet" href="/toolbar/toolbar.css">
     <link rel="stylesheet" href="/common/bootstrap.min.css">
     <script src="/common/context-path-helper.js"></script>
     <script src="/common/jquery-2.0.3.min.js"></script>
@@ -15,7 +16,6 @@
     <div class="toolbarContent">
         <a href="app/logout" class="logoutButton">Logout</a>
         <span class="logoSpan">
-            userId
             <a th:href="@{'/settings/userId=' + ${subscriber.userId}}" class="settings">
                 <img th:src="@{/common/images/settings.png}" class="settings">
             </a>
