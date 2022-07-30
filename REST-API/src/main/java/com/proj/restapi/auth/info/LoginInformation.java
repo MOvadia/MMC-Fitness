@@ -1,24 +1,28 @@
 package com.proj.restapi.auth.info;
 
 public class LoginInformation {
-    private String username;
+    private String email;
     private String password;
 
-    public LoginInformation(String username, String password) {
-        this.username = username;
+    private String type;
+
+    public LoginInformation(String email, String password, String type) {
+        this.email = email;
         this.password = password;
+        this.type = type;
     }
 
     public LoginInformation() {
+        this.type = "Subscriber";
         // no implementation
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -34,7 +38,9 @@ public class LoginInformation {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((password == null) ? 0 : password.hashCode());
-        result = prime * result + ((username == null) ? 0 : username.hashCode());
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
+        result = prime * result + ((type == null) ? 0 : type.hashCode());
+
         return result;
     }
 
@@ -52,17 +58,29 @@ public class LoginInformation {
                 return false;
         } else if (!password.equals(other.password))
             return false;
-        if (username == null) {
-            if (other.username != null)
+        if (email == null) {
+            if (other.email != null)
                 return false;
-        } else if (!username.equals(other.username))
+        } else if (!email.equals(other.email))
+            return false;
+        if (type == null) {
+            if (other.type != null)
+                return false;
+        } else if (!type.equals(other.type))
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "[username=" + username + ", password=" + password + "]";
+        return "[email=" + email + ", password=" + password + ", type=" + type + "]";
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

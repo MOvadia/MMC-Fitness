@@ -5,11 +5,14 @@ import com.proj.restapi.auth.info.SubscriberInformation;
 import com.proj.restapi.menu.service.RegistrationService;
 import com.proj.restapi.menu.service.SubscriberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -20,11 +23,17 @@ public class AuthController {
     @GetMapping("/")
     public String start(Model model){
         model.addAttribute("userForm", new LoginInformation());
+        //model.addAttribute("errorMsg","check");
         return "index";
     }
 
     @PostMapping(value = "/register", params="login")
-    public String login(RedirectAttributes attributes,LoginInformation user,  Model model){
+    public String login(RedirectAttributes attributes, LoginInformation user, Model model) {
+        if (!registrationService.isUserExist(user.getEmail(),user.getPassword(), user.getType())) {
+            model.addAttribute("userForm", new LoginInformation());
+            model.addAttribute("errorMessage", "email or password or user type is incorrect");
+            return "index";
+        }
         //model.addAttribute("userForm", new LoginInformation());
         //TODO - if the user already registered move to menu
         //TODO - else need to add error

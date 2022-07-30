@@ -116,5 +116,6 @@ label + input[type=radio] + label {
 }
 
 .error-msg{
-    color: red;
+    color: black;
+    font-weight: bold;
 }
