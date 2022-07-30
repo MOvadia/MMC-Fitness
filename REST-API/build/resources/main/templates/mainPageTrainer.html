@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>MMC Fitness</title>
+    <!-- Link the Bootstrap (from twitter) CSS framework in order to use its classes-->
+    <link rel="stylesheet" href="/mainMenuTrainer/mainPageTrainer.css">
+    <link rel="stylesheet" href="/common/bootstrap.min.css">
+    <script src="/common/context-path-helper.js"></script>
+    <script src="/common/jquery-2.0.3.min.js"></script>
+    <script src="/mainMenuTrainer/mainPageTrainer.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        * {box-sizing: border-box;}
+
+        /* Button used to open the contact form - fixed at the bottom of the page */
+        .open-button {
+            background-color: #555;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            bottom: 23px;
+            right: 28px;
+            width: 280px;
+        }
+
+        /* The popup form - hidden by default */
+        .form-popup {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            right: 15px;
+            border: 3px solid #f1f1f1;
+            z-index: 9;
+        }
+
+        /* Add styles to the form container */
+        .form-container {
+            max-width: 300px;
+            padding: 10px;
+            background-color: white;
+        }
+
+        /* Full-width input fields */
+        .form-container input[type=text], .form-container input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        /* When the inputs get focus, do something */
+        .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        .form-container .btn {
+            background-color: rgba(105,163,213,0.76);
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom:10px;
+            opacity: 0.8;
+        }
+
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+            background-color: #0048ff7d;
+        }
+
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover, .open-button:hover {
+            opacity: 1;
+        }
+    </style>
+
+</head>
+<body>
+<div class="toolBar">
+    <div class="toolbarContent">
+        <a href="app/logout" class="logoutButton">Logout</a>
+        <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
+    </div>
+</div>
+<div id="Fitness_container">
+    <div class="board_container training">
+        <div class="board_headline">
+            <label class="table_headlines" id="Workouts">Workouts</label>
+           <button onclick="openForm()"> <i class="fa fa-plus" aria-hidden="true"
+               style="margin: 15px;border: solid;padding: 8px;border-radius: 10px;">
+
+            </i> </button>
+            <div class="form-popup" id="myForm">
+                <form action="/" class="form-container">
+                    <h1>Add Workout</h1>
+
+                    <label for="workout"><b>Workout Name</b></label>
+                    <input type="text" placeholder="Enter workout name" name="workout" required>
+
+                    <label for="link"><b>Link</b></label>
+                    <input type="password" placeholder="Enter workout link" name="link" required>
+
+                    <button type="submit" class="btn">Add Workout</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                </form>
+            </div>
+
+        </div>
+        <div class="board_content">
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Workout Id</th>
+                    <th scope="col">Workout name</th>
+                    <th scope="col">Workout link</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="workout : ${workout}" style="cursor: pointer"
+                    th:onclick="|urlMapping('${subscriber.userId}','${workout.workoutId}')|">
+                    <td th:text="${workout.workoutId}"></td>
+                    <td th:text="${workout.name}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+<script>
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
+

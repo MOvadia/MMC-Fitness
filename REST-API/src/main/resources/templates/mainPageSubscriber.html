@@ -5,6 +5,7 @@
     <title>MMC Fitness</title>
     <!-- Link the Bootstrap (from twitter) CSS framework in order to use its classes-->
     <link rel="stylesheet" href="/mainMenuSubscriber/mainPageSubscriber.css">
+    <link rel="stylesheet" href="/toolbar/toolbar.css">
     <link rel="stylesheet" href="/common/bootstrap.min.css">
     <script src="/common/context-path-helper.js"></script>
     <script src="/common/jquery-2.0.3.min.js"></script>
@@ -14,6 +15,11 @@
 <div class="toolBar">
     <div class="toolbarContent">
         <a href="app/logout" class="logoutButton">Logout</a>
+        <span class="logoSpan">
+            <a th:href="@{'/settings/userId=' + ${subscriber.userId}}" class="settings">
+                <img th:src="@{/common/images/settings.png}" class="settings">
+            </a>
+        </span>
         <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
     </div>
 </div>
@@ -58,9 +64,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="workout : ${workout}" style="cursor: pointer" th:onclick="|urlMapping('${subscriber.userId}','${workout.workoutId}')|"  >
-                        <td th:text="${workout.workoutId}"></td>
-                        <td th:text="${workout.name}"></td>
+                <tr th:each="workout : ${workout}" style="cursor: pointer" >
+
+                    <td th:text="${workout.workoutId}"></td>
+                    <td th:text="${workout.name}"></td>
+
                 </tr>
                 </tbody>
             </table>

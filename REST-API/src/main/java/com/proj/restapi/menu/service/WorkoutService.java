@@ -1,5 +1,6 @@
 package com.proj.restapi.menu.service;
 
+import com.proj.restapi.actionresult.ActionResult;
 import general.Workout;
 
 import java.sql.Timestamp;
@@ -24,5 +25,23 @@ public class WorkoutService {
     public static Workout getWorkoutForUserByWorkoutId(int userId, int workoutId){
         return new Workout(1, "Power Hands", 1,
                 new Timestamp(System.currentTimeMillis()), "This ...", "URL...", 40f );
+    }
+
+    public ActionResult<String> addWorkout(Workout workout){
+        try {
+            //Connect to DB and update workouts table with the new workout
+            return ActionResult.successMessage("The workout updated successfully");
+        } catch (Exception e) {
+            return ActionResult.failed("Failed to update the workout");
+        }
+    }
+
+    public ActionResult<String> deleteWorkout(Integer workoutId){
+        try {
+            //Connect to DB and delete the specific workout from workouts table
+            return ActionResult.successMessage("The workout deleted successfully");
+        } catch (Exception e) {
+            return ActionResult.failed("Failed to delete the workout");
+        }
     }
 }

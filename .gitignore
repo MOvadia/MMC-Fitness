@@ -4,3 +4,5 @@
 
 *.jar
 logic/build/tmp/compileJava/source-classes-mapping.txt
+
+build/*
