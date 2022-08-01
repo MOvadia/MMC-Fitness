@@ -79,7 +79,31 @@ body{
     margin-top: -5px;
 }
 
+.alert{
+    height: 70px;
+    width: 70px;
+    margin-right: 68px;
+    margin-top: -18px;
+}
+
 .logoSpan {
     position: absolute;
     right: 0;
+}
+
+.alertLogoSpan{
+    position: absolute;
+    right: 0;
+}
+
+.reportLogoSpan{
+    position: absolute;
+    right: 0;
+}
+
+.report{
+    height: 40px;
+    width: 35px;
+    margin-right: 115px;
+    margin-top: -5px;
 }

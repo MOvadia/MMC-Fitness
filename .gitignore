@@ -6,3 +6,5 @@
 logic/build/tmp/compileJava/source-classes-mapping.txt
 
 build/*
+logic/build/*
+REST-API/build/*

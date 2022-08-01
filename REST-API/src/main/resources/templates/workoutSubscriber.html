@@ -19,6 +19,16 @@
                 <img th:src="@{/common/images/settings.png}" class="settings">
             </a>
         </span>
+        <span class="alertLogoSpan">
+            <a th:href="@{'/alert/userId=' + ${subscriber.userId}}" class="alert">
+                <img th:src="@{/common/images/bell.png}" class="alert">
+            </a>
+        </span>
+        <span class="reportLogoSpan">
+            <a th:href="@{'/report/userId=' + ${subscriber.userId}}" class="report">
+                <img th:src="@{/common/images/report3.png}" class="report">
+            </a>
+        </span>
         <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
     </div>
 </div>

@@ -1,2 +1,0 @@
-com/proj/restapi/RestApiApplicationTests.java
- com.proj.restapi.RestApiApplicationTests
