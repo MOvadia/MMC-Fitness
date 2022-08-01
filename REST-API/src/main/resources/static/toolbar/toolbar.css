@@ -95,3 +95,15 @@ body{
     position: absolute;
     right: 0;
 }
+
+.reportLogoSpan{
+    position: absolute;
+    right: 0;
+}
+
+.report{
+    height: 40px;
+    width: 35px;
+    margin-right: 115px;
+    margin-top: -5px;
+}
