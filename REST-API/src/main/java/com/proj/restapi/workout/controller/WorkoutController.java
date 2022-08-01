@@ -13,7 +13,7 @@ public class WorkoutController {
     @Autowired
     private SubscriberService subscriberService;
 
-    @GetMapping("/workout/UserId={userId}/Workout={workoutId}")
+    @GetMapping("/workout/userId={userId}/workout={workoutId}")
     public String workoutPage(@PathVariable int userId, @PathVariable int workoutId, Model model){
         model.addAttribute("subscriber", subscriberService.getSubscriberById(userId));
         return "workoutSubscriber";

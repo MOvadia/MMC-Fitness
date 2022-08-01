@@ -12,7 +12,7 @@ public class AlertsController {
     @Autowired
     private SubscriberService subscriberService;
 
-    @GetMapping("/alerts/{userId}")
+    @GetMapping("/alert/userId={userId}")
     public String alertPage(@PathVariable int userId, Model model){
         model.addAttribute("subscriber", subscriberService.getSubscriberById(userId));
 
