@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.sql.JDBCType.NULL;
+
 @Service
 public class RegistrationService {
 
@@ -16,16 +18,31 @@ public class RegistrationService {
     private JdbcTemplate jdbcTemplate;
 
     public int createUser(SubscriberInformation info){
-        int val = 0;
-
-        /*if (!isUserExistByEmail(info.getEmail()))
+        int val1 = 0, val2 = 0, val3 = 0;
+        String sqlInsert;
+        if (!isUserExistByEmail(info.getEmail()))
         {
             int userId = getAvalibleId();
-            String sqlInsert = "insert into [User] values (?,?,?,?,?)";
-            val = jdbcTemplate.update(sqlInsert, userId,info.getFirstname() , info.getLastname()
+            if(info.getType().equals("Subscriber")) {
+                sqlInsert = "insert into $tableName values (?,?,?,?,?,?,?,?,?,?,?)";
+                String query = sqlInsert.replace("$tableName", info.getType());
+                val3 = jdbcTemplate.update(query, userId , NULL, NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+            }
+            else {
+                sqlInsert = "insert into $tableName values (?,?)";
+                String query = sqlInsert.replace("$tableName", info.getType());
+                val3 = jdbcTemplate.update(query, userId, NULL);
+            }
+
+            sqlInsert = "insert into [User] values (?,?,?,?,?)";
+            val1 = jdbcTemplate.update(sqlInsert, userId,info.getFirstname() , info.getLastname()
                     , info.getPhonenumber() , info.getEmail());
-        }*/
-        return val;
+
+            sqlInsert = "insert into [Auth] values (?,?)";
+            val2 = jdbcTemplate.update(sqlInsert, userId,info.getPsw());
+
+        }
+        return val1*val2*val3;
     }
 
     public boolean isUserExist(String email, String pass, String type){
@@ -41,6 +58,12 @@ public class RegistrationService {
         }
     }
 
+    public boolean isUserExistByEmail(String email){
+        String sqlUser = "SELECT * FROM [User] where email=?";
+        List<User> users = jdbcTemplate.query(sqlUser,new Object[] { email },
+                BeanPropertyRowMapper.newInstance(User.class));
+        return users.isEmpty()? false:true;
+    }
     public int getUserIdByEmail(String email){
         String sqlUser = "SELECT userId FROM [User] where email=?";
         Integer userId = jdbcTemplate.queryForObject(sqlUser,new Object[] { email }, Integer.class);
