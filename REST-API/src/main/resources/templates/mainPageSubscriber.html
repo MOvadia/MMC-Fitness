@@ -19,6 +19,12 @@
             <a th:href="@{'/settings/userId=' + ${subscriber.userId}}" class="settings">
                 <img th:src="@{/common/images/settings.png}" class="settings">
             </a>
+
+        </span>
+        <span class="alertLogoSpan">
+            <a th:href="@{'/alert/userId=' + ${subscriber.userId}}" class="alert">
+                <img th:src="@{/common/images/bell.png}" class="alert">
+            </a>
         </span>
         <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
     </div>
@@ -65,10 +71,13 @@
                 </thead>
                 <tbody>
                 <tr th:each="workout : ${workout}" style="cursor: pointer" >
-
-                    <td th:text="${workout.workoutId}"></td>
-                    <td th:text="${workout.name}"></td>
-
+                        <td th:text="${workout.workoutId}"></td>
+                        <td th:text="${workout.name}"></td>
+                        <td>
+                            <a th:href="@{'/workout/UserId=' + ${subscriber.userId}} + '/Workout=' + ${workout.workoutId}">
+                                <button type="button" class="workoutButton">open</button>
+                            </a>
+                        </td>
                 </tr>
                 </tbody>
             </table>
