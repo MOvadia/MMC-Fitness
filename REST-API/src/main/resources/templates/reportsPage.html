@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>MMC Fitness</title>
+  <link rel="stylesheet" href="/workoutSubscriber/workoutSubscriber.css">
+  <link rel="stylesheet" href="/common/bootstrap.min.css">
+  <link rel="stylesheet" href="/toolbar/toolbar.css">
+  <script src="/common/context-path-helper.js"></script>
+  <script src="/common/jquery-2.0.3.min.js"></script>
+  <script src="/workoutSubscriber/workoutSubscriber.js"></script>
+</head>
+<body>
+<div class="toolBar">
+  <div class="toolbarContent">
+    <a href="app/logout" class="logoutButton">Logout</a>
+    <span class="logoSpan">
+            <a th:href="@{'/settings/userId=' + ${subscriber.userId}}" class="settings">
+                <img th:src="@{/common/images/settings.png}" class="settings">
+            </a>
+        </span>
+    <span class="alertLogoSpan">
+            <a th:href="@{'/alert/userId=' + ${subscriber.userId}}" class="alert">
+                <img th:src="@{/common/images/bell.png}" class="alert">
+            </a>
+        </span>
+    <span class="reportLogoSpan">
+            <a th:href="@{'/report/userId=' + ${subscriber.userId}}" class="report">
+                <img th:src="@{/common/images/report3.png}" class="report">
+            </a>
+        </span>
+    <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
+  </div>
+</div>
+
+</body>
+</html>
