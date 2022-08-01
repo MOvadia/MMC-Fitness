@@ -16,12 +16,15 @@
         <h1>Sign Up</h1>
         <p>please choose user type</p>
         <div class="radio-group">
-            <input type="radio" id="option-one" name="selector" checked><label for="option-one">Subscriber</label>
-            <input type="radio" id="option-two" name="selector"><label for="option-two">Nutritionist</label>
-            <input type="radio" id="option-three" name="selector"><label for="option-three">Trainer</label>
+            <input type="radio" id="option1" name="option1" class="custom-control-input" value="Subscriber" th:field="*{type}" checked="checked">
+            <label class="custom-control-label" for="option1">Subscriber</label>
+            <input type="radio" id="option2" name="option2" class="custom-control-input" value="Nutritionist" th:field="*{type}">
+            <label class="custom-control-label" for="option2">Nutritionist</label>
+            <input type="radio" id="option3" name="option3" class="custom-control-input" value="Trainer" th:field="*{type}">
+            <label class="custom-control-label" for="option3">Trainer</label>
         </div>
         <hr>
-    <p>Please fill in this form to create an account.</p>
+        <p>Please fill in this form to create an account.</p>
         <div class="inputBox">
             <input type="text" th:field="*{firstname}" placeholder="Username" name="firstname">
         </div>
@@ -37,16 +40,16 @@
         <div class="inputBox">
             <input type="text" th:field="*{psw}" placeholder="Password" name="psw"/>
         </div>
-    <label>
-        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-    </label>
+        <label>
+            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+        </label>
 
-    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+        <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
-    <div class="clearfix">
-        <button th:value="cancel" th:name="cancel" type="button" class="cancelbtn">Cancel</button>
-        <button th:value="submit" th:name="submit" type="submit" class="signupbtn">Sign Up</button>
-    </div>
+        <div class="clearfix">
+            <button th:value="cancel" th:name="cancel" type="button" class="cancelbtn">Cancel</button>
+            <button th:value="submit" th:name="submit" type="submit" class="signupbtn">Sign Up</button>
+        </div>
     </form>
 </div>
 </body>

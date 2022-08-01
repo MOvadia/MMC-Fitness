@@ -10,25 +10,27 @@
 </head>
 <body>
 <div class="container">
-    <form th:action="register" th:method="post" th:object="${userForm}" th:class="loginForm">
+    <form th:action="login" th:method="post" th:object="${userForm}" th:class="loginForm">
         <h2>Login Form</h2>
         <p>please choose user type</p>
         <div class="radio-group">
-            <input type="radio" id="option-one" name="selector" checked><label for="option-one">Subscriber</label>
-            <input type="radio" id="option-two" name="selector"><label for="option-two">Nutritionist</label>
-            <input type="radio" id="option-three" name="selector"><label for="option-three">Trainer</label>
+            <input type="radio" id="option1" name="option1" class="custom-control-input" value="Subscriber" th:field="*{type}" checked="checked">
+            <label class="custom-control-label" for="option1">Subscriber</label>
+            <input type="radio" id="option2" name="option2" class="custom-control-input" value="Nutritionist" th:field="*{type}">
+            <label class="custom-control-label" for="option2">Nutritionist</label>
+            <input type="radio" id="option3" name="option3" class="custom-control-input" value="Trainer" th:field="*{type}">
+            <label class="custom-control-label" for="option3">Trainer</label>
         </div>
         <div class="inputBox">
-            <input type="text" th:field="*{username}" placeholder="Username" name="username">
+            <input type="email" th:field="*{email}" placeholder="Email" name="email" required>
         </div>
         <div class="inputBox">
-            <input type="text" th:field="*{password}" placeholder="Password" name="username"/>
+            <input type="password" th:field="*{password}" placeholder="Password" name="password" required/>
         </div>
+        <span class="error-msg" th:if="${errorMessage}"  th:text="${errorMessage}" >Error</span>
         <button th:value="login" th:name="login" class="btn btn-primary" id="submitButton" type="submit">Log In</button>
         <button th:value="signin" th:name="signin" class="btn btn-primary" id="signupButton" type="submit">Sign Up</button>
-        <label class="error-msg"></label>
     </form>
-    <div id="error-placeholder" class="alert-danger" role="alert"></div>
 </div>
 </body>
 </html>
