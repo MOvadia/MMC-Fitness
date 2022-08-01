@@ -30,14 +30,14 @@ public class TrainerController {
         return new ResponseEntity<>(trainerService.deleteWorkout(workoutId), HttpStatus.OK);
     }
 
-    @GetMapping("/trainer/login/{userId}")
+    @GetMapping("/trainer/login/userId={userId}")
     public String registerUser(@PathVariable int userId, Model model)
     {
         model.addAttribute("userForm", new LoginInformation());
         //TODO - need to get user data from DB
-        //TODO - get from DB the userID - than get the Subscriber by UserId
+        //TODO - get from DB the userID - than get the trainer by UserId
         int id = userId;
-        model.addAttribute("subscriber", subscriberService.getSubscriberById(id));
+      //  model.addAttribute("subscriber", trainerService.getSubscriberById(id));
         model.addAttribute("workout", trainerService.getAllWorkouts());
         return "mainPageTrainer";
     }

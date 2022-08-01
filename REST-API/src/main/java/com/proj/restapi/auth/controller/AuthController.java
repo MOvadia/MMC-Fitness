@@ -27,20 +27,29 @@ public class AuthController {
         return "index";
     }
 
-    @PostMapping(value = "/register", params="login")
+    @PostMapping(value = "/login", params="login")
     public String login(RedirectAttributes attributes, LoginInformation user, Model model) {
+        int id = registrationService.getUserIdByEmail(user.getEmail());
         if (!registrationService.isUserExist(user.getEmail(),user.getPassword(), user.getType())) {
             model.addAttribute("userForm", new LoginInformation());
             model.addAttribute("errorMessage", "email or password or user type is incorrect");
             return "index";
         }
+        else if(user.getType().equals("Subscriber"))
+        {
+            return "redirect:/menu/userId=" + id;
+        }
+        else if(user.getType().equals("Trainer"))
+        {
+            return "redirect:/trainer/login/userId=" + id;
+        }
+        return "redirect:/nutritionist/login/userId=" + id;
         //model.addAttribute("userForm", new LoginInformation());
         //TODO - if the user already registered move to menu
         //TODO - else need to add error
-        return "redirect:/menu/1";
     }
 
-    @PostMapping(value = "/register", params="signin")
+    @PostMapping(value = "/login", params="signin")
     public String register(@ModelAttribute LoginInformation user, Model model){
         model.addAttribute("registrationForm", new SubscriberInformation());
         //TODO - move to signup page

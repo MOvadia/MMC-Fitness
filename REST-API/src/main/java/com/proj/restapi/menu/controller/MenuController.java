@@ -25,7 +25,7 @@ public class MenuController {
         return new ResponseEntity<>(menuService.getMenuById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/menu/{userId}")
+    @GetMapping("/menu/userId={userId}")
     public String registerUser(@PathVariable int userId, Model model)
     {
         model.addAttribute("userForm", new LoginInformation());

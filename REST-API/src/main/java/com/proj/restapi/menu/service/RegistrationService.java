@@ -31,7 +31,7 @@ public class RegistrationService {
             else {
                 sqlInsert = "insert into $tableName values (?,?)";
                 String query = sqlInsert.replace("$tableName", info.getType());
-                val3 = jdbcTemplate.update(query, userId, NULL);
+                val3 = jdbcTemplate.update(query, userId, 7);
             }
 
             sqlInsert = "insert into [User] values (?,?,?,?,?)";
