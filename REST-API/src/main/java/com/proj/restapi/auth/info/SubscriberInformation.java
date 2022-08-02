@@ -11,6 +11,8 @@ public class SubscriberInformation {
     private String psw;
     private String type;
 
+    private int seniority;
+
     public SubscriberInformation() {
     }
 
@@ -65,7 +67,7 @@ public class SubscriberInformation {
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstname, lastname, phonenumber, email, psw, type);
+        return Objects.hash(firstname, lastname, phonenumber, email, psw, type, seniority);
     }
 
     public String getType() {
@@ -74,5 +76,13 @@ public class SubscriberInformation {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getSeniority() {
+        return seniority;
+    }
+
+    public void setSeniority(int seniority) {
+        this.seniority = seniority;
     }
 }
