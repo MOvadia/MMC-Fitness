@@ -32,7 +32,7 @@ public class AuthController {
         int id = registrationService.getUserIdByEmail(user.getEmail());
         if (!registrationService.isUserExist(user.getEmail(),user.getPassword(), user.getType())) {
             model.addAttribute("userForm", new LoginInformation());
-            model.addAttribute("errorMessage", "email or password or user type is incorrect");
+            model.addAttribute("errorMessage", "Your credentials are incorrect");
             return "index";
         }
         else if(user.getType().equals("Subscriber"))
