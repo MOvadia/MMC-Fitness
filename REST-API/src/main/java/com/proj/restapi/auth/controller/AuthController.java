@@ -29,13 +29,13 @@ public class AuthController {
 
     @PostMapping(value = "/login", params="login")
     public String login(RedirectAttributes attributes, LoginInformation user, Model model) {
-        int id = registrationService.getUserIdByEmail(user.getEmail());
         if (!registrationService.isUserExist(user.getEmail(),user.getPassword(), user.getType())) {
             model.addAttribute("userForm", new LoginInformation());
             model.addAttribute("errorMessage", "Your credentials are incorrect");
             return "index";
         }
-        else if(user.getType().equals("Subscriber"))
+        int id = registrationService.getUserIdByEmail(user.getEmail());
+        if(user.getType().equals("Subscriber"))
         {
             return "redirect:/menu/userId=" + id;
         }
