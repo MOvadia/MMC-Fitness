@@ -12,15 +12,15 @@
 </head>
 <body>
 <div class="container">
-    <form class="registationForm" th:action="registration" th:method="post" th:object="${registrationForm}">
+    <form class="registationForm" id="genericForm" th:action="registration" th:method="post" th:object="${registrationForm}">
         <h1>Sign Up</h1>
         <p>please choose user type</p>
         <div class="radio-group">
-            <input type="radio" id="option1" name="option1" class="custom-control-input" value="Subscriber" th:field="*{type}" checked="checked">
+            <input type="radio" onclick="openForm()" id="option1" name="option1" class="custom-control-input" value="Subscriber" th:field="*{type}" checked="checked">
             <label class="custom-control-label" for="option1">Subscriber</label>
-            <input type="radio" id="option2" name="option2" class="custom-control-input" value="Nutritionist" th:field="*{type}">
+            <input type="radio" onclick="closeForm()" id="option2" name="option2" class="custom-control-input" value="Nutritionist" th:field="*{type}">
             <label class="custom-control-label" for="option2">Nutritionist</label>
-            <input type="radio" id="option3" name="option3" class="custom-control-input" value="Trainer" th:field="*{type}">
+            <input type="radio" onclick="closeForm()" id="option3" name="option3" class="custom-control-input" value="Trainer" th:field="*{type}">
             <label class="custom-control-label" for="option3">Trainer</label>
         </div>
         <hr>
@@ -36,10 +36,29 @@
         <input type="text" th:field="*{email}" placeholder="Enter Email" name="email" required><br>
         <b>Password</b><br>
         <input type="password" th:field="*{psw}" placeholder="Enter Password" name="psw" required><br>
-        <label>
-            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-        </label>
-
+        <div id="subscriberForm">
+        <b>Age</b><br>
+        <input type="text" name="age" placeholder="Enter Age" required>
+        <br>
+        <b>height</b><br>
+        <input type="text" name="height" placeholder="Enter Height" required><br>
+        <b >weight</b><br>
+        <input type="text" name="weight" placeholder="Enter Weight" required><br>
+        <b>dietaryLimitations</b><br>
+        <input type="text" name="dietaryLimitations" placeholder="Enter Dietary Limitations" required><br>
+        <b>physicalLimitations</b><br>
+        <input type="text" name="physicalLimitations" placeholder="Enter Physical Limitations" required><br>
+        <b>workoutAmount</b><br>
+        <input type="text" name="workoutAmount" placeholder="Enter workout Amount" required><br>
+        <b>targetFatPercentage</b><br>
+        <input type="text" name="targetFatPercentage" placeholder="Enter Target Fat Percentage" required><br>
+        <b>targetWeight</b><br>
+        <input type="text" name="targetWeight" placeholder="Enter Target Weight" required><br>
+        </div>
+        <div id="professionalForm">
+            <b>seniority</b><br>
+            <input type="number" name="seniority" placeholder="Enter seniority" required><br>
+        </div>
         <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
         <div class="clearfix">
@@ -48,5 +67,15 @@
         </div>
     </form>
 </div>
+<script>
+    function openForm() {
+        document.getElementById("subscriberForm").style.display = "block";
+        document.getElementById("professionalForm").style.display = "none";
+    }
+    function closeForm() {
+        document.getElementById("subscriberForm").style.display = "none";
+        document.getElementById("professionalForm").style.display = "block";
+    }
+</script>
 </body>
 </html>
