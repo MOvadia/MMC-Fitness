@@ -32,6 +32,34 @@
         <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
     </div>
 </div>
+<div id="workout_body">
+    <div class="board_container workout">
+        <div class="board_headline">
+            <label class="table_headlines" id="exercises">Exercises</label>
 
+                </form>
+            </div>
+        <div class="board_content">
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Exercise</th>
+                    <th scope="col">Number of repetition</th>
+                    <th scope="col">Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="exersize : ${exersize}" style="cursor: pointer">
+                    <td th:text="${exersize.exercise}"></td>
+                    <td th:text="${exersize.repetNum}"></td>
+                    <td th:text="${exersize.description}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
