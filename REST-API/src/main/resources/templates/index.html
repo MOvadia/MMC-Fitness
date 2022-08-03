@@ -27,9 +27,10 @@
         <div class="inputBox">
             <input type="password" th:field="*{password}" placeholder="Password" name="password" required/>
         </div>
+        <br>
         <span class="error-msg" th:if="${errorMessage}"  th:text="${errorMessage}" >Error</span>
         <button th:value="login" th:name="login" class="btn btn-primary" id="submitButton" type="submit">Log In</button>
-        <button th:value="signin" th:name="signin" class="btn btn-primary" id="signupButton" type="submit">Sign Up</button>
+        <button th:value="signin" th:name="signin" class="btn btn-primary" id="signupButton" type="submit" formnovalidate>Sign Up</button>
     </form>
 </div>
 </body>
