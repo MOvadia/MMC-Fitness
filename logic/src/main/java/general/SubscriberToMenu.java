@@ -6,6 +6,9 @@ public class SubscriberToMenu {
     private Integer userId;
     private Integer menuId;
 
+    public SubscriberToMenu() {
+    }
+
     public SubscriberToMenu(Integer userId, Integer menuId) {
         this.userId = userId;
         this.menuId = menuId;

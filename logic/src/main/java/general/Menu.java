@@ -7,7 +7,7 @@ public class Menu {
     private Integer menuId;
     private String name;
     private String createdBy;
-    private Timestamp timestamp;
+    //private Timestamp timestamp;
     private String description;
     private enum type{};
     private Float popularity;
@@ -15,16 +15,7 @@ public class Menu {
     private Integer calories;
     private Integer protein;
 
-    public Menu(Integer menuId, String name, String createdBy, Timestamp timestamp, String description, Float popularity, Float fatPercentage, Integer calories, Integer protein) {
-        this.menuId = menuId;
-        this.name = name;
-        this.createdBy = createdBy;
-        this.timestamp = timestamp;
-        this.description = description;
-        this.popularity = popularity;
-        this.fatPercentage = fatPercentage;
-        this.calories = calories;
-        this.protein = protein;
+    public Menu() {
     }
 
     public Integer getMenuId() {
@@ -51,13 +42,13 @@ public class Menu {
         this.createdBy = createdBy;
     }
 
-    public Timestamp getTimestamp() {
+   /* public Timestamp getTimestamp() {
         return timestamp;
     }
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
-    }
+    }*/
 
     public String getDescription() {
         return description;
@@ -104,11 +95,11 @@ public class Menu {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Menu menu = (Menu) o;
-        return menuId.equals(menu.menuId) && name.equals(menu.name) && createdBy.equals(menu.createdBy) && timestamp.equals(menu.timestamp) && description.equals(menu.description) && popularity.equals(menu.popularity) && fatPercentage.equals(menu.fatPercentage) && calories.equals(menu.calories) && protein.equals(menu.protein);
+        return menuId.equals(menu.menuId) && name.equals(menu.name) && createdBy.equals(menu.createdBy) && description.equals(menu.description) && popularity.equals(menu.popularity) && fatPercentage.equals(menu.fatPercentage) && calories.equals(menu.calories) && protein.equals(menu.protein);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(menuId, name, createdBy, timestamp, description, popularity, fatPercentage, calories, protein);
+        return Objects.hash(menuId, name, createdBy, description, popularity, fatPercentage, calories, protein);
     }
 }

@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MenuController {
-    private MenuService menuService;
     @Autowired
     private SubscriberService subscriberService = new SubscriberService();
+    @Autowired
+    private MenuService menuService;
 
     @GetMapping(value = "/get/{id}")
     public ResponseEntity<Object> addMenu(@RequestParam int id) {
@@ -35,7 +36,8 @@ public class MenuController {
         model.addAttribute("subscriber", subscriberService.getSubscriberById(id));
         model.addAttribute("gender", "Male");
         model.addAttribute("workout", WorkoutService.getWorkoutPerUserId(1));
-        model.addAttribute("menu", MenuService.getMenuById(1));
+        model.addAttribute("menu", menuService.getMenuById(userId));
+        model.addAttribute("meals", menuService.getMenuMealsById(userId));
 
 
         //return "mainPageTrainer";
