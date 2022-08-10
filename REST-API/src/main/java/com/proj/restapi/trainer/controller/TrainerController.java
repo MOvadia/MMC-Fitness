@@ -42,3 +42,5 @@ public class TrainerController {
         return "mainPageTrainer";
     }
 }
+
+

@@ -1,0 +1,42 @@
+.usersTable {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.usersTable thead tr {
+    background-color: rgba(136, 136, 140, 0.25);
+    color: #ffffff;
+    text-align: left;
+}
+
+.usersTable th,
+.usersTable td {
+    padding: 12px 15px;
+}
+
+.usersTable tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.usersTable tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.usersTable tbody tr:last-of-type {
+    border-bottom: rgba(136, 136, 140, 0.25);
+
+}
+
+.usersTable tbody tr.active-row {
+    font-weight: bold;
+    color: rgba(136, 136, 140, 0.25);
+}
+
+#chatarea {
+    overflow-y: scroll;
+    max-height: 100px;
+}

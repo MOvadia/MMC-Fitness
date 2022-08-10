@@ -6,9 +6,11 @@
   <link rel="stylesheet" href="/workoutSubscriber/workoutSubscriber.css">
   <link rel="stylesheet" href="/common/bootstrap.min.css">
   <link rel="stylesheet" href="/toolbar/toolbar.css">
-  <script src="/common/context-path-helper.js"></script>
+  <link rel="stylesheet" href="/alertsPage/alertsPage.css">
+    <script src="/common/context-path-helper.js"></script>
   <script src="/common/jquery-2.0.3.min.js"></script>
-  <script src="/workoutSubscriber/workoutSubscriber.js"></script>
+    <script src="/alertsPage/alertsPage.js"></script>
+
 </head>
 <body>
 <div class="toolBar">
@@ -32,6 +34,25 @@
     <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
   </div>
 </div>
-
+<div class="board_container users">
+    <div class="board_headline">
+        <label class="table_headlines" id="users">Users</label>
+    </div>
+    <div class="board_content">
+        <table class="table table-dark">
+            <thead>
+            <tr>
+                <th scope="col">User name</th>
+                <th scope="col">Role</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}" >
+                <td th:text="${user}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>

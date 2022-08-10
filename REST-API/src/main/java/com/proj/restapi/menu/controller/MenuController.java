@@ -36,8 +36,8 @@ public class MenuController {
         model.addAttribute("subscriber", subscriberService.getSubscriberById(id));
         model.addAttribute("gender", "Male");
         model.addAttribute("workout", WorkoutService.getWorkoutPerUserId(1));
-        model.addAttribute("menu", menuService.getMenuById(userId));
-        model.addAttribute("meals", menuService.getMenuMealsById(userId));
+        model.addAttribute("menu", menuService.getMenuById(1));
+        model.addAttribute("meals", menuService.getMenuMealsById(1));
 
 
         //return "mainPageTrainer";
