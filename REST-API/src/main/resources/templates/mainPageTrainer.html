@@ -17,21 +17,21 @@
     <div class="toolbarContent">
         <a href="app/logout" class="logoutButton">Logout</a>
         <span class="logoSpan">
-            <a th:href="@{'/settings/userId=' + ${subscriber.userId}}" class="settings">
+            <a th:href="@{'/settings/userId=' + ${trainer.userId}}" class="settings">
                 <img th:src="@{/common/images/settings.png}" class="settings">
             </a>
         </span>
         <span class="alertLogoSpan">
-            <a th:href="@{'/alert/userId=' + ${subscriber.userId}}" class="alert">
+            <a th:href="@{'/alert/userId=' + ${trainer.userId}}" class="alert">
                 <img th:src="@{/common/images/bell.png}" class="alert">
             </a>
         </span>
         <span class="reportLogoSpan">
-            <a th:href="@{'/report/userId=' + ${subscriber.userId}}" class="report">
+            <a th:href="@{'/report/userId=' + ${trainer.userId}}" class="report">
                 <img th:src="@{/common/images/report3.png}" class="report">
             </a>
         </span>
-        <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
+        <span class="userName" th:text="'Hello ' + ${trainer.firstName}"></span>
     </div>
 </div>
 <div id="Fitness_container">
@@ -69,7 +69,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="workout : ${workout}" style="cursor: pointer"
-                    th:onclick="|urlMapping('${subscriber.userId}','${workout.workoutId}')|">
+                    th:onclick="|urlMapping('${trainer.userId}','${workout.workoutId}')|">
                     <td th:text="${workout.workoutId}"></td>
                     <td th:text="${workout.name}"></td>
                 </tr>
