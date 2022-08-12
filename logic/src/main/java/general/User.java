@@ -9,13 +9,26 @@ public class User{
     private String phoneNumber;
     private String email;
 
+    private String type;
+
+    private String fullName;
+
     public User(){}
-    public User(Integer userId, String firstName, String lastName, String phoneNumber, String email) {
+
+    public User(String firstName, String lastName, String type){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.fullName = firstName + " " + lastName;
+        this.type = type;
+    }
+
+    public User(Integer userId, String firstName, String lastName, String phoneNumber, String email, String type) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.type = type;
     }
 
     public Integer getUserId() {
@@ -63,11 +76,27 @@ public class User{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return firstName.equals(user.firstName) && lastName.equals(user.lastName) && phoneNumber.equals(user.phoneNumber) && email.equals(user.email);
+        return firstName.equals(user.firstName) && lastName.equals(user.lastName) && phoneNumber.equals(user.phoneNumber) && email.equals(user.email) && type.equals(user.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, phoneNumber, email);
+        return Objects.hash(firstName, lastName, phoneNumber, email, type);
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

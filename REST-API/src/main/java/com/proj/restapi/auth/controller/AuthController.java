@@ -4,6 +4,7 @@ import com.proj.restapi.auth.info.LoginInformation;
 import com.proj.restapi.auth.info.SubscriberInformation;
 import com.proj.restapi.menu.service.RegistrationService;
 import com.proj.restapi.menu.service.SubscriberService;
+import general.User;
 import general.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,8 +44,8 @@ public class AuthController {
             if (m_userManager.getUsersSet() == null) {
                 m_userManager = new UserManager();
             }
-
-        m_userManager.addUser(user.getEmail());
+        User userType= new User(registrationService.getFirstNameByEmail(user.getEmail()), registrationService.getLastNameByEmail(user.getEmail()), user.getType());
+        m_userManager.addUser(userType);
         if(user.getType().equals("Subscriber"))
         {
             return "redirect:/menu/userId=" + id;

@@ -5,6 +5,7 @@ import com.proj.restapi.menu.service.SubscriberService;
 import com.proj.restapi.menu.service.WorkoutService;
 import general.Meal;
 import general.SubscriberToMenu;
+import general.User;
 import general.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -26,7 +27,7 @@ public class AlertsController {
     private SubscriberService subscriberService;
     @GetMapping("/alert/userId={userId}")
     public String alertPage(@PathVariable int userId, Model model){
-        List<String> usersList = UserManager.getUsersSet();
+        List<User> usersList = UserManager.getUsersSet();
         model.addAttribute("users", usersList);
         model.addAttribute("subscriber", subscriberService.getSubscriberById(userId));
 

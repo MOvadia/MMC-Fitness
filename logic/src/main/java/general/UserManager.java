@@ -9,15 +9,15 @@ of the user of this class to handle the synchronization of isUserExists with oth
  */
 public class UserManager {
 
-    private static List<String> usersSet = null;
+    private static List<User> usersSet = null;
 
     public UserManager() {
         usersSet = new ArrayList<>();
     }
 
 
-    public synchronized void addUser(String username) {
-        usersSet.add(username);
+    public synchronized void addUser(User user) {
+        usersSet.add(user);
     }
 
     public synchronized void removeUser(String username) {
@@ -28,7 +28,7 @@ public class UserManager {
         return usersSet.contains(username);
     }
 
-    public static List<String> getUsersSet() {
+    public static List<User> getUsersSet() {
         return usersSet;
     }
 }

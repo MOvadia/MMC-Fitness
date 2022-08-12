@@ -19,7 +19,7 @@ public class Subscriber extends User {
 
     public Subscriber(Integer userId, String firstName, String lastName, String phoneNumber, String email, Integer age, Float height,
                       Float weight, Integer workoutAmount, Float targetFatPercentage, Float targetWeight, float BMI) {
-        super(userId, firstName, lastName, phoneNumber, email);
+        super(userId, firstName, lastName, phoneNumber, email, "Subscriber");
         this.age = age;
         this.height = height;
         this.weight = weight;
@@ -30,7 +30,7 @@ public class Subscriber extends User {
     }
 
     public Subscriber(User u,Subscriber s){
-        super(u.getUserId(),u.getFirstName(),u.getLastName(),u.getPhoneNumber(),u.getEmail());
+        super(u.getUserId(),u.getFirstName(),u.getLastName(),u.getPhoneNumber(),u.getEmail(), "Subscriber");
         this.age = s.getAge();
         this.height = s.getHeight();
         this.weight = s.getWeight();

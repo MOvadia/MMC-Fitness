@@ -48,7 +48,8 @@
             </thead>
             <tbody>
             <tr th:each="user : ${users}" >
-                <td th:text="${user}"></td>
+                <td th:text="${user.fullName}"></td>
+                <td th:text="${user.type}"></td>
             </tr>
             </tbody>
         </table>
