@@ -22,7 +22,7 @@ public class User{
         this.type = type;
     }
 
-    public User(Integer userId, String firstName, String lastName, String phoneNumber, String email, String type) {
+    public User(Integer userId, String firstName, String lastName, String phoneNumber, String email) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -76,12 +76,12 @@ public class User{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return firstName.equals(user.firstName) && lastName.equals(user.lastName) && phoneNumber.equals(user.phoneNumber) && email.equals(user.email) && type.equals(user.type);
+        return firstName.equals(user.firstName) && lastName.equals(user.lastName) && phoneNumber.equals(user.phoneNumber) && email.equals(user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, phoneNumber, email, type);
+        return Objects.hash(firstName, lastName, phoneNumber, email);
     }
 
     public String getType() {
