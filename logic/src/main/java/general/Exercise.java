@@ -7,6 +7,7 @@ public class Exercise {
     private String exercise;
     private int repetNum;
     private String description;
+    private String link;
 
     public Exercise() {
     }
@@ -17,6 +18,14 @@ public class Exercise {
 
     public void setWorkoutId(int workoutId) {
         this.workoutId = workoutId;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public String getExercise() {

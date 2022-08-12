@@ -7,20 +7,20 @@ public class Workout {
     private Integer workoutId;
     private String name;
     private Integer createdBy;
-    private Timestamp timestamp;
     private String description;
     private enum focus{};
     private enum type{};
-    private String link;
     private Float popularity;
 
-    public Workout(Integer workoutId, String name, Integer createdBy, Timestamp timestamp, String description, String link, Float popularity) {
+    public Workout() {
+
+    }
+
+    public Workout(Integer workoutId, String name, Integer createdBy, String description, Float popularity) {
         this.workoutId = workoutId;
         this.name = name;
         this.createdBy = createdBy;
-        this.timestamp = timestamp;
         this.description = description;
-        this.link = link;
         this.popularity = popularity;
     }
 
@@ -48,28 +48,12 @@ public class Workout {
         this.createdBy = createdBy;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
     }
 
     public Float getPopularity() {
@@ -85,11 +69,11 @@ public class Workout {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Workout workout = (Workout) o;
-        return workoutId.equals(workout.workoutId) && name.equals(workout.name) && createdBy.equals(workout.createdBy) && timestamp.equals(workout.timestamp) && description.equals(workout.description) && link.equals(workout.link) && popularity.equals(workout.popularity);
+        return workoutId.equals(workout.workoutId) && name.equals(workout.name) && createdBy.equals(workout.createdBy) && description.equals(workout.description) && popularity.equals(workout.popularity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(workoutId, name, createdBy, timestamp, description, link, popularity);
+        return Objects.hash(workoutId, name, createdBy, description, popularity);
     }
 }

@@ -1,11 +1,8 @@
 package com.proj.restapi.trainer.controller;
 
 import com.proj.restapi.auth.info.LoginInformation;
-import com.proj.restapi.menu.service.MenuService;
-import com.proj.restapi.menu.service.SubscriberService;
-import com.proj.restapi.menu.service.WorkoutService;
+import com.proj.restapi.auth.info.WorkoutInformation;
 import com.proj.restapi.trainer.service.TrainerService;
-import general.Workout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +15,12 @@ public class TrainerController {
     @Autowired
     private TrainerService trainerService = new TrainerService();
 
-    @PostMapping(value = "/add")
-    public ResponseEntity<Object> addWorkout(@RequestBody Workout workout) {
-       return new ResponseEntity<>(trainerService.addWorkout(workout), HttpStatus.OK);
+    @PostMapping(value = "/workout/add")
+    public void addWorkout(Model model, WorkoutInformation workoutInfo) {
+        model.addAttribute("workoutForm", workoutInfo);
+        trainerService.addWorkout(workoutInfo);
+
+
     }
 
     @DeleteMapping(value = "/{workoutId}")
