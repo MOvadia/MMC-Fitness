@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class TrainerController {
-    private TrainerService trainerService = new TrainerService();
-
     @Autowired
-    private SubscriberService subscriberService = new SubscriberService();
+    private TrainerService trainerService = new TrainerService();
 
     @PostMapping(value = "/add")
     public ResponseEntity<Object> addWorkout(@RequestBody Workout workout) {
@@ -37,8 +35,10 @@ public class TrainerController {
         //TODO - need to get user data from DB
         //TODO - get from DB the userID - than get the trainer by UserId
         int id = userId;
-      //  model.addAttribute("subscriber", trainerService.getSubscriberById(id));
+        model.addAttribute("trainer", trainerService.getTrainerId(id));
         model.addAttribute("workout", trainerService.getAllWorkouts());
+        model.addAttribute("gender", "Male");
+     //   model.addAttribute("workout", WorkoutService.getWorkoutPerUserId(1));
         return "mainPageTrainer";
     }
 }
