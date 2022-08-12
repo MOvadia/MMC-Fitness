@@ -1,14 +1,34 @@
 package com.proj.restapi.trainer.service;
-
 import com.proj.restapi.actionresult.ActionResult;
+import general.Trainer;
+import general.User;
 import general.Workout;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Service
 public class TrainerService {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    public Trainer getTrainerId(int id){
+        String sqlUser = "SELECT * FROM [User] where userId=" + id;
+        List<User> users = jdbcTemplate.query(sqlUser,
+                BeanPropertyRowMapper.newInstance(User.class));
+        String sqlTrainer = "SELECT * FROM Trainer where userId=" + id;
+        List<Trainer> t = jdbcTemplate.query(sqlTrainer,
+                BeanPropertyRowMapper.newInstance(Trainer.class));
+        Trainer trainer = new Trainer(users.get(0), t.get(0));
+        //customers.forEach(System.out :: println);
+        return trainer;
+    }
 
     public static List<Workout> getAllWorkouts(){
         //TODO - get workout for the relevant user
