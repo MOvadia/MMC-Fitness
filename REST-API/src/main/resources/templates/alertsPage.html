@@ -81,8 +81,8 @@
                             </tr>
                             </tbody>
                         </table>
-                        <form th:action="@{'/alert/userId=' + ${userId} + '&chat=2' }" th:method="post" th:object="${massegeForm}" th:class="usersForm">
-                            <input type="text" id="userstring" name="userstring"/>
+                        <form th:action="@{'/alert/userId=' + ${userId} + '&chat=' + ${chatId}}" th:method="post" th:object="${massageForm}" th:class="massageForm">
+                            <input type="text" th:field="*{content}" id="userstring" name="userstring"/>
                             <button th:value="send" th:name="send" class="btn btn-primary" id="sendButton" type="submit">Send</button>
                         </form>
                 </div>

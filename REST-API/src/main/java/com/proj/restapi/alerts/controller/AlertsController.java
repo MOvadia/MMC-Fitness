@@ -26,6 +26,7 @@ public class AlertsController {
         List<User> usersList = UserManager.getUsersSet();
         model.addAttribute("users", usersList);
         model.addAttribute("subscriber", subscriberService.getUserById(userId));
+        model.addAttribute("massageForm", new Chat(userId, 2));
 
         return "alertsPage";
     }
@@ -40,7 +41,7 @@ public class AlertsController {
 */
 
     @PostMapping(value = "/alert/userId={userId}&chat={chatId}", params="chat")
-    public String chatMasseges(@PathVariable int userId,@PathVariable int chatId, Model model)
+    public String chatMassages(@PathVariable int userId,@PathVariable int chatId, Model model)
     {
         int chatManagerVersion = 0;
 //        int chatNum = Integer.parseInt(chatId);
@@ -60,6 +61,7 @@ public class AlertsController {
         List<Chat> chatList = chatManager.getChatEntries(userId,chatId);
         model.addAttribute("chatStrings", chatList);
         model.addAttribute("subscriber", subscriberService.getUserById(userId));
+        model.addAttribute("massageForm", new Chat(userId, chatId));
         model.addAttribute("users", UserManager.getUsersSet());
         // log and create the response json string
        // ChatAndVersion cav = new ChatAndVersion(chatEntries, chatManagerVersion);
@@ -71,13 +73,15 @@ public class AlertsController {
     }
 
     @PostMapping(value = "/alert/userId={userId}&chat={chatId}", params="send")
-    public String sendMasseges(@PathVariable int userId,@PathVariable int chatId, Model model)
+    public String sendMassages(@PathVariable int userId,@PathVariable int chatId, Chat chat, Model model)
     {
-        chatManager.addChatString("check1",userId, chatId);
-        List<Chat> chatList = chatManager.getChatEntries(userId,chatId);
+        chatManager.addChatString(chat.getContent(),userId, chat.getChatId());
+        List<Chat> chatList = chatManager.getChatEntries(userId,chat.getChatId());
         model.addAttribute("chatStrings", chatList);
-        model.addAttribute("subscriber", subscriberService.getUserById(userId));
+        model.addAttribute("massageForm", new Chat(chat.getUserId(),chat.getChatId()));
         model.addAttribute("users", UserManager.getUsersSet());
+        model.addAttribute("subscriber", subscriberService.getUserById(userId));
+
 
         return "alertsPage";
     }

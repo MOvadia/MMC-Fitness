@@ -7,7 +7,7 @@ public class Chat {
     private Integer userId;
     private Integer createdBy;
     private boolean isAnswered;
-    private Integer to;
+    private Integer chatId;
     private String title;
    // private Timestamp timestamp;
     private String content;
@@ -22,17 +22,22 @@ public class Chat {
         this.time = System.currentTimeMillis();
     }*/
 
+    public Chat(){}
+    public Chat(int from, int to){
+        userId = from;
+        this.chatId = to;
+    }
     public Chat(String chatString, int from, int to) {
         this.content = chatString;
         userId = from;
-        this.to = to;
+        this.chatId = to;
         this.time = System.currentTimeMillis();
     }
     public Chat(Integer userId, Integer createdBy, boolean isAnswered, Integer to, String title, Timestamp timestamp, String content) {
         this.userId = userId;
         this.createdBy = createdBy;
         this.isAnswered = isAnswered;
-        this.to = to;
+        this.chatId = to;
         this.title = title;
    //     this.timestamp = timestamp;
         this.content = content;
@@ -62,12 +67,12 @@ public class Chat {
         isAnswered = answered;
     }
 
-    public Integer getTo() {
-        return to;
+    public Integer getChatId() {
+        return chatId;
     }
 
-    public void setTo(Integer to) {
-        this.to = to;
+    public void setChatId(Integer chatId) {
+        this.chatId = chatId;
     }
 
     public String getTitle() {
@@ -91,11 +96,11 @@ public class Chat {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Chat chat = (Chat) o;
-        return isAnswered == chat.isAnswered && userId.equals(chat.userId) && createdBy.equals(chat.createdBy) && to.equals(chat.to) && title.equals(chat.title) &&  content.equals(chat.content);
+        return isAnswered == chat.isAnswered && userId.equals(chat.userId) && createdBy.equals(chat.createdBy) && chatId.equals(chat.chatId) && title.equals(chat.title) &&  content.equals(chat.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, createdBy, isAnswered, to, title, content);
+        return Objects.hash(userId, createdBy, isAnswered, chatId, title, content);
     }
 }
