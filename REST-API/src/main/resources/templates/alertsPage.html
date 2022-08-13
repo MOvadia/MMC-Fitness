@@ -34,25 +34,60 @@
     <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
   </div>
 </div>
-<div class="board_container users">
-    <div class="board_headline">
-        <label class="table_headlines" id="users">Users</label>
+    <div class="board_container users">
+        <div class="board_headline">
+            <label class="table_headlines" id="users">Users</label>
+        </div>
+        <div class="board_content">
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">User name</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Start</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}" >
+                    <td th:text="${user.fullName}"></td>
+                    <td th:text="${user.type}"></td>
+                    <td>
+                        <form th:action="@{'/alert/userId=' + ${userId} + '&chat=' + ${userId}}" th:method="post" th:object="${usersChatForm}" th:class="usersForm">
+                        <button th:value="chat" th:name="chat" class="btn btn-primary" id="submitButton" type="submit">Start</button>
+                        </a>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="board_content">
-        <table class="table table-dark">
-            <thead>
-            <tr>
-                <th scope="col">User name</th>
-                <th scope="col">Role</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user : ${users}" >
-                <td th:text="${user.fullName}"></td>
-                <td th:text="${user.type}"></td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="col-xs-4">
+        <div class="content">
+            <div id="chatwindow">
+                <h4>Chat</h4>
+
+                <!-- place holder to hold all the chat lines -->
+                <div id="chatarea" class="span6"></div>
+
+                <!-- The actual form through which you send data back to the user -->
+                <form id="chatform" method="POST" action="sendChat">
+                    <table class="table table-dark">
+                        <thead>
+                        <tr>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="string : ${chatStrings}" >
+                            <td th:text="${string.content}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <input type="submit" value="Send"/>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 </body>

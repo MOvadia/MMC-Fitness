@@ -20,6 +20,7 @@ public class User{
         this.lastName = lastName;
         this.fullName = firstName + " " + lastName;
         this.type = type;
+       // this.userId = id;
     }
 
     public User(Integer userId, String firstName, String lastName, String phoneNumber, String email) {

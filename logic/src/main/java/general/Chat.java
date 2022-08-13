@@ -9,16 +9,25 @@ public class Chat {
     private boolean isAnswered;
     private Integer to;
     private String title;
-    private Timestamp timestamp;
+   // private Timestamp timestamp;
     private String content;
 
+    private String username;
+    private long time;
+
+
+    public Chat(String chatString, String username) {
+        this.content = chatString;
+        this.username = username;
+        this.time = System.currentTimeMillis();
+    }
     public Chat(Integer userId, Integer createdBy, boolean isAnswered, Integer to, String title, Timestamp timestamp, String content) {
         this.userId = userId;
         this.createdBy = createdBy;
         this.isAnswered = isAnswered;
         this.to = to;
         this.title = title;
-        this.timestamp = timestamp;
+   //     this.timestamp = timestamp;
         this.content = content;
     }
 
@@ -62,14 +71,6 @@ public class Chat {
         this.title = title;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public String getContent() {
         return content;
     }
@@ -83,11 +84,11 @@ public class Chat {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Chat chat = (Chat) o;
-        return isAnswered == chat.isAnswered && userId.equals(chat.userId) && createdBy.equals(chat.createdBy) && to.equals(chat.to) && title.equals(chat.title) && timestamp.equals(chat.timestamp) && content.equals(chat.content);
+        return isAnswered == chat.isAnswered && userId.equals(chat.userId) && createdBy.equals(chat.createdBy) && to.equals(chat.to) && title.equals(chat.title) &&  content.equals(chat.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, createdBy, isAnswered, to, title, timestamp, content);
+        return Objects.hash(userId, createdBy, isAnswered, to, title, content);
     }
 }
