@@ -39,8 +39,8 @@ public class AlertsController {
     }
 */
 
-    @PostMapping(value = "/alert/userId={userId}&chat={chatid}", params="chat")
-    public String chatMasseges(@PathVariable int userId, Model model)
+    @PostMapping(value = "/alert/userId={userId}&chat={chatId}", params="chat")
+    public String chatMasseges(@PathVariable int userId,@PathVariable int chatId, Model model)
     {
         int chatManagerVersion = 0;
 //        int chatNum = Integer.parseInt(chatId);

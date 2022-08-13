@@ -44,7 +44,7 @@ public class AuthController {
             if (m_userManager.getUsersSet() == null) {
                 m_userManager = new UserManager();
             }
-        User userType= new User(registrationService.getFirstNameByEmail(user.getEmail()), registrationService.getLastNameByEmail(user.getEmail()), user.getType());
+        User userType= new User(registrationService.getFirstNameByEmail(user.getEmail()), registrationService.getLastNameByEmail(user.getEmail()), user.getType(), id);
         m_userManager.addUser(userType);
         if(user.getType().equals("Subscriber"))
         {

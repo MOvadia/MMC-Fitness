@@ -52,7 +52,7 @@
                     <td th:text="${user.fullName}"></td>
                     <td th:text="${user.type}"></td>
                     <td>
-                        <form th:action="@{'/alert/userId=' + ${userId} + '&chat=' + ${userId}}" th:method="post" th:object="${usersChatForm}" th:class="usersForm">
+                        <form th:action="@{'/alert/userId=' + ${userId} + '&chat=' + ${user.userId}}" th:method="post" th:object="${usersChatForm}" th:class="usersForm">
                         <button th:value="chat" th:name="chat" class="btn btn-primary" id="submitButton" type="submit">Start</button>
                         </a>
                         </form>
