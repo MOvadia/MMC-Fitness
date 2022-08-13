@@ -16,9 +16,16 @@ public class Chat {
     private long time;
 
 
-    public Chat(String chatString, String username) {
+    /*public Chat(String chatString, String username) {
         this.content = chatString;
         this.username = username;
+        this.time = System.currentTimeMillis();
+    }*/
+
+    public Chat(String chatString, int from, int to) {
+        this.content = chatString;
+        userId = from;
+        this.to = to;
         this.time = System.currentTimeMillis();
     }
     public Chat(Integer userId, Integer createdBy, boolean isAnswered, Integer to, String title, Timestamp timestamp, String content) {

@@ -65,27 +65,27 @@
     <div class="col-xs-4">
         <div class="content">
             <div id="chatwindow">
-                <h4>Chat</h4>
-
                 <!-- place holder to hold all the chat lines -->
                 <div id="chatarea" class="span6"></div>
 
                 <!-- The actual form through which you send data back to the user -->
-                <form id="chatform" method="POST" action="sendChat">
-                    <table class="table table-dark">
-                        <thead>
-                        <tr>
-                            <th scope="col"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="string : ${chatStrings}" >
-                            <td th:text="${string.content}"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <input type="submit" value="Send"/>
-                </form>
+                        <table class="abc">
+                            <thead>
+                            <tr>
+                                <th scope="col">Chat</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="string : ${chatStrings}" >
+                                <td th:text="${string.content}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <form th:action="@{'/alert/userId=' + ${userId} + '&chat=2' }" th:method="post" th:object="${massegeForm}" th:class="usersForm">
+                            <input type="text" id="userstring" name="userstring"/>
+                            <button th:value="send" th:name="send" class="btn btn-primary" id="sendButton" type="submit">Send</button>
+                        </form>
+                </div>
             </div>
         </div>
     </div>

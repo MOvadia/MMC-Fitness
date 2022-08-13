@@ -47,17 +47,37 @@ public class AlertsController {
         List<Chat> chatEntries;
     //        chatManagerVersion = chatManager.getVersion();
            // chatEntries = chatManager.getChatEntries(chatVersion);
-        chatManager.addChatString("hello", "check");
-        List<Chat> chatList = chatManager.getChatEntries(1);
+      /*  chatManager.addChatString("check1",userId, chatId);
+        chatManager.addChatString("check2",chatId, userId);
+        chatManager.addChatString("check3",chatId, userId);
+        chatManager.addChatString("check4",userId, chatId);
+
+        chatManager.addChatString("check5",chatId, chatId);
+        chatManager.addChatString("check6",userId, userId);
+        chatManager.addChatString("check7",userId, 3);
+        chatManager.addChatString("check8",3, userId);*/
+
+        List<Chat> chatList = chatManager.getChatEntries(userId,chatId);
         model.addAttribute("chatStrings", chatList);
         model.addAttribute("subscriber", subscriberService.getUserById(userId));
-        List<User> usersList = UserManager.getUsersSet();
-        model.addAttribute("users", usersList);
+        model.addAttribute("users", UserManager.getUsersSet());
         // log and create the response json string
        // ChatAndVersion cav = new ChatAndVersion(chatEntries, chatManagerVersion);
        // logServerMessage("Server Chat version: " + chatManagerVersion + ", User '" + username + "' Chat version: " + chatVersion);
         //logServerMessage(jsonResponse);
 
+
+        return "alertsPage";
+    }
+
+    @PostMapping(value = "/alert/userId={userId}&chat={chatId}", params="send")
+    public String sendMasseges(@PathVariable int userId,@PathVariable int chatId, Model model)
+    {
+        chatManager.addChatString("check1",userId, chatId);
+        List<Chat> chatList = chatManager.getChatEntries(userId,chatId);
+        model.addAttribute("chatStrings", chatList);
+        model.addAttribute("subscriber", subscriberService.getUserById(userId));
+        model.addAttribute("users", UserManager.getUsersSet());
 
         return "alertsPage";
     }
