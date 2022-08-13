@@ -92,4 +92,16 @@ public class RegistrationService {
        id++;
        return id;
    }
+
+    public String getFirstNameByEmail(String email){
+        String sqlFirstName = "SELECT firstName FROM [User] where email=?";
+        String firstName = jdbcTemplate.queryForObject(sqlFirstName,new Object[] { email }, String.class);
+        return firstName;
+    }
+
+    public String getLastNameByEmail(String email){
+        String sqlLastName = "SELECT lastName FROM [User] where email=?";
+        String lastName = jdbcTemplate.queryForObject(sqlLastName,new Object[] { email }, String.class);
+        return lastName;
+    }
 }

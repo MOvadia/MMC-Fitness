@@ -25,4 +25,12 @@ public class SubscriberService {
         //customers.forEach(System.out :: println);
         return subscriber;
     }
+
+    public User getUserById(int id){
+        String sqlUser = "SELECT * FROM [User] where userId=" + id;
+        List<User> users = jdbcTemplate.query(sqlUser,
+                BeanPropertyRowMapper.newInstance(User.class));
+
+        return users.get(0);
+    }
 }
