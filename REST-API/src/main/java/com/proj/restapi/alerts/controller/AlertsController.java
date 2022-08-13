@@ -29,7 +29,7 @@ public class AlertsController {
     public String alertPage(@PathVariable int userId, Model model){
         List<User> usersList = UserManager.getUsersSet();
         model.addAttribute("users", usersList);
-        model.addAttribute("subscriber", subscriberService.getSubscriberById(userId));
+        model.addAttribute("subscriber", subscriberService.getUserById(userId));
 
         return "alertsPage";
     }
