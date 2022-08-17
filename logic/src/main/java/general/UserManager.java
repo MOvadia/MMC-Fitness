@@ -1,6 +1,7 @@
 package general;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /*
 Adding and retrieving users is synchronized and in that manner - these actions are thread safe
@@ -30,5 +31,17 @@ public class UserManager {
 
     public static List<User> getUsersSet() {
         return usersSet;
+    }
+
+    public static String getUserNameById(int id)
+    {
+        User user = usersSet.stream().filter(users -> users.getUserId() == id).collect(Collectors.toList()).get(0);
+        return user.getFirstName() + " " + user.getLastName();
+    }
+
+    public static String getTypeById(int id)
+    {
+        User user = usersSet.stream().filter(users -> users.getUserId() == id).collect(Collectors.toList()).get(0);
+        return user.getType();
     }
 }
