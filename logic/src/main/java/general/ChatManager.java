@@ -24,12 +24,27 @@ public class ChatManager {
 
     public synchronized List<Chat> getChatEntries(int from, int to){
         //TODO: check
-        List<Chat> chatList1= chatDataList.stream().filter(chat -> chat.getUserId() == from && chat.getChatId() == to)
-                .collect(Collectors.toList());
+        List<Chat> chatList1= new ArrayList<>();
+        List<Chat> chatListFixed= new ArrayList<>();
+        chatList1.addAll(chatDataList.stream().filter(chat -> chat.getUserId() == from && chat.getChatId() == to)
+                .collect(Collectors.toList()));
         List<Chat> chatList2= chatDataList.stream().filter(chat -> chat.getChatId() == from && chat.getUserId() == to)
                 .collect(Collectors.toList());
         chatList1.addAll(chatList2);
-        return chatList1;
+        String type = UserManager.getTypeById(to);
+        for (Chat chat: chatList1) {
+            Chat chatElement;
+            if(chat.getUserId() == from)
+            {
+                chatElement = new Chat("Me: " + chat.getContent(), from, to);
+            }
+            else {
+                chatElement = new Chat(type + ": " + chat.getContent(), to, from);
+            }
+
+            chatListFixed.add(chatElement);
+        }
+        return chatListFixed;
     }
 
     public int getVersion() {
