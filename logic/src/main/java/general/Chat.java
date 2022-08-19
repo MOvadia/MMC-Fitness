@@ -15,23 +15,20 @@ public class Chat {
     private String username;
     private long time;
 
+    private int messageNum;
 
-    /*public Chat(String chatString, String username) {
-        this.content = chatString;
-        this.username = username;
-        this.time = System.currentTimeMillis();
-    }*/
 
     public Chat(){}
     public Chat(int from, int to){
         userId = from;
         this.chatId = to;
     }
-    public Chat(String chatString, int from, int to) {
+    public Chat(String chatString, int from, int to, int messageNum) {
         this.content = chatString;
         userId = from;
         this.chatId = to;
         this.time = System.currentTimeMillis();
+        this.messageNum = messageNum;
     }
     public Chat(Integer userId, Integer createdBy, boolean isAnswered, Integer to, String title, Timestamp timestamp, String content) {
         this.userId = userId;
@@ -97,6 +94,31 @@ public class Chat {
         if (o == null || getClass() != o.getClass()) return false;
         Chat chat = (Chat) o;
         return isAnswered == chat.isAnswered && userId.equals(chat.userId) && createdBy.equals(chat.createdBy) && chatId.equals(chat.chatId) && title.equals(chat.title) &&  content.equals(chat.content);
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getMessageNum() {
+        return messageNum;
+    }
+
+    public void setMessageNum(int messageNum) {
+        this.messageNum = messageNum;
     }
 
     @Override

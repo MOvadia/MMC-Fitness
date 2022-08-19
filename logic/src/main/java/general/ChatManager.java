@@ -1,6 +1,7 @@
 package general;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +13,9 @@ public class ChatManager {
     }
 
     public synchronized void addChatString(String chatString, int from, int to) {
-        chatDataList.add(new Chat(chatString, from, to));
+        List<Chat> chatList = getChatEntries(from, to);
+        int size = chatList.size();
+        chatDataList.add(new Chat(chatString, from, to, size+1));
     }
 
     /*public synchronized List<Chat> getChatEntries(int fromIndex){
@@ -36,14 +39,16 @@ public class ChatManager {
             Chat chatElement;
             if(chat.getUserId() == from)
             {
-                chatElement = new Chat("Me: " + chat.getContent(), from, to);
+                chatElement = new Chat("Me: " + chat.getContent(), from, to, chat.getMessageNum());
             }
             else {
-                chatElement = new Chat(type + ": " + chat.getContent(), to, from);
+                chatElement = new Chat(type + ": " + chat.getContent(), to, from, chat.getMessageNum());
             }
 
             chatListFixed.add(chatElement);
         }
+        //return chatListFixed;
+         chatListFixed.sort(Comparator.comparing(o -> o.getMessageNum()));
         return chatListFixed;
     }
 
