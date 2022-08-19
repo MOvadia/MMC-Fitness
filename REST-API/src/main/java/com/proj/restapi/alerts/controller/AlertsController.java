@@ -99,7 +99,7 @@ public class AlertsController {
         model.addAttribute("massageForm", new Chat(chat.getUserId(),chat.getChatId()));
         model.addAttribute("users", usersList);
         model.addAttribute("subscriber", subscriberService.getUserById(userId));
-        model.addAttribute("type", "Chat with " + type + "(" + fullName + ")");
+        model.addAttribute("type", "Chat with " + type + " (" + fullName + ")");
 
 
 

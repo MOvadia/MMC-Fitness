@@ -1,0 +1,22 @@
+body{
+    background-image: url("../common/images/workout.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+.summary{
+    font-weight: 600;
+    font-size: medium;
+    margin-top: 100px;
+    text-align: center;
+    color: white;}
+
+.title{
+    font-weight: 600;
+    font-size: x-large;
+}
+
+#LineChart{
+    margin-left: 400px;
+}

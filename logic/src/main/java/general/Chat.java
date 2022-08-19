@@ -9,16 +9,12 @@ public class Chat {
     private boolean isAnswered;
     private Integer chatId;
     private String title;
-   // private Timestamp timestamp;
     private String content;
-
     private String username;
     private long time;
 
     private int messageNum;
 
-
-    public Chat(){}
     public Chat(int from, int to){
         userId = from;
         this.chatId = to;
@@ -29,15 +25,6 @@ public class Chat {
         this.chatId = to;
         this.time = System.currentTimeMillis();
         this.messageNum = messageNum;
-    }
-    public Chat(Integer userId, Integer createdBy, boolean isAnswered, Integer to, String title, Timestamp timestamp, String content) {
-        this.userId = userId;
-        this.createdBy = createdBy;
-        this.isAnswered = isAnswered;
-        this.chatId = to;
-        this.title = title;
-   //     this.timestamp = timestamp;
-        this.content = content;
     }
 
     public Integer getUserId() {
@@ -107,7 +94,6 @@ public class Chat {
     public String getUsername() {
         return username;
     }
-
 
     public void setUsername(String username) {
         this.username = username;

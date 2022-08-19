@@ -6,9 +6,11 @@
   <link rel="stylesheet" href="/workoutSubscriber/workoutSubscriber.css">
   <link rel="stylesheet" href="/common/bootstrap.min.css">
   <link rel="stylesheet" href="/toolbar/toolbar.css">
-  <script src="/common/context-path-helper.js"></script>
+    <link rel="stylesheet" href="/reportsPage/reportsPage.css">
+    <script src="/common/context-path-helper.js"></script>
   <script src="/common/jquery-2.0.3.min.js"></script>
   <script src="/workoutSubscriber/workoutSubscriber.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
 <div class="toolBar">
@@ -31,7 +33,37 @@
         </span>
     <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
   </div>
+    <div class="summary">
+       <p class="title"> Your Progress Report </p>
+        <p>The number of kilograms you lost in the last week: </p>
+        <p>The number of kilograms you lost since you registered to MMC fitness: </p>
+    </div>
+    <div id="LineChart"></div>
 </div>
+<script type="text/javascript">
+    // Load google charts
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
 
+    // Draw the chart and set the chart values
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Weight', 'Week'],
+            ['1', 84.0], //example
+            ['2', 84.2],
+            ['3', 83.8],
+            ['4', 83.6],
+            ['5', 83.3],
+            ['6', 82.9]
+        ]);
+
+        // Optional; add a title and set the width and height of the chart
+        var options = {'title':'My Average Day', 'width':800, 'height':400};
+
+        // Display the chart inside the <div> element with id="LineChart"
+        var chart = new google.visualization.LineChart(document.getElementById('LineChart'));
+        chart.draw(data, options);
+    }
+</script>
 </body>
 </html>
