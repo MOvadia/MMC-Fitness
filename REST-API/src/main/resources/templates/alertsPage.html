@@ -48,16 +48,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="user : ${users}" >
-                    <td th:text="${user.fullName}"></td>
-                    <td th:text="${user.type}"></td>
-                    <td>
-                        <form th:action="@{'/alert/userId=' + ${userId} + '&chat=' + ${user.userId}}" th:method="post" th:object="${usersChatForm}" th:class="usersForm">
-                        <button th:value="chat" onclick="openChat()" th:name="chat" class="btn btn-primary" id="submitButton" type="submit">Start</button>
-                        </a>
-                        </form>
-                    </td>
-                </tr>
                 </tbody>
             </table>
         </div>
@@ -85,16 +75,10 @@
             </div>
         </div>
     <form th:action="@{'/alert/userId=' + ${userId} + '&chat=' + ${chatId}}" th:method="post" th:object="${massageForm}" th:class="massageForm">
-    <input type="text" th:field="*{content}" id="userstring" name="userstring"/>
+    <input type="text"  id="userstring" name="userstring"/>
     <button th:value="send" th:name="send" class="btn btn-primary" id="sendButton" type="submit">Send</button>
     </form>
     </div>
 </div>
-<script>
-    function openChat() {
-        document.getElementById("content").style.display = "block";
-    }
-</script>
-
 </body>
 </html>

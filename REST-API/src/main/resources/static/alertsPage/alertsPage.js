@@ -95,3 +95,39 @@ $(function() { // onload...do
 function triggerAjaxChatContent() {
     setTimeout(ajaxChatContent, refreshRate);
 }
+
+
+//users = a list of usernames, essentially an array of javascript strings:
+// ["moshe","nachum","nachche"...]
+function refreshUsersList(users) {
+    //clear all current users
+    $("#users").empty();
+
+    // rebuild the list of users: scan all users and add them to the list of users
+    $.each(users || [], function(index, username) {
+        //create a new <li> tag with a value in it and append it to the #userslist (div with id=userslist) element
+        $('<tr>' + users.fullName + '</tr>')
+            .appendTo($("#users"));
+    });
+}
+
+function ajaxUsersList() {
+    $.ajax({
+        type: 'POST',
+        url: USER_LIST_URL,
+        contentType: 'text/plain',
+        crossDomain: false,
+        async:true,
+        success: function(users) {
+          //  window.location = '/alert/userslist';
+           // var users = document.getElementById('usersList');
+            refreshUsersList(users);
+        }});
+}
+
+//activate the timer calls after the page is loaded
+$(function() {
+
+    //The users list is refreshed automatically every second
+    setInterval(ajaxUsersList, refreshRate);
+});

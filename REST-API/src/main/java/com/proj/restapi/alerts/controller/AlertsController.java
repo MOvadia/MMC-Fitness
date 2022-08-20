@@ -18,11 +18,34 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
 @Controller
 public class AlertsController {
     @Autowired
     private SubscriberService subscriberService;
     ChatManager chatManager = new ChatManager();
+
+    /*@RequestMapping("/alert/userslist")
+    public String getAjaxViewPage(HttpServletRequest request,Model model) {
+        List<User> usersList = new ArrayList<>();
+        usersList.addAll(UserManager.getUsersSet());
+        model.addAttribute("users", usersList);
+        String query = request.getQueryString();
+
+        return "alertsPage";
+
+    }*/
+
+    @RequestMapping(value = "/alert/userslist", method = POST)
+    @ResponseBody
+    public List<User> postFoos(Model model) {
+        List<User> usersList = new ArrayList<>();
+        usersList.addAll(UserManager.getUsersSet());
+        model.addAttribute("usersList", usersList);
+        return usersList;
+    }
+
     @GetMapping("/alert/userId={userId}")
     public String alertPage(@PathVariable int userId, Model model){
         List<User> usersList = new ArrayList<>();
