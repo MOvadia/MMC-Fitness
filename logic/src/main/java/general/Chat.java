@@ -15,6 +15,8 @@ public class Chat {
 
     private int messageNum;
 
+    public Chat(){}
+
     public Chat(int from, int to){
         userId = from;
         this.chatId = to;

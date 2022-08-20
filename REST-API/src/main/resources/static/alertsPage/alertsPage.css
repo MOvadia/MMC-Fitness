@@ -59,6 +59,16 @@
     /* position: fixed; */
 }
 
+.massageForm{
+    margin-top:100px;
+    margin-left:20px
+}
+
+#userstring{
+    width: 333px;
+    height:33px;
+}
+
 /*----------------------------------------------------------------------------------*/
 /* Chat containers */
 .container {
