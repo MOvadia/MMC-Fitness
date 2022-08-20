@@ -40,30 +40,50 @@
     </div>
     <div id="LineChart"></div>
 </div>
-<script type="text/javascript">
-    // Load google charts
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-
-    // Draw the chart and set the chart values
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Weight', 'Week'],
-            ['1', 84.0], //example
-            ['2', 84.2],
-            ['3', 83.8],
-            ['4', 83.6],
-            ['5', 83.3],
-            ['6', 82.9]
-        ]);
-
-        // Optional; add a title and set the width and height of the chart
+<script th:inline="javascript">
+    var real_data = /*[[${chartData}]]*/'noValue';
+    $(document).ready(function() {
+        google.charts.load('current', {
+            packages : [ 'corechart', 'bar' ]
+        });
+        google.charts.setOnLoadCallback(drawColumnChart);
+        google.charts.setOnLoadCallback(drawLineChart);
+    });
+    function drawColumnChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'weeks');
+        data.addColumn('number', 'weight');
+        Object.keys(real_data).forEach(function(key) {
+            data.addRow([ key, real_data[key] ]);
+        });
+        var options = {
+            title : 'My progress',
+            hAxis : {
+                title : 'Weeks',
+            },
+            vAxis : {
+                title : 'Weight'
+            }
+        };
+        var chart = new google.visualization.ColumnChart(document
+            .getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+    function drawLineChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Weeks');
+        data.addColumn('number', 'Weight');
+        Object.keys(real_data).forEach(function(key) {
+            data.addRow([ key, real_data[key] ]);
+        });
         var options = {'title':'My Average Day', 'width':800, 'height':400};
 
-        // Display the chart inside the <div> element with id="LineChart"
-        var chart = new google.visualization.LineChart(document.getElementById('LineChart'));
+        var chart = new google.visualization.LineChart(document
+            .getElementById('LineChart'));
         chart.draw(data, options);
     }
 </script>
+</body>
+</html>
 </body>
 </html>
