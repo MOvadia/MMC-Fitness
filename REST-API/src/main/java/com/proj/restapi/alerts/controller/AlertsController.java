@@ -39,7 +39,7 @@ public class AlertsController {
 
     @RequestMapping(value = "/alert/userslist", method = POST)
     @ResponseBody
-    public List<User> postFoos(Model model) {
+    public List<User> postUsers(Model model) {
         List<User> usersList = new ArrayList<>();
         usersList.addAll(UserManager.getUsersSet());
         model.addAttribute("usersList", usersList);

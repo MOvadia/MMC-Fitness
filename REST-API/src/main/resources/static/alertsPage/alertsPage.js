@@ -96,18 +96,42 @@ function triggerAjaxChatContent() {
     setTimeout(ajaxChatContent, refreshRate);
 }
 
-
-//users = a list of usernames, essentially an array of javascript strings:
-// ["moshe","nachum","nachche"...]
 function refreshUsersList(users) {
-    //clear all current users
-    $("#users").empty();
+    var usersTable = $('#usersTable tbody');
+    usersTable.empty();
+    var userList = users;
+    userList.forEach(function (user) {
 
-    // rebuild the list of users: scan all users and add them to the list of users
-    $.each(users || [], function(index, username) {
-        //create a new <li> tag with a value in it and append it to the #userslist (div with id=userslist) element
-        $('<tr>' + users.fullName + '</tr>')
-            .appendTo($("#users"));
+        var name = user.fullName;
+        var type = user.type;
+
+        var tr = $(document.createElement('tr'));
+
+        var tdName = $(document.createElement('td')).text(name);
+        var tdType = $(document.createElement('td')).text(type);
+
+        tdName.appendTo(tr);
+        tdType.appendTo(tr);
+
+        var form = document.createElement('form');
+        form.setAttribute('th:action', '@{/alert/userId=1&chat=1}');
+        form.setAttribute('th:method', 'post');
+        form.setAttribute('th:object', '${usersChatForm}');
+        form.setAttribute('class', 'usersForm');
+        var formBtn = $(document.createElement('td')).append(form);
+
+        var btn = document.createElement('input');
+        btn.setAttribute('type', 'button');
+        btn.setAttribute('id', 'submitButton');
+        btn.setAttribute('class', 'btn btn-primary');
+        btn.setAttribute('value', 'chat');
+        //btn.setAttribute('onclick', 'openChat(1,user.userId)');
+        //var openChat = $(document.createElement('td')).append(btn);
+
+        btn.appendTo(form);
+        formBtn.appendTo(tr);
+        tr.appendTo(usersTable);
+
     });
 }
 
