@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static java.lang.Integer.parseInt;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
@@ -68,9 +70,14 @@ public class AlertsController {
     }
 */
 
-    @PostMapping(value = "/alert/userId={userId}&chat={chatId}", params="chat")
-    public String chatMassages(@PathVariable int userId,@PathVariable int chatId, Model model)
+    @RequestMapping(value = "/alert/chat", method = GET)
+    @ResponseBody
+    public String chatMassages(@RequestParam int userId,@RequestParam int chatId,Model model)
     {
+       // string myUnknownQuerystring = Request.QueryString["unknownQuerystring"];
+
+        // int userId = parseInt("1");
+        //int chatId = parseInt("1");
         List<User> usersList = new ArrayList<>();
         usersList.addAll(UserManager.getUsersSet());
         User myuser = usersList.stream().filter(users -> users.getUserId() == userId).collect(Collectors.toList()).get(0);

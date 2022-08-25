@@ -1,7 +1,7 @@
 var chatVersion = 0;
 var refreshRate = 2000; //milli seconds
 var USER_LIST_URL = buildUrlWithContextPath("userslist");
-var CHAT_LIST_URL = buildUrlWithContextPath("chat");
+var CHAT_LIST_URL = buildUrlWithContextPath("userId={userId}&chat={chat}");
 
 //entries = the added chat strings represented as a single string
 function appendToChatArea(entries) {
@@ -96,6 +96,35 @@ function triggerAjaxChatContent() {
     setTimeout(ajaxChatContent, refreshRate);
 }
 
+function startChatClicked(from,to) {
+    /*var name = getUserName();
+    var tableId = val;
+    var rows = document.getElementsByTagName("tbody")[0].rows;
+    var creator = rows[tableId - 1].getElementsByTagName("td")[2].innerText;
+    //sessionStorage.setItem("user", name);
+    sessionStorage.setItem("xmlIndex", tableId);
+*/
+    $.ajax
+    (
+        {
+            url:"/alert/chat" ,
+            data: {
+                //action: 'runAlgo',
+                userId: from,
+                chatId: to
+                //creator: creator*/
+            },
+            type: 'GET',
+            success: function(html) {
+                //  window.location = '/alert/userslist';
+                window.location = 'userId='+from;
+                //refreshUsersList(users);
+            }
+        }
+    );
+}
+
+
 function refreshUsersList(users) {
     var usersTable = $('#usersTable tbody');
     usersTable.empty();
@@ -127,8 +156,14 @@ function refreshUsersList(users) {
         btn.setAttribute('value', 'chat');
         //btn.setAttribute('onclick', 'openChat(1,user.userId)');
         //var openChat = $(document.createElement('td')).append(btn);
+        btn.setAttribute('onclick', 'startChatClicked(1,1)');
 
-        btn.appendTo(form);
+        var chat = $(document.createElement('td')).append(btn);
+
+
+        // btn.appendTo(form);
+        chat.appendTo(formBtn);
+
         formBtn.appendTo(tr);
         tr.appendTo(usersTable);
 
