@@ -4,16 +4,52 @@
   <meta charset="UTF-8">
   <title>MMC Fitness</title>
   <!-- Link the Bootstrap (from twitter) CSS framework in order to use its classes-->
-  <link rel="stylesheet" href="loginPage/LoginStyle.css">
+  <link rel="stylesheet" href="/settingsPage/settingsPage.css">
+  <link rel="stylesheet" href="/common/bootstrap.min.css">
+  <script src="/common/context-path-helper.js"></script>
   <script src="/common/jquery-2.0.3.min.js"></script>
-  <link rel="stylesheet" href="/toolbar/toolbar.css">
+  <script src="/settingsPage/settingsPage.js"></script>
 </head>
 <body>
-<div class="toolBar">
-  <div class="toolbarContent">
-    <a href="app/logout" class="logoutButton">Logout</a>
-    <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
-  </div>
+<div class="container">
+  <form class="settingsForm" id="genericForm" th:action="settings" th:method="post" th:object="${settingsForm}">
+    <h1>Settings</h1>
+    <p>Please update your personal data</p>
+    <b>First name</b><br>
+    <input type="text" th:field="*{firstname}" th:placeholder="${subscriber.firstName}" name="firstname" required>
+    <br>
+    <b>Last name</b><br>
+    <input type="text" th:field="*{lastname}" th:placeholder="${subscriber.lastName}" name="lastname" required><br>
+    <b>Phone number</b><br>
+    <input type="text" th:field="*{phonenumber}" th:placeholder="${subscriber.phoneNumber}" name="phonenumber" required><br>
+    <b>Email</b><br>
+    <input type="text" th:field="*{email}" th:placeholder="${subscriber.email}" name="email" required><br>
+    <b>Password</b><br>
+    <input type="password" th:field="*{psw}" placeholder="Enter new Password" name="psw" required><br>
+    <div id="subscriberForm">
+      <b>Age</b><br>
+      <input type="text" name="age" th:placeholder="${subscriber.age}" >
+      <br>
+      <b>height</b><br>
+      <input type="text" name="height" th:placeholder="${subscriber.height}" ><br>
+      <b >weight</b><br>
+      <input type="text" name="weight" th:placeholder="${subscriber.weight}" ><br>
+      <b>dietaryLimitations</b><br>
+      <input type="text" name="dietaryLimitations" placeholder="Enter Dietary Limitations" ><br>
+      <b>physicalLimitations</b><br>
+      <input type="text" name="physicalLimitations" placeholder="Enter Physical Limitations" ><br>
+      <b>workoutAmount</b><br>
+      <input type="text" name="workoutAmount" placeholder="Enter workout Amount" ><br>
+      <b>targetFatPercentage</b><br>
+      <input type="text" name="targetFatPercentage" placeholder="Enter Target Fat Percentage" ><br>
+      <b>targetWeight</b><br>
+      <input type="text" name="targetWeight" placeholder="Enter Target Weight" ><br>
+    </div>
+    <div class="clearfix">
+      <button th:value="cancel" th:name="cancel" type="button" class="cancelbtn">Cancel</button>
+      <button th:value="submit" th:name="submit" type="submit" class="signupbtn">Update</button>
+    </div>
+  </form>
 </div>
 </body>
 </html>

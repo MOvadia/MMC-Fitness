@@ -1,6 +1,6 @@
 package com.proj.restapi.auth.info;
 
-public class WorkoutInformation {
+/*public class WorkoutInformation {
 
     private String workoutName;
     private String link;
@@ -79,4 +79,4 @@ public class WorkoutInformation {
     public void setDescription(String description) {
         this.description = description;
     }
-}
+}*/

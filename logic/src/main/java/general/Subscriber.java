@@ -109,4 +109,6 @@ public class Subscriber extends User {
     public int hashCode() {
         return Objects.hash(super.hashCode(), age, height, weight, workoutAmount, targetFatPercentage, targetWeight);
     }
+
+    
 }
