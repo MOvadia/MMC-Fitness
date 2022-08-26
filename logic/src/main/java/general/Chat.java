@@ -7,19 +7,26 @@ public class Chat {
     private Integer userId;
     private Integer createdBy;
     private boolean isAnswered;
-    private Integer to;
+    private Integer chatId;
     private String title;
-    private Timestamp timestamp;
     private String content;
+    private String username;
+    private long time;
 
-    public Chat(Integer userId, Integer createdBy, boolean isAnswered, Integer to, String title, Timestamp timestamp, String content) {
-        this.userId = userId;
-        this.createdBy = createdBy;
-        this.isAnswered = isAnswered;
-        this.to = to;
-        this.title = title;
-        this.timestamp = timestamp;
-        this.content = content;
+    private int messageNum;
+
+    public Chat(){}
+
+    public Chat(int from, int to){
+        userId = from;
+        this.chatId = to;
+    }
+    public Chat(String chatString, int from, int to, int messageNum) {
+        this.content = chatString;
+        userId = from;
+        this.chatId = to;
+        this.time = System.currentTimeMillis();
+        this.messageNum = messageNum;
     }
 
     public Integer getUserId() {
@@ -46,12 +53,12 @@ public class Chat {
         isAnswered = answered;
     }
 
-    public Integer getTo() {
-        return to;
+    public Integer getChatId() {
+        return chatId;
     }
 
-    public void setTo(Integer to) {
-        this.to = to;
+    public void setChatId(Integer chatId) {
+        this.chatId = chatId;
     }
 
     public String getTitle() {
@@ -60,14 +67,6 @@ public class Chat {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
     }
 
     public String getContent() {
@@ -83,11 +82,35 @@ public class Chat {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Chat chat = (Chat) o;
-        return isAnswered == chat.isAnswered && userId.equals(chat.userId) && createdBy.equals(chat.createdBy) && to.equals(chat.to) && title.equals(chat.title) && timestamp.equals(chat.timestamp) && content.equals(chat.content);
+        return isAnswered == chat.isAnswered && userId.equals(chat.userId) && createdBy.equals(chat.createdBy) && chatId.equals(chat.chatId) && title.equals(chat.title) &&  content.equals(chat.content);
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getMessageNum() {
+        return messageNum;
+    }
+
+    public void setMessageNum(int messageNum) {
+        this.messageNum = messageNum;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, createdBy, isAnswered, to, title, timestamp, content);
+        return Objects.hash(userId, createdBy, isAnswered, chatId, title, content);
     }
 }

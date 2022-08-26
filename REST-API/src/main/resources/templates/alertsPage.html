@@ -6,9 +6,11 @@
   <link rel="stylesheet" href="/workoutSubscriber/workoutSubscriber.css">
   <link rel="stylesheet" href="/common/bootstrap.min.css">
   <link rel="stylesheet" href="/toolbar/toolbar.css">
-  <script src="/common/context-path-helper.js"></script>
+  <link rel="stylesheet" href="/alertsPage/alertsPage.css">
+    <script src="/common/context-path-helper.js"></script>
   <script src="/common/jquery-2.0.3.min.js"></script>
-  <script src="/workoutSubscriber/workoutSubscriber.js"></script>
+    <script src="/alertsPage/alertsPage.js"></script>
+
 </head>
 <body>
 <div class="toolBar">
@@ -32,6 +34,67 @@
     <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
   </div>
 </div>
+    <div class="board_container users">
+        <div class="board_headline">
+            <label class="table_headlines" id="users">Users</label>
+        </div>
+        <div class="board_content">
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">User name</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Start</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}" >
+                    <td th:text="${user.fullName}"></td>
+                    <td th:text="${user.type}"></td>
+                    <td>
+                        <form th:action="@{'/alert/userId=' + ${userId} + '&chat=' + ${user.userId}}" th:method="post" th:object="${usersChatForm}" th:class="usersForm">
+                        <button th:value="chat" onclick="openChat()" th:name="chat" class="btn btn-primary" id="submitButton" type="submit">Start</button>
+                        </a>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="content" id="content">
+            <div id="chatwindow">
+                <!-- place holder to hold all the chat lines -->
+                <div id="chatarea" class="span6"></div>
+
+                <!-- The actual form through which you send data back to the user -->
+                        <table class="abc">
+                            <thead>
+                            <tr>
+                                <th scope="col" th:text="${type}"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="string : ${chatStrings}" >
+                                <td th:text="${string.content}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+    <form th:action="@{'/alert/userId=' + ${userId} + '&chat=' + ${chatId}}" th:method="post" th:object="${massageForm}" th:class="massageForm">
+    <input type="text" th:field="*{content}" id="userstring" name="userstring"/>
+    <button th:value="send" th:name="send" class="btn btn-primary" id="sendButton" type="submit">Send</button>
+    </form>
+    </div>
+</div>
+<script>
+    function openChat() {
+        document.getElementById("content").style.display = "block";
+    }
+</script>
 
 </body>
 </html>

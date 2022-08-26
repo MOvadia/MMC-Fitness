@@ -4,6 +4,8 @@ import com.proj.restapi.auth.info.LoginInformation;
 import com.proj.restapi.auth.info.SubscriberInformation;
 import com.proj.restapi.menu.service.RegistrationService;
 import com.proj.restapi.menu.service.SubscriberService;
+import general.User;
+import general.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -15,9 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import static general.UserManager.*;
+
 @Controller
 public class AuthController {
 
+    UserManager m_userManager = null;
     @Autowired
     private RegistrationService registrationService = new RegistrationService();
     @GetMapping("/")
@@ -35,6 +40,12 @@ public class AuthController {
             return "index";
         }
         int id = registrationService.getUserIdByEmail(user.getEmail());
+
+            if (m_userManager.getUsersSet() == null) {
+                m_userManager = new UserManager();
+            }
+        User userType= new User(registrationService.getFirstNameByEmail(user.getEmail()), registrationService.getLastNameByEmail(user.getEmail()), user.getType(), id);
+        m_userManager.addUser(userType);
         if(user.getType().equals("Subscriber"))
         {
             return "redirect:/menu/userId=" + id;

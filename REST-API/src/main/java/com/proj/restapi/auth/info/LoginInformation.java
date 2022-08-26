@@ -1,10 +1,17 @@
 package com.proj.restapi.auth.info;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+
 public class LoginInformation {
     private String email;
     private String password;
-
     private String type;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
 
     public LoginInformation(String email, String password, String type) {
         this.email = email;
@@ -83,4 +90,5 @@ public class LoginInformation {
     public void setType(String type) {
         this.type = type;
     }
+
 }

@@ -6,9 +6,11 @@
   <link rel="stylesheet" href="/workoutSubscriber/workoutSubscriber.css">
   <link rel="stylesheet" href="/common/bootstrap.min.css">
   <link rel="stylesheet" href="/toolbar/toolbar.css">
-  <script src="/common/context-path-helper.js"></script>
+    <link rel="stylesheet" href="/reportsPage/reportsPage.css">
+    <script src="/common/context-path-helper.js"></script>
   <script src="/common/jquery-2.0.3.min.js"></script>
   <script src="/workoutSubscriber/workoutSubscriber.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
 <div class="toolBar">
@@ -31,7 +33,57 @@
         </span>
     <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
   </div>
+    <div class="summary">
+       <p class="title"> Your Progress Report </p>
+        <p class="text">The number of kilograms you lost in the last week: </p>
+        <p>The number of kilograms you lost since you registered to MMC fitness: </p>
+        <div id="LineChart"></div>
+    </div>
 </div>
+<script th:inline="javascript">
+    var real_data = /*[[${chartData}]]*/'noValue';
+    $(document).ready(function() {
+        google.charts.load('current', {
+            packages : [ 'corechart', 'bar' ]
+        });
+        google.charts.setOnLoadCallback(drawColumnChart);
+        google.charts.setOnLoadCallback(drawLineChart);
+    });
+    function drawColumnChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'weeks');
+        data.addColumn('number', 'weight');
+        Object.keys(real_data).forEach(function(key) {
+            data.addRow([ key, real_data[key] ]);
+        });
+        var options = {
+            title : 'My progress',
+            hAxis : {
+                title : 'Weeks',
+            },
+            vAxis : {
+                title : 'Weight'
+            }
+        };
+        var chart = new google.visualization.ColumnChart(document
+            .getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+    function drawLineChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Weeks');
+        data.addColumn('number', 'Weight');
+        Object.keys(real_data).forEach(function(key) {
+            data.addRow([ key, real_data[key] ]);
+        });
+        var options = {'title':'My Average Day', 'width':800, 'height':400};
 
+        var chart = new google.visualization.LineChart(document
+            .getElementById('LineChart'));
+        chart.draw(data, options);
+    }
+</script>
+</body>
+</html>
 </body>
 </html>

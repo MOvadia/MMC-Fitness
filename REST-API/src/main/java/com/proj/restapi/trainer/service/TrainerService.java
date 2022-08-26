@@ -77,4 +77,5 @@ public class TrainerService {
             return ActionResult.failed("Failed to delete the workout");
         }
     }
+
 }

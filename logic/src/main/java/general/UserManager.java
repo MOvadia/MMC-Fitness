@@ -1,8 +1,7 @@
 package general;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /*
 Adding and retrieving users is synchronized and in that manner - these actions are thread safe
@@ -11,25 +10,38 @@ of the user of this class to handle the synchronization of isUserExists with oth
  */
 public class UserManager {
 
-    private final Set<String> usersSet;
+    private static List<User> usersSet = null;
 
     public UserManager() {
-        usersSet = new HashSet<>();
+        usersSet = new ArrayList<>();
     }
 
-    public synchronized void addUser(String username) {
-        usersSet.add(username);
+
+    public synchronized void addUser(User user) {
+        usersSet.add(user);
     }
 
     public synchronized void removeUser(String username) {
         usersSet.remove(username);
     }
 
-    public synchronized Set<String> getUsers() {
-        return Collections.unmodifiableSet(usersSet);
-    }
-
     public boolean isUserExists(String username) {
         return usersSet.contains(username);
+    }
+
+    public static List<User> getUsersSet() {
+        return usersSet;
+    }
+
+    public static String getUserNameById(int id)
+    {
+        User user = usersSet.stream().filter(users -> users.getUserId() == id).collect(Collectors.toList()).get(0);
+        return user.getFirstName() + " " + user.getLastName();
+    }
+
+    public static String getTypeById(int id)
+    {
+        User user = usersSet.stream().filter(users -> users.getUserId() == id).collect(Collectors.toList()).get(0);
+        return user.getType();
     }
 }

@@ -9,13 +9,27 @@ public class User{
     private String phoneNumber;
     private String email;
 
+    private String type;
+
+    private String fullName;
+
     public User(){}
+
+    public User(String firstName, String lastName, String type, int id){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.fullName = firstName + " " + lastName;
+        this.type = type;
+        this.userId = id;
+    }
+
     public User(Integer userId, String firstName, String lastName, String phoneNumber, String email) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.type = type;
     }
 
     public Integer getUserId() {
@@ -69,5 +83,21 @@ public class User{
     @Override
     public int hashCode() {
         return Objects.hash(firstName, lastName, phoneNumber, email);
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

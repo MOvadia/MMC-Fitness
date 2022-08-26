@@ -1,0 +1,129 @@
+.usersTable {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    position: fixed;
+
+}
+
+.usersTable thead tr {
+    background-color: rgba(136, 136, 140, 0.25);
+    color: #ffffff;
+    text-align: left;
+}
+
+.usersTable th,
+.usersTable td {
+    padding: 12px 15px;
+}
+
+.usersTable tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.usersTable tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.usersTable tbody tr:last-of-type {
+    border-bottom: rgba(136, 136, 140, 0.25);
+
+}
+
+.usersTable tbody tr.active-row {
+    font-weight: bold;
+    color: rgba(136, 136, 140, 0.25);
+}
+
+
+.content {
+    overflow-y: scroll;
+    max-height: 400px;
+    width: 400px;
+    height: 600px;
+    background: linear-gradient(
+            150.46deg,
+            rgba(255, 255, 255, 0.80) -12.61%,
+            rgba(255, 255, 255, 0.25) 170.1%
+    );
+    padding: 20px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-top: -305px;
+    font-size: 1em;
+    /* display: none;*/
+    /* position: fixed; */
+}
+
+.massageForm{
+    margin-top:100px;
+    margin-left:20px
+}
+
+#userstring{
+    width: 333px;
+    height:33px;
+}
+
+/*----------------------------------------------------------------------------------*/
+/* Chat containers */
+.container {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* Darker chat container */
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+/* Clear floats */
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Style images */
+.container img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+/* Style the right image */
+.container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+/* Style time text */
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+    float: left;
+    color: #999;
+}
+
+.board_container.users {
+    margin-left: 500px;
+    margin-top: 100px;
+    height: 300px;
+    width: 600px;
+
+}
