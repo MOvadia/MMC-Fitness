@@ -20,6 +20,7 @@ public class SettingsController {
     @GetMapping("/settings/userId={userId}")
     public String SettingsPage(@PathVariable int userId, Model model){
         Subscriber subscriberInformation = subscriberService.getSubscriberById(userId);
+        subscriberInformation.setUserId(userId);
         model.addAttribute("subscriber", subscriberInformation);
         model.addAttribute("settingsForm", subscriberInformation);
 
@@ -36,6 +37,7 @@ public class SettingsController {
     public String submit(Subscriber user, Model model){
         //int val = registrationService.createUser(user);
        // model.addAttribute("userForm", new LoginInformation());
+        subscriberService.updateSubscriber(user);
         return "settings";
     }
 

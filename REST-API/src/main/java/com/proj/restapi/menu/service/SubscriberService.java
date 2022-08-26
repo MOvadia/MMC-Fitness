@@ -33,4 +33,14 @@ public class SubscriberService {
 
         return users.get(0);
     }
+
+    public int updateSubscriber(Subscriber user){
+        String subscriber = "UPDATE [Subscriber] SET height=?, weight=?, workoutAmount=?,targetFatPercentage=?,targetWeight=? where userId=?";
+        int ret1 = jdbcTemplate.update(subscriber, user.getHeight(), user.getWeight(), user.getWorkoutAmount(),
+                user.getTargetFatPercentage(), user.getTargetWeight(), user.getUserId());
+        String sql = "UPDATE [User] SET firstName=?, lastName=?, phoneNumber=? where email=?";
+        int ret2 = jdbcTemplate.update(sql, user.getFirstName() , user.getLastName()
+                , user.getPhoneNumber(),  user.getEmail());
+        return ret1*ret2;
+    }
 }
