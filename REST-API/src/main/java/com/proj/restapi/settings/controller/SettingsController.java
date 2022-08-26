@@ -21,7 +21,7 @@ public class SettingsController {
     public String SettingsPage(@PathVariable int userId, Model model){
         Subscriber subscriberInformation = subscriberService.getSubscriberById(userId);
         model.addAttribute("subscriber", subscriberInformation);
-        model.addAttribute("settingsForm", new SubscriberInformation());
+        model.addAttribute("settingsForm", subscriberInformation);
 
         return "settings";
     }
@@ -32,11 +32,11 @@ public class SettingsController {
         return "index";
     }
 
-   /* @PostMapping(value = "/registration", params="submit")
-    public String submit(SubscriberInformation user, Model model){
+    @PostMapping(value = "/settings/submit", params="submit")
+    public String submit(Subscriber user, Model model){
         //int val = registrationService.createUser(user);
        // model.addAttribute("userForm", new LoginInformation());
         return "settings";
     }
-*/
+
 }
