@@ -21,8 +21,6 @@ public class SettingsController {
     public String SettingsPage(@PathVariable int userId, Model model){
         Subscriber subscriberInformation = subscriberService.getSubscriberById(userId);
         model.addAttribute("subscriber", subscriberInformation);
-        model.addAttribute("firstName", "check");
-
         model.addAttribute("settingsForm", new SubscriberInformation());
 
         return "settings";
