@@ -5,15 +5,14 @@ import java.util.Objects;
 
 public class SystemEvents {
     private Integer userId;
-    private Float currentWeight;
-    private Float currentFatPercentage;
-    private Timestamp timestamp;
+    private double currentWeight;
+    private int week;
 
-    public SystemEvents(Integer userId, Float currentWeight, Float currentFatPercentage, Timestamp timestamp) {
+    public SystemEvents(){}
+    public SystemEvents(Integer userId, double currentWeight, int week) {
         this.userId = userId;
         this.currentWeight = currentWeight;
-        this.currentFatPercentage = currentFatPercentage;
-        this.timestamp = timestamp;
+        this.week = week;
     }
 
     public Integer getUserId() {
@@ -24,40 +23,32 @@ public class SystemEvents {
         this.userId = userId;
     }
 
-    public Float getCurrentWeight() {
+    public double getCurrentWeight() {
         return currentWeight;
     }
 
-    public void setCurrentWeight(Float currentWeight) {
+    public void setCurrentWeight(double currentWeight) {
         this.currentWeight = currentWeight;
     }
 
-    public Float getCurrentFatPercentage() {
-        return currentFatPercentage;
+    public int getWeek() {
+        return week;
     }
 
-    public void setCurrentFatPercentage(Float currentFatPercentage) {
-        this.currentFatPercentage = currentFatPercentage;
-    }
-
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setWeek(int week) {
+        this.week = week;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof SystemEvents)) return false;
         SystemEvents that = (SystemEvents) o;
-        return userId.equals(that.userId) && currentWeight.equals(that.currentWeight) && currentFatPercentage.equals(that.currentFatPercentage) && timestamp.equals(that.timestamp);
+        return Double.compare(that.currentWeight, currentWeight) == 0 && week == that.week && userId.equals(that.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, currentWeight, currentFatPercentage, timestamp);
+        return Objects.hash(userId, currentWeight, week);
     }
 }

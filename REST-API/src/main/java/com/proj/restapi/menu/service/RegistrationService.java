@@ -27,6 +27,10 @@ public class RegistrationService {
                 sqlInsert = "insert into $tableName values (?,?,?,?,?,?,?,?,?,?,?)";
                 String query = sqlInsert.replace("$tableName", info.getType());
                 val3 = jdbcTemplate.update(query, userId , NULL, NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+                String sysEvent = "insert into $tableName values (?,?,?)";
+                query = sysEvent.replace("$tableName", "SystemEvents");
+                //TODO:
+               // int val4 = jdbcTemplate.update(query, userId , info.get(), 1);
             }
             else {
                 sqlInsert = "insert into $tableName values (?,?)";

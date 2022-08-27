@@ -1,31 +1,34 @@
 package com.proj.restapi.reports.controller;
-
+import com.proj.restapi.reports.service.ReportsService;
 import com.proj.restapi.menu.service.SubscriberService;
+import com.proj.restapi.trainer.service.TrainerService;
+import general.SystemEvents;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ReportsController {
-
+public class ReportController {
     @Autowired
     private SubscriberService subscriberService;
+    @Autowired
+    private ReportsService reportsService = new ReportsService();
 
     @GetMapping("/report/userId={userId}")
     public String reportPage(@PathVariable int userId, Model model){
         model.addAttribute("subscriber", subscriberService.getSubscriberById(userId));
         Map<String, Double> graphData = new TreeMap<>();
-        //TODO: pull from the DB
-        graphData.put("week 1", 84.0);
-        graphData.put("week 2", 84.2);
-        graphData.put("week 3", 83.8);
-        graphData.put("week 4", 83.3);
+        List<SystemEvents> sysEvent = reportsService.getSysEvents(userId);
+
+        for (SystemEvents event: sysEvent) {
+            graphData.put("week " + event.getWeek(),event.getCurrentWeight());
+        }
 
         model.addAttribute("chartData", graphData);
 
