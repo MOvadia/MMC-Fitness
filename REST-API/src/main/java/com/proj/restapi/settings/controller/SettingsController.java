@@ -20,7 +20,6 @@ public class SettingsController {
     @GetMapping("/settings/userId={userId}")
     public String SettingsPage(@PathVariable int userId, Model model){
         Subscriber subscriberInformation = subscriberService.getSubscriberById(userId);
-        subscriberInformation.setUserId(userId);
         model.addAttribute("subscriber", subscriberInformation);
         model.addAttribute("settingsForm", subscriberInformation);
 
@@ -28,17 +27,15 @@ public class SettingsController {
     }
 
     @PostMapping(value = "/settings", params="cancel")
-    public String registration(SubscriberInformation user, Model model){
-        model.addAttribute("userForm", new LoginInformation());
-        return "index";
+    public String registration(Subscriber user, Model model){
+        int id = subscriberService.getUserIdByEmail(user.getEmail());
+        return "redirect:/menu/userId=" + id;
     }
 
     @PostMapping(value = "/settings/submit", params="submit")
     public String submit(Subscriber user, Model model){
-        //int val = registrationService.createUser(user);
-       // model.addAttribute("userForm", new LoginInformation());
-        subscriberService.updateSubscriber(user);
-        return "settings";
+        int retVal = subscriberService.updateSubscriber(user);
+        return "redirect:/menu/userId=" + user.getUserId();
     }
 
 }

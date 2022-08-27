@@ -52,9 +52,10 @@ public class SubscriberService {
 
     public int updateSubscriber(Subscriber user){
         int id = getUserIdByEmail(user.getEmail());
-        String subscriber = "UPDATE [Subscriber] SET height=?,age=?, weight=?, workoutAmount=?,targetFatPercentage=?,targetWeight=? where userId=?";
+        user.setUserId(id);
+        String subscriber = "UPDATE [Subscriber] SET height=?,age=?, weight=?, workoutAmount=?,targetWeight=? where userId=?";
         int ret1 = jdbcTemplate.update(subscriber, user.getHeight(),user.getAge(), user.getWeight(), user.getWorkoutAmount(),
-                user.getTargetFatPercentage(), user.getTargetWeight(), id);
+                user.getTargetWeight(), id);
         String sql = "UPDATE [User] SET firstName=?, lastName=?, phoneNumber=? where email=?";
         int ret2 = jdbcTemplate.update(sql, user.getFirstName() , user.getLastName()
                 , user.getPhoneNumber(),  user.getEmail());
