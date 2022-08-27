@@ -26,8 +26,14 @@ body{
 
 }
 
+#dietaryLimitations {
+    transform: scale(2);
+    margin-right: 11px;
+}
+
 /* Full-width input fields */
 input[type=text], input[type=password] {
+    display:inline-block;
     width: 50%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -40,6 +46,7 @@ input[type=text], input[type=password] {
 input[type=text]:focus, input[type=password]:focus {
     background-color: #ddd;
     outline: none;
+    display:inline-block;
 }
 
 hr {

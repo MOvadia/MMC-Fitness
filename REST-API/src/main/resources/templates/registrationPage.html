@@ -44,23 +44,35 @@
         <input type="text" name="height" placeholder="Enter Height" ><br>
         <b >weight</b><br>
         <input type="text" name="weight" placeholder="Enter Weight" ><br>
-        <b>dietaryLimitations</b><br>
-        <input type="text" name="dietaryLimitations" placeholder="Enter Dietary Limitations" ><br>
-        <b>physicalLimitations</b><br>
+        <b>dietary Limitations</b><br>
+        <input type="checkbox" id="gluten" name="dietaryLimitations" value="gluten" th:field="*{dietaryLimitations}">
+            <label for="gluten"> Gluten-free </label> <br>
+            <input type="checkbox" id="glucose" name="dietaryLimitations" value="glucose" th:field="*{dietaryLimitations}">
+            <label for="glucose"> Glucose-free </label> <br>
+            <input type="checkbox" id="vegan" name="dietaryLimitations" value="vegan" th:field="*{dietaryLimitations}">
+            <label for="glucose"> Vegan </label> <br>
+            <input type="checkbox" id="vegetarian" name="dietaryLimitations" value="vegetarian" th:field="*{dietaryLimitations}">
+            <label for="vegetarian"> Vegetarian </label> <br>
+        <b>physical Limitations</b><br>
         <input type="text" name="physicalLimitations" placeholder="Enter Physical Limitations" ><br>
-        <b>workoutAmount</b><br>
-        <input type="text" name="workoutAmount" placeholder="Enter workout Amount" ><br>
-        <b>targetFatPercentage</b><br>
-        <input type="text" name="targetFatPercentage" placeholder="Enter Target Fat Percentage" ><br>
-        <b>targetWeight</b><br>
-        <input type="text" name="targetWeight" placeholder="Enter Target Weight" ><br>
+            <b>Gender</b><br>
+            <div class="radio-group">
+                <input type="radio" id="female" name="female" class="custom-control-input" value="female" th:field="*{gender}">
+                <label class="custom-control-label" for="female">Female</label>
+                <input type="radio" id="male" name="male" class="custom-control-input" value="male" th:field="*{gender}">
+                <label class="custom-control-label" for="male">Male</label><br>
+            </div><br>
+        <b>workout Amount</b><br>
+        <input type="text" name="workoutAmount" placeholder="Enter workout Amount" th:field="*{workoutAmount}" ><br>
+            <b>Target Fat Percentage</b><br>
+            <input type="text" name="targetFatPercentage" placeholder="Enter Target Fat Percentage" th:field="*{targetFatPercentage}"><br>
+        <b>Target Weight</b><br>
+        <input type="text" name="targetWeight" placeholder="Enter Target Weight" th:field="*{targetWeight}"><br>
         </div>
         <div id="professionalForm">
             <b>seniority</b><br>
             <input type="number" name="seniority" th:field="*{seniority}" placeholder="Enter seniority" ><br>
         </div>
-        <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-
         <div class="clearfix">
             <button th:value="cancel" th:name="cancel" type="button" class="cancelbtn">Cancel</button>
             <button th:value="submit" th:name="submit" type="submit" class="signupbtn">Sign Up</button>

@@ -1,5 +1,6 @@
 package com.proj.restapi.auth.info;
 
+import java.util.List;
 import java.util.Objects;
 
 public class SubscriberInformation {
@@ -14,12 +15,14 @@ public class SubscriberInformation {
     private Integer age;
     private Float height;
     private Float weight;
-    private enum dietaryLimitations{};
-    private enum physicalLimitations{};
-    private enum gender {female, male};
+    private String gender;
     private Integer workoutAmount;
     private Float targetFatPercentage;
     private Float targetWeight;
+    private float bmi;
+
+
+    private List<String> dietaryLimitations;
 
     private int seniority;
 
@@ -64,6 +67,14 @@ public class SubscriberInformation {
 
     public String getPsw() {
         return psw;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public Integer getAge() {
@@ -114,6 +125,22 @@ public class SubscriberInformation {
         this.targetWeight = targetWeight;
     }
 
+    public String getDietaryLimitationsString() {
+        String lines="";
+        for (String line:dietaryLimitations){
+             lines+= line +"," ;
+        }
+        return lines;
+    }
+
+    public List<String> getDietaryLimitations() {
+        return dietaryLimitations;
+    }
+
+    public void setDietaryLimitations(List<String> dietaryLimitations) {
+        this.dietaryLimitations = dietaryLimitations;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -141,5 +168,14 @@ public class SubscriberInformation {
 
     public void setSeniority(int seniority) {
         this.seniority = seniority;
+    }
+
+    public float getBmi() {
+        float bmi = weight / (height*height);
+        return bmi;
+    }
+
+    public void setBmi(float bmi) {
+        this.bmi = bmi;
     }
 }
