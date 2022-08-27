@@ -1,4 +1,4 @@
-/*package com.proj.restapi.trainer.controller;
+package com.proj.restapi.trainer.controller;
 
 import com.proj.restapi.auth.info.LoginInformation;
 import com.proj.restapi.auth.info.WorkoutInformation;
@@ -45,4 +45,3 @@ public class NutritionistController {
         return "mainPageTrainer";
     }
 }
-*/
