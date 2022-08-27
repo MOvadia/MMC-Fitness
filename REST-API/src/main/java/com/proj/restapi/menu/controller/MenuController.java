@@ -4,6 +4,8 @@ import com.proj.restapi.auth.info.LoginInformation;
 import com.proj.restapi.menu.service.MenuService;
 import com.proj.restapi.menu.service.SubscriberService;
 import com.proj.restapi.menu.service.WorkoutService;
+import general.Subscriber;
+import general.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,12 +31,14 @@ public class MenuController {
     @GetMapping("/menu/userId={userId}")
     public String registerUser(@PathVariable int userId, Model model)
     {
+        int id = userId;
+        Subscriber subscriber =  subscriberService.getSubscriberById(id);
         model.addAttribute("userForm", new LoginInformation());
         //TODO - need to get user data from DB
         //TODO - get from DB the userID - than get the Subscriber by UserId
-        int id = userId;
+        //TODO - menu for each user
         model.addAttribute("subscriber", subscriberService.getSubscriberById(id));
-        model.addAttribute("gender", "Male");
+        model.addAttribute("gender", subscriber.getGender());
         model.addAttribute("workout", WorkoutService.getWorkoutPerUserId(1));
         model.addAttribute("menu", menuService.getMenuById(userId));
         model.addAttribute("meals", menuService.getMenuMealsById(userId));

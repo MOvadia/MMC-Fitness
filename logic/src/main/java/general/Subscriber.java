@@ -8,7 +8,7 @@ public class Subscriber extends User {
     private Float weight;
     private enum dietaryLimitations{};
     private enum physicalLimitations{};
-    private enum gender {female, male};
+    private String gender;
     private Integer workoutAmount;
     private Float targetFatPercentage;
     private Float targetWeight;
@@ -17,7 +17,7 @@ public class Subscriber extends User {
     public Subscriber() {
     }
 
-    public Subscriber(Integer userId, String firstName, String lastName, String phoneNumber, String email, Integer age, Float height,
+    public Subscriber(Integer userId, String firstName, String lastName, String phoneNumber, String email,String gender, Integer age, Float height,
                       Float weight, Integer workoutAmount, Float targetFatPercentage, Float targetWeight, float BMI) {
         super(userId, firstName, lastName, phoneNumber, email);
         this.age = age;
@@ -27,6 +27,7 @@ public class Subscriber extends User {
         this.targetFatPercentage = targetFatPercentage;
         this.targetWeight = targetWeight;
         this.BMI = BMI;
+        this.gender =gender;
     }
 
     public Subscriber(User u,Subscriber s){
@@ -38,6 +39,7 @@ public class Subscriber extends User {
         this.targetFatPercentage = s.getTargetFatPercentage();
         this.targetWeight = s.getTargetWeight();
         this.BMI =s.getBMI();
+        this.gender=s.getGender();
     }
 
     public Integer getAge() {
@@ -96,18 +98,28 @@ public class Subscriber extends User {
     public void setBMI(float BMI) {
         this.BMI = BMI;
     }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Subscriber that = (Subscriber) o;
-        return Objects.equals(age, that.age) && Objects.equals(height, that.height) && Objects.equals(weight, that.weight) && Objects.equals(workoutAmount, that.workoutAmount) && Objects.equals(targetFatPercentage, that.targetFatPercentage) && Objects.equals(targetWeight, that.targetWeight);
+        return Objects.equals(age, that.age) && Objects.equals(height, that.height) && Objects.equals(weight, that.weight) && Objects.equals(workoutAmount, that.workoutAmount)
+                && Objects.equals(targetFatPercentage, that.targetFatPercentage) && Objects.equals(targetWeight, that.targetWeight)&& Objects.equals(gender, that.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), age, height, weight, workoutAmount, targetFatPercentage, targetWeight);
+        return Objects.hash(super.hashCode(), age, height, weight, workoutAmount, targetFatPercentage, targetWeight, gender);
     }
 
     
