@@ -19,7 +19,6 @@ public class ReportsService {
     private JdbcTemplate jdbcTemplate;
 
     public List<SystemEvents> getSysEvents(int userId){
-        //List<SystemEvents> sysEvent = new LinkedList<>();
         String sql = "SELECT * FROM [SystemEvents] where userId=?";
         List<SystemEvents> sysEvent = jdbcTemplate.query(sql,new Object[] { userId },
                 BeanPropertyRowMapper.newInstance(SystemEvents.class));
