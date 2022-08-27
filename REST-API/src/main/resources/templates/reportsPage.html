@@ -35,8 +35,8 @@
   </div>
     <div class="summary">
        <p class="title"> Your Progress Report </p>
-        <p class="text">The number of kilograms you lost in the last week: </p>
-        <p>The number of kilograms you lost since you registered to MMC fitness: </p>
+        <span class="text" th:text="'The number of kilograms you lost in the last week: '+ ${lastweek}"></span><br>
+        <span class="text" th:text="'number of kilograms you lost since you registered to MMC fitness:' + ${total}"></span>
         <div id="LineChart"></div>
     </div>
 </div>

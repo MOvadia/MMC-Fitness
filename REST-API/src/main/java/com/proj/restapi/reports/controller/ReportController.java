@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -30,8 +31,15 @@ public class ReportController {
             graphData.put("week " + event.getWeek(),event.getCurrentWeight());
         }
 
-        model.addAttribute("chartData", graphData);
+        double lastweek = sysEvent.get(sysEvent.size()-1).getCurrentWeight() - sysEvent.get(sysEvent.size()-2).getCurrentWeight();
+        double total = sysEvent.get(sysEvent.size()-1).getCurrentWeight() - sysEvent.get(0).getCurrentWeight();
 
+        lastweek =Double.parseDouble(new DecimalFormat("##.###").format(lastweek));
+        total =Double.parseDouble(new DecimalFormat("##.###").format(total));
+
+        model.addAttribute("chartData", graphData);
+        model.addAttribute("lastweek", lastweek);
+        model.addAttribute("total", total);
 
         return "reportsPage";
     }
