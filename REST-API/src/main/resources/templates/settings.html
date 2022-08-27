@@ -36,14 +36,12 @@
   <form class="settingsForm" id="genericForm" th:action="submit" th:method="post" th:object="${settingsForm}">
     <h1>Settings</h1>
     <p>Please update your personal data</p>
-    <input type="text" th:placeholder="${subscriber.userId}" hidden>
     <b>First name</b><br>
     <input type="text" th:field="*{firstName}" th:placeholder="${subscriber.firstName}" name="firstname">
     <br>
     <b>Last name</b><br>
     <input type="text" th:field="*{lastName}" th:placeholder="${subscriber.lastName}" name="lastname"><br>
-    <b>email</b><br>
-    <input type="text" th:placeholder="${subscriber.email}" name="email" readonly><br>
+    <input type="text" th:field="*{email}" th:placeholder="${subscriber.email}" name="email" readonly style="display: none">
     <b>Phone number</b><br>
     <input type="text" th:field="*{phoneNumber}" th:placeholder="${subscriber.phoneNumber}" name="phonenumber"><br>
     <div id="subscriberForm">
