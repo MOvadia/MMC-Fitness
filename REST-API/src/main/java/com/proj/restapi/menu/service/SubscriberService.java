@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.sql.JDBCType.NULL;
+
 @Service
 public class SubscriberService {
 
@@ -40,6 +42,14 @@ public class SubscriberService {
         return userId;
     }
 
+    private int getNewWeek(int userId) {
+        Object[] params = new Object[]  {userId};
+        String sqlQuery = "SELECT TOP (1) [week] FROM [MMC-Fitness].[dbo].[SystemEvents] WHERE userId=? ORDER BY [week] DESC";
+        int id = jdbcTemplate.queryForObject(sqlQuery,params, Integer.class);
+        id++;
+        return id;
+    }
+
     public int updateSubscriber(Subscriber user){
         int id = getUserIdByEmail(user.getEmail());
         String subscriber = "UPDATE [Subscriber] SET height=?,age=?, weight=?, workoutAmount=?,targetFatPercentage=?,targetWeight=? where userId=?";
@@ -48,6 +58,12 @@ public class SubscriberService {
         String sql = "UPDATE [User] SET firstName=?, lastName=?, phoneNumber=? where email=?";
         int ret2 = jdbcTemplate.update(sql, user.getFirstName() , user.getLastName()
                 , user.getPhoneNumber(),  user.getEmail());
-        return ret1*ret2;
+
+        int week = getNewWeek(id);
+        String sysEvent = "insert into $tableName values (?,?,?)";
+        String query = sysEvent.replace("$tableName", "SystemEvents");
+        int ret3 = jdbcTemplate.update(query, id , user.getWeight(), week);
+        return ret1+ret2+ret3;
     }
 }
+
