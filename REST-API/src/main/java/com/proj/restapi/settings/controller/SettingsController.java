@@ -26,7 +26,7 @@ public class SettingsController {
         return "settings";
     }
 
-    @PostMapping(value = "/settings", params="cancel")
+    @PostMapping(value = "/settings/submit", params="cancel")
     public String registration(Subscriber user, Model model){
         int id = subscriberService.getUserIdByEmail(user.getEmail());
         return "redirect:/menu/userId=" + id;
