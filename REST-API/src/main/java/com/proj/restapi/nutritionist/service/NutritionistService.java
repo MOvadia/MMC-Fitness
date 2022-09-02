@@ -85,4 +85,8 @@ public class NutritionistService {
             return ActionResult.failed("Failed to delete the menu");
         }
     }
+
+    public Integer getUserId() {
+        return userId;
+    }
 }
