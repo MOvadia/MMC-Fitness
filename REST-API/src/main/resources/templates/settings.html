@@ -12,26 +12,30 @@
   <script src="/settingsPage/settingsPage.js"></script>
 </head>
 <body>
-<div class="toolBar">
-  <div class="toolbarContent">
-    <a href="app/logout" class="logoutButton">Logout</a>
-    <span class="logoSpan">
-            <a th:href="@{'/settings/userId=' + ${subscriber.userId}}" class="settings">
-                <img th:src="@{/common/images/settings.png}" class="settings">
-            </a>
-        </span>
-    <span class="alertLogoSpan">
-            <a th:href="@{'/alert/userId=' + ${subscriber.userId}}" class="alert">
-                <img th:src="@{/common/images/bell.png}" class="alert">
-            </a>
-        </span>
-    <span class="reportLogoSpan">
-            <a th:href="@{'/report/userId=' + ${subscriber.userId}}" class="report">
-                <img th:src="@{/common/images/report3.png}" class="report">
-            </a>
-        </span>
-    <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
-  </div>
+<ul>
+    <li style="padding-top: 10px;">
+        <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
+    </li>
+    <li style="float:right;font-weight: bold; font-size: 27px; color:gainsboro">
+        <a href="app/logout">Logout</a>
+    </li>
+    <li style="float:right">
+        <a th:href="@{'/settings/userId=' + ${subscriber.userId}}" class="icon-block">
+            <i class='fas fa-wrench' style='font-size:42px; color:gainsboro' ></i>
+        </a>
+    </li>
+    <li style="float:right">
+        <a th:href="@{'/alert/userId=' + ${subscriber.userId}}" class="icon-block">
+            <i class='far fa-bell' style='font-size:42px; color:gainsboro' ></i>
+        </a>
+    </li>
+    <li style="float:right">
+        <a th:href="@{'/report/userId=' + ${subscriber.userId}}" class="icon-block">
+            <i class='far fa-file-image' style='font-size:42px; color:gainsboro' ></i>
+        </a>
+    </li>
+</ul>
+
 <div class="container">
   <form class="settingsForm" id="genericForm" th:action="submit" th:method="post" th:object="${settingsForm}">
     <h1>Settings</h1>
