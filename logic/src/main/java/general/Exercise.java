@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Exercise {
     private int workoutId;
     private String exercise;
+    private int setNum;
     private int repetNum;
     private String description;
     private String link;
@@ -42,6 +43,14 @@ public class Exercise {
 
     public void setRepetNum(int repetNum) {
         this.repetNum = repetNum;
+    }
+
+    public int getSetNum() {
+        return setNum;
+    }
+
+    public void setSetNum(int setNum) {
+        this.setNum = setNum;
     }
 
     public String getDescription() {

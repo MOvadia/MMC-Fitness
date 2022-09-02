@@ -44,15 +44,19 @@
                 <thead>
                 <tr>
                     <th scope="col">Exercise</th>
-                    <th scope="col">Number of repetition</th>
+                    <th scope="col">Number of sets</th>
+                    <th scope="col">Number of repetitions</th>
                     <th scope="col">Description</th>
+                    <th scope="col">link</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="exersize : ${exersize}" style="cursor: pointer">
                     <td th:text="${exersize.exercise}"></td>
+                    <td th:text="${exersize.setNum}"></td>
                     <td th:text="${exersize.repetNum}"></td>
                     <td th:text="${exersize.description}"></td>
+                    <td th:text="${exersize.link}"></td>
                 </tr>
                 </tbody>
             </table>

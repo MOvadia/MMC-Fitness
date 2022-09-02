@@ -55,8 +55,8 @@
                     <input type="text" placeholder="Enter number of sets" name="setNum" required>
                     <label for="number of reps"><b>Number of reps</b></label>
                     <input type="text" placeholder="Enter number of reps" name="repNum" required>
-<!--                    <label for="description"><b>Description</b></label>-->
-<!--                    <input type="text" placeholder="Enter decription for the workout" name="description" required>-->
+                    <label for="description"><b>Description</b></label>
+                    <input type="text" placeholder="Enter description for the workout" name="description" required>
                     <label for="link"><b>Link</b></label>
                     <input type="text" placeholder="Enter exercise link" name="link" required>
                     <label for="assigned user"><b>Assigned user</b></label>
@@ -81,8 +81,11 @@
                 <tr th:each="workout : ${workout}" style="cursor: pointer" >
                     <td th:text="${workout.name}"></td>
                     <td>
-                        <a th:href="@{'/workout/trainer/userId=' + ${trainer.userId}} + '/workout=' + ${workout.workoutId}">
-                            <button type="button" class="workoutButton">open</button>
+                        <a th:href="@{'/open/workout/trainer/userId=' + ${trainer.userId}} + '/workout=' + ${workout.workoutId}">
+                            <button type="button" class="openWorkoutButton">open</button>
+                        </a>
+                        <a th:href="@{'/edit/workout/trainer/userId=' + ${trainer.userId}} + '/workout=' + ${workout.workoutId}">
+                            <button type="button" class="editWorkoutButton">edit</button>
                         </a>
                     </td>
                 </tr>

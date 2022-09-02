@@ -1,6 +1,7 @@
 package com.proj.restapi.trainer.service;
 import com.proj.restapi.actionresult.ActionResult;
 import com.proj.restapi.auth.info.WorkoutInformation;
+import general.SubscriberToMenu;
 import general.Trainer;
 import general.User;
 import general.Workout;
@@ -9,8 +10,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,38 +34,34 @@ public class TrainerService {
 
 
     public void addWorkout(WorkoutInformation wi) {
+        Integer workoutId;
         String sqlAllWorkout = "SELECT * FROM [Workout]";
         List<Workout> workouts = jdbcTemplate.query(sqlAllWorkout, BeanPropertyRowMapper.newInstance(Workout.class));
-        Integer workoutId = workouts.size() + 1;
+        Integer workoutsCount = workouts.size();
         workouts = workouts.stream().filter(w -> w.getName().equals(wi.getWorkoutName())).collect(Collectors.toList());
         if(workouts.isEmpty()) {
-            String sqlInsert = "insert into [Workout] values (?,?,?,?,?,?,?)";
-            jdbcTemplate.update(sqlInsert, workoutId, wi, wi.getWorkoutName(), userId, null, null, null, 0);
-
-       }
-    }
-
-    public static List<Workout> getAllWorkouts(){
-        //TODO - get workout for the relevant user
-        return Arrays.asList(
-                new Workout(1, "Power Hands", 1, "This ...", 40f ),
-                new Workout(2, "Power legs", 2, "This ...", 20f ),
-                new Workout(3, "Pilatis", 3, "This ...", 60f ),
-                new Workout(4, "Yoga", 3, "This ...", 60f )
-        );
-    }
-
-    public static Workout getWorkoutForUserByWorkoutId(int userId, int workoutId){
-        return new Workout(1, "Power Hands", 1, "This ...", 40f );
-    }
-
-    public ActionResult<String> addWorkout(Workout workout){
-        try {
-            //Connect to DB and update workouts table with the new workout
-            return ActionResult.successMessage("The workout updated successfully");
-        } catch (Exception e) {
-            return ActionResult.failed("Failed to update the workout");
+            String sqlInsert = "insert into [Workout] values (?,?,?,?,?,?)";
+            workoutId = ++workoutsCount;
+            jdbcTemplate.update(sqlInsert, workoutId, wi.getWorkoutName(), userId, "power......", "power", 90);
+        } else {
+            workoutId = getWorkoutIdByName(wi.getWorkoutName());
         }
+        addExercise(wi, workoutId);
+    }
+
+    public void addExercise(WorkoutInformation wi, Integer workoutId) {
+        String sqlInsert = "insert into [Exercise] values (?,?,?,?,?,?)";
+        jdbcTemplate.update(sqlInsert, workoutId, wi.getExerciseName(), wi.getSetNum(), wi.getRepNum(), wi.getDescription(), wi.getLink());
+    }
+
+    public List<Workout> getAllWorkouts(){
+        String sqlAllWorkout = "SELECT * FROM [Workout]";
+        return jdbcTemplate.query(sqlAllWorkout, BeanPropertyRowMapper.newInstance(Workout.class));
+    }
+
+    public Integer getWorkoutIdByName(String workoutName){
+        String sql = "SELECT workoutId FROM [Workout] where name = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[] { workoutName }, Integer.class);
     }
 
     public ActionResult<String> deleteWorkout(Integer workoutId){

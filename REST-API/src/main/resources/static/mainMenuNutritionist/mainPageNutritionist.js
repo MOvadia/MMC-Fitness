@@ -10,6 +10,6 @@ function urlMapping(workoutId)
 {
     $.ajax({
         type : "GET",
-        url : "/MMC-Fitness/workout/" + userId.toString() + "/" + workoutId.toString()
+        url : "/MMC-Fitness/menu/" + userId.toString() + "/" + workoutId.toString()
     });
 }

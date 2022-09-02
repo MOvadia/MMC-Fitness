@@ -1,67 +1,85 @@
 package com.proj.restapi.auth.info;
 
-public class WorkoutInformation {
+public class MenuInformation {
 
-    private String workoutName;
-    private String link;
-    private Integer setNum;
-    private Integer repNum;
-    private String exerciseName;
-    private String description;
-
+    private String menuName;
+    private Float fatPercentage;
+    private String type;
+    private Integer calories;
+    private Integer protein;
     private String assignedUser;
+    private String mealInDay;
+    private String item;
 
-    public WorkoutInformation(String workoutName, String link, Integer setNum, Integer repNum, String exerciseName, String assignedUser, String description) {
-        this.workoutName = workoutName;
-        this.link = link;
-        this.setNum = setNum;
-        this.repNum = repNum;
-        this.exerciseName = exerciseName;
+    public MenuInformation(String menuName, Float fatPercentage, String type, Integer calories, Integer protein, String assignedUser, String mealInDay, String item) {
+        this.menuName = menuName;
+        this.fatPercentage = fatPercentage;
+        this.type = type;
+        this.calories = calories;
+        this.protein = protein;
         this.assignedUser = assignedUser;
-        this.description = description;
+        this.mealInDay = mealInDay;
+        this.item = item;
     }
 
-    public WorkoutInformation() {
+    public String getMealInDay() {
+        return mealInDay;
     }
 
-    public String getWorkoutName() {
-        return workoutName;
+    public void setMealInDay(String mealInDay) {
+        this.mealInDay = mealInDay;
     }
 
-    public void setWorkoutName(String workoutName) {
-        this.workoutName = workoutName;
+    public String getItem() {
+        return item;
     }
 
-    public String getLink() {
-        return link;
+    public void setItem(String item) {
+        this.item = item;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public Float getFatPercentage() {
+        return fatPercentage;
     }
 
-    public Integer getRepNum() {
-        return repNum;
+    public void setFatPercentage(Float fatPercentage) {
+        this.fatPercentage = fatPercentage;
     }
 
-    public void setRepNum(Integer repNum) {
-        this.repNum = repNum;
+    public String getType() {
+        return type;
     }
 
-    public String getExerciseName() {
-        return exerciseName;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public void setExerciseName(String exerciseName) {
-        this.exerciseName = exerciseName;
+    public Integer getCalories() {
+        return calories;
     }
 
-    public void setSetNum(Integer setNum) {
-        this.setNum = setNum;
+    public void setCalories(Integer calories) {
+        this.calories = calories;
     }
 
-    public Integer getSetNum() {
-        return setNum;
+    public Integer getProtein() {
+        return protein;
+    }
+
+    public void setProtein(Integer protein) {
+        this.protein = protein;
+    }
+
+
+    public MenuInformation() {
+    }
+
+    public String getMenuName() {
+        return menuName;
+    }
+
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
     }
 
     public String getAssignedUser() {
@@ -70,13 +88,5 @@ public class WorkoutInformation {
 
     public void setAssignedUser(String assignedUser) {
         this.assignedUser = assignedUser;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

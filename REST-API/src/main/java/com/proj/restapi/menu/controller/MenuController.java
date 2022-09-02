@@ -1,9 +1,12 @@
 package com.proj.restapi.menu.controller;
 
 import com.proj.restapi.auth.info.LoginInformation;
+import com.proj.restapi.menu.service.MealService;
 import com.proj.restapi.menu.service.MenuService;
 import com.proj.restapi.menu.service.SubscriberService;
 import com.proj.restapi.menu.service.WorkoutService;
+import com.proj.restapi.nutritionist.service.NutritionistService;
+import com.proj.restapi.trainer.service.TrainerService;
 import general.Subscriber;
 import general.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,10 @@ public class MenuController {
     private SubscriberService subscriberService = new SubscriberService();
     @Autowired
     private MenuService menuService;
+    @Autowired
+    private MealService mealService;
+    @Autowired
+    private NutritionistService nutritionistService;
 
     @GetMapping(value = "/get/{id}")
     public ResponseEntity<Object> addMenu(@RequestParam int id) {
@@ -46,5 +53,12 @@ public class MenuController {
 
         //return "mainPageTrainer";
         return "mainPageSubscriber";
+    }
+
+    @GetMapping("/open/menu/nutritionist/userId={userId}/menu={menuId}")
+    public String workoutTrainerPage(@PathVariable int userId, @PathVariable int menuId, Model model){
+        model.addAttribute("nutritionist", nutritionistService.getNutritionistId(userId));
+        model.addAttribute("meal", mealService.getMealsByMenuId(menuId));
+        return "menuNutritionist";
     }
 }

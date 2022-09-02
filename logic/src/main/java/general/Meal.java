@@ -10,7 +10,8 @@ public class Meal {
     private String items;
 
     public Meal() {
-    }
+
+    };
 
     public int getMenuId() {
         return menuId;
@@ -33,7 +34,7 @@ public class Meal {
     }
 
     public void setMealInDay(String mealInDay) {
-        mealInDay = mealInDay;
+        this.mealInDay = mealInDay;
     }
 
     public int getCalories() {
@@ -50,18 +51,5 @@ public class Meal {
 
     public void setItems(String items) {
         this.items = items;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Meal meal = (Meal) o;
-        return menuId == meal.menuId && numOfMealInDay == meal.numOfMealInDay && calories == meal.calories && Objects.equals(mealInDay, meal.mealInDay) && Objects.equals(items, meal.items);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(menuId, numOfMealInDay, mealInDay, calories, items);
     }
 }

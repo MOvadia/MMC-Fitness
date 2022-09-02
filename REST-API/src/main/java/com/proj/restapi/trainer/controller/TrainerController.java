@@ -16,10 +16,10 @@ public class TrainerController {
     private TrainerService trainerService = new TrainerService();
 
     @PostMapping(value = "/workout/add")
-    public void addWorkout(Model model, WorkoutInformation workoutInfo) {
+    public String addWorkout(Model model, WorkoutInformation workoutInfo) {
         model.addAttribute("workoutForm", workoutInfo);
         trainerService.addWorkout(workoutInfo);
-
+        return "mainPageTrainer";
 
     }
 

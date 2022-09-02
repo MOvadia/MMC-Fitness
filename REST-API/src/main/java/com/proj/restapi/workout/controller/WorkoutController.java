@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 public class WorkoutController {
@@ -26,8 +27,15 @@ public class WorkoutController {
         return "workoutSubscriber";
     }
 
-    @GetMapping("/workout/trainer/userId={userId}/workout={workoutId}")
+    @GetMapping("/open/workout/trainer/userId={userId}/workout={workoutId}")
     public String workoutTrainerPage(@PathVariable int userId, @PathVariable int workoutId, Model model){
+        model.addAttribute("trainer", trainerService.getTrainerId(userId));
+        model.addAttribute("exersize", exerciseService.getExercisesByWorkoutId(workoutId));
+        return "workoutTrainer";
+    }
+
+    @GetMapping("/edit/workout/trainer/userId={userId}/workout={workoutId}")
+    public String workoutTrainerPageEdit(@PathVariable int userId, @PathVariable int workoutId, Model model){
         model.addAttribute("trainer", trainerService.getTrainerId(userId));
         model.addAttribute("exersize", exerciseService.getExercisesByWorkoutId(workoutId));
         return "workoutTrainer";
