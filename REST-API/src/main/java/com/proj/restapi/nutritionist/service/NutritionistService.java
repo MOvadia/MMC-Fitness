@@ -12,7 +12,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,11 +41,12 @@ public class NutritionistService {
         Integer menuId;
         String sqlAllMenus= "SELECT * FROM [Menu]";
         List<Menu> menus = jdbcTemplate.query(sqlAllMenus, BeanPropertyRowMapper.newInstance(Menu.class));
-        Integer menuCount = menus.size();
+        Menu menu = menus.stream().max(Comparator.comparing(Menu::getMenuId))
+                .orElseThrow(NoSuchElementException::new);
         menus = menus.stream().filter(m -> m.getName().equals(mi.getMenuName())).collect(Collectors.toList());
         if(menus.isEmpty()) {
             String sqlInsert = "insert into [Menu] values (?,?,?,?,?,?)";
-            menuId = ++menuCount;
+            menuId = menu.getMenuId() + 1;
             jdbcTemplate.update(sqlInsert, menuId, mi.getMenuName(), userId, mi.getType(), mi.getFatPercentage(), mi.getProtein());
         } else {
             menuId = getMenuIdByName(mi.getMenuName());
@@ -55,6 +58,13 @@ public class NutritionistService {
     public void addMenu(MenuInformation mi, Integer menuId) {
         String sqlInsert = "insert into [Meal] values (?,?,?,?)";
         jdbcTemplate.update(sqlInsert, menuId, mi.getMealInDay(), mi.getCalories(), mi.getItem());
+        String sqlInsertToSubscriberToWorkout = "insert into [MenuToWorkout] values (?,?)";
+        jdbcTemplate.update(sqlInsertToSubscriberToWorkout, getUserIdByEmail(mi.getAssignedUser()), menuId);
+    }
+
+    public int getUserIdByEmail(String email){
+        String sqlUser = "SELECT userId FROM [User] where email=?";
+        return userId = jdbcTemplate.queryForObject(sqlUser,new Object[] { email }, Integer.class);
     }
 
     public Integer getMenuIdByName(String menuName){

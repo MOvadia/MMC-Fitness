@@ -1,7 +1,6 @@
 package com.proj.restapi.trainer.service;
 import com.proj.restapi.actionresult.ActionResult;
 import com.proj.restapi.auth.info.WorkoutInformation;
-import general.SubscriberToMenu;
 import general.Trainer;
 import general.User;
 import general.Workout;
@@ -10,7 +9,9 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,12 +38,13 @@ public class TrainerService {
         Integer workoutId;
         String sqlAllWorkout = "SELECT * FROM [Workout]";
         List<Workout> workouts = jdbcTemplate.query(sqlAllWorkout, BeanPropertyRowMapper.newInstance(Workout.class));
-        Integer workoutsCount = workouts.size();
+        Workout workout = workouts.stream().max(Comparator.comparing(Workout::getWorkoutId))
+                .orElseThrow(NoSuchElementException::new);
         workouts = workouts.stream().filter(w -> w.getName().equals(wi.getWorkoutName())).collect(Collectors.toList());
         if(workouts.isEmpty()) {
-            String sqlInsert = "insert into [Workout] values (?,?,?,?,?,?)";
-            workoutId = ++workoutsCount;
-            jdbcTemplate.update(sqlInsert, workoutId, wi.getWorkoutName(), userId, "power......", "power", 90);
+            String sqlInsert = "insert into [Workout] values (?,?,?,?)";
+            workoutId = workout.getWorkoutId() + 1;
+            jdbcTemplate.update(sqlInsert, workoutId, wi.getWorkoutName(), userId, wi.getFocus());
         } else {
             workoutId = getWorkoutIdByName(wi.getWorkoutName());
         }
@@ -51,7 +53,15 @@ public class TrainerService {
 
     public void addExercise(WorkoutInformation wi, Integer workoutId) {
         String sqlInsert = "insert into [Exercise] values (?,?,?,?,?,?)";
-        jdbcTemplate.update(sqlInsert, workoutId, wi.getExerciseName(), wi.getSetNum(), wi.getRepNum(), wi.getDescription(), wi.getLink());
+        jdbcTemplate.update(sqlInsert, workoutId, wi.getExerciseName(), wi.getSetNum(), wi.getRepNum(), wi.getFocus(), wi.getLink());
+        String sqlInsertToSubscriberToWorkout = "insert into [SubscriberToWorkout] values (?,?)";
+        jdbcTemplate.update(sqlInsertToSubscriberToWorkout, getUserIdByEmail(wi.getAssignedUser()), workoutId);
+
+    }
+
+    public int getUserIdByEmail(String email){
+        String sqlUser = "SELECT userId FROM [User] where email=?";
+        return userId = jdbcTemplate.queryForObject(sqlUser,new Object[] { email }, Integer.class);
     }
 
     public List<Workout> getAllWorkouts(){

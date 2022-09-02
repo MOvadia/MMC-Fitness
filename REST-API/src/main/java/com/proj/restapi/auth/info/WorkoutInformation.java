@@ -7,18 +7,18 @@ public class WorkoutInformation {
     private Integer setNum;
     private Integer repNum;
     private String exerciseName;
-    private String description;
+    private String focus;
 
     private String assignedUser;
 
-    public WorkoutInformation(String workoutName, String link, Integer setNum, Integer repNum, String exerciseName, String assignedUser, String description) {
+    public WorkoutInformation(String workoutName, String link, Integer setNum, Integer repNum, String exerciseName, String assignedUser, String focus) {
         this.workoutName = workoutName;
         this.link = link;
         this.setNum = setNum;
         this.repNum = repNum;
         this.exerciseName = exerciseName;
         this.assignedUser = assignedUser;
-        this.description = description;
+        this.focus = focus;
     }
 
     public WorkoutInformation() {
@@ -72,11 +72,11 @@ public class WorkoutInformation {
         this.assignedUser = assignedUser;
     }
 
-    public String getDescription() {
-        return description;
+    public String getFocus() {
+        return focus;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setFocus(String focus) {
+        this.focus = focus;
     }
 }

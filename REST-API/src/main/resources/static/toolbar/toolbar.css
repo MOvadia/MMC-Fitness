@@ -25,10 +25,10 @@ body{
 }
 
 .userName {
-    margin: 20px;
-    color: #ffffff;
+    margin: 30px;
+    color:gainsboro;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 30px;
 }
 
 #userData{
@@ -75,15 +75,15 @@ body{
 .settings {
     height: 40px;
     width: 60px;
-    margin-right: 50px;
-    margin-top: -5px;
+    /*margin-right: 50px;*/
+    /*margin-top: -5px;*/
 }
 
 .alert{
     height: 70px;
     width: 70px;
-    margin-right: 68px;
-    margin-top: -18px;
+    /*margin-right: 68px;*/
+    /*margin-top: -18px;*/
 }
 
 .logoSpan {
@@ -104,6 +104,6 @@ body{
 .report{
     height: 40px;
     width: 35px;
-    margin-right: 115px;
-    margin-top: -5px;
+    /*margin-right: 115px;*/
+    /*margin-top: -5px;*/
 }
