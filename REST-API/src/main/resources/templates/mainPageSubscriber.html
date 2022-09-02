@@ -78,6 +78,7 @@
                         <td th:text="${workout.workoutId}"></td>
                         <td th:text="${workout.name}"></td>
                         <td>
+                            <a th:href="@{'/workout/userId=' + ${subscriber.userId}} + '/workout=' + ${workout.workoutId}">
                                 <button type="button" class="workoutButton">open</button>
                             </a>
                         </td>
