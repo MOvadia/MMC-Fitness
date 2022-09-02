@@ -83,4 +83,7 @@ public class TrainerService {
         }
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
 }

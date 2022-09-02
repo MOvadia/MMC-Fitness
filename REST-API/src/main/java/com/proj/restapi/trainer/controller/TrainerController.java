@@ -17,10 +17,13 @@ public class TrainerController {
 
     @PostMapping(value = "/workout/add")
     public String addWorkout(Model model, WorkoutInformation workoutInfo) {
-        model.addAttribute("workoutForm", workoutInfo);
+        int id = trainerService.getUserId();
         trainerService.addWorkout(workoutInfo);
+        model.addAttribute("userForm", new LoginInformation());
+        model.addAttribute("trainer", trainerService.getTrainerId(id)); //check with few trainers
+        model.addAttribute("workout", trainerService.getAllWorkouts());
+        model.addAttribute("gender", "Male");
         return "mainPageTrainer";
-
     }
 
     @DeleteMapping(value = "/{workoutId}")
