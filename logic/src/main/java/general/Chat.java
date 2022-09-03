@@ -14,7 +14,7 @@ public class Chat {
     private long time;
 
     private int messageNum;
-
+    
     public Chat(){}
 
     public Chat(int from, int to){
@@ -113,4 +113,7 @@ public class Chat {
     public int hashCode() {
         return Objects.hash(userId, createdBy, isAnswered, chatId, title, content);
     }
+
+
+
 }

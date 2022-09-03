@@ -35,14 +35,17 @@ public class ChatManager {
                 .collect(Collectors.toList());
         chatList1.addAll(chatList2);
         String type = UserManager.getTypeById(to);
+        String nameTo = UserManager.getUserNameById(to);
         for (Chat chat: chatList1) {
             Chat chatElement;
             if(chat.getUserId() == from)
             {
                 chatElement = new Chat("Me: " + chat.getContent(), from, to, chat.getMessageNum());
+                chatElement.setTitle("Chat with " + type + " (" + nameTo + ")");
             }
             else {
                 chatElement = new Chat(type + ": " + chat.getContent(), to, from, chat.getMessageNum());
+                chatElement.setTitle("Chat with " + type + " (" + nameTo + ")");
             }
 
             chatListFixed.add(chatElement);

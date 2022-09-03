@@ -72,7 +72,7 @@ public class AlertsController {
 
     @RequestMapping(value = "/alert/chat", method = GET)
     @ResponseBody
-    public String chatMassages(@RequestParam int userId,@RequestParam int chatId,Model model)
+    public List<Chat> chatMassages(@RequestParam int userId,@RequestParam int chatId,Model model)
     {
        // string myUnknownQuerystring = Request.QueryString["unknownQuerystring"];
 
@@ -97,7 +97,7 @@ public class AlertsController {
         chatManager.addChatString("check8",3, userId);*/
         String fullName = UserManager.getUserNameById(chatId);
         String type = UserManager.getTypeById(chatId);
-
+        chatManager.addChatString("hi",userId,chatId);
         List<Chat> chatList = chatManager.getChatEntries(userId,chatId);
         model.addAttribute("chatStrings", chatList);
         model.addAttribute("subscriber", subscriberService.getUserById(userId));
@@ -111,7 +111,7 @@ public class AlertsController {
         //logServerMessage(jsonResponse);
 
 
-        return "alertsPage";
+        return chatList;
     }
 
     @PostMapping(value = "/alert/userId={userId}&chat={chatId}", params="send")

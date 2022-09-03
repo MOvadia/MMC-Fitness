@@ -46,16 +46,12 @@
                 <div id="chatarea" class="span6"></div>
 
                 <!-- The actual form through which you send data back to the user -->
-                        <table class="abc">
+                        <table id="chat-table">
                             <thead>
                             <tr>
-                                <th scope="col" th:text="${type}"></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="string : ${chatStrings}" >
-                                <td th:text="${string.content}"></td>
-                            </tr>
                             </tbody>
                         </table>
                 </div>

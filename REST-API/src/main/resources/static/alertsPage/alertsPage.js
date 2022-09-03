@@ -115,10 +115,36 @@ function startChatClicked(from,to) {
                 //creator: creator*/
             },
             type: 'GET',
-            success: function(html) {
+            success: function(chat) {
                 //  window.location = '/alert/userslist';
-                window.location = 'userId='+from;
+                //window.location = 'userId='+from;
                 //refreshUsersList(users);
+
+                var chatTable = $('#chat-table tbody');
+                var chatTablehead = $('#chat-table thead');
+
+                chatTable.empty();
+                var chatList = chat;
+                var trType = $(document.createElement('tr'));
+                var thType = $(document.createElement('th')).text(chat[0].title);
+                thType.appendTo(trType);
+                trType.appendTo(chatTablehead);
+
+                chatList.forEach(function (chat) {
+
+                    //var name = user.fullName;
+                    //var type = user.type;
+
+                    var tr = $(document.createElement('tr'));
+
+                    var tdName = $(document.createElement('td')).text(chat.content);
+                   // var tdType = $(document.createElement('td')).text("check2");
+
+                    tdName.appendTo(tr);
+
+                    tr.appendTo(chatTable);
+
+                });
             }
         }
     );
