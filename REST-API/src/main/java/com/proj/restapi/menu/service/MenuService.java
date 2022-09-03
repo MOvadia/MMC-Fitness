@@ -28,7 +28,7 @@ public class MenuService {
     public List<Meal> getMenuMealsById(int userId) {
         String sqlSubToMenu = "SELECT * FROM [SubscriberToMenu] where userId=" + userId;
         SubscriberToMenu subscriberToMenu = jdbcTemplate.queryForObject(sqlSubToMenu, BeanPropertyRowMapper.newInstance(SubscriberToMenu.class));
-        String sqlMeals = "SELECT * FROM [Meal] where menuId=" + subscriberToMenu.getMenuId() + " order by numOfMealInDay";
+        String sqlMeals = "SELECT * FROM [Meal] where menuId=" + subscriberToMenu.getMenuId();
         List<Meal> meals =jdbcTemplate.query(sqlMeals, BeanPropertyRowMapper.newInstance(Meal.class));
 
         return meals;

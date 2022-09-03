@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>MMC Fitness</title>
-    <link rel="stylesheet" href="/workoutTrainer/workoutTrainer.css">
+    <link rel="stylesheet" href="/menuNutritionist/menuNutritionist.css">
     <link rel="stylesheet" href="/common/bootstrap.min.css">
     <link rel="stylesheet" href="/toolbar/toolbar.css">
     <script src="/common/context-path-helper.js"></script>
     <script src="/common/jquery-2.0.3.min.js"></script>
-    <script src="/workoutTrainer/workoutTrainer.js"></script>
+    <script src="/menuNutritionist/menuNutritionist.js"></script>
 </head>
 <body>
 <ul>
     <li style="padding-top: 10px;">
-        <span class="userName" th:text="'Hello ' + ${trainer.firstName}"></span>
+        <span class="userName" th:text="'Hello ' + ${nutritionist.firstName}"></span>
     </li>
     <li style="float:right;font-weight: bold; font-size: 27px; color:gainsboro">
         <a href="app/logout">Logout</a>
     </li>
     <li style="float:right">
-        <a th:href="@{'/alert/userId=' + ${trainer.userId}}" class="icon-block">
+        <a th:href="@{'/alert/userId=' + ${nutritionist.userId}}" class="icon-block">
             <i class='far fa-bell' style='font-size:42px; color:gainsboro' ></i>
         </a>
     </li>
 </ul>
 
-<div id="workout_body">
-    <div class="board_container workout">
+<div id="menu_body">
+    <div class="board_container menu">
         <div class="board_headline">
-            <label class="table_headlines" id="exercises">Exercises</label>
+            <label class="table_headlines" id="meals">Meals</label>
 
                 </form>
             </div>
@@ -36,20 +36,16 @@
             <table class="table table-dark">
                 <thead>
                 <tr>
-                    <th scope="col">Exercise</th>
-                    <th scope="col">Number of sets</th>
-                    <th scope="col">Number of repetition</th>
+                    <th scope="col">Meal</th>
+                    <th scope="col">Calories</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Link</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="exersize : ${exersize}" style="cursor: pointer">
-                    <td th:text="${exersize.exercise}"></td>
-                    <td th:text="${exersize.setNum}"></td>
-                    <td th:text="${exersize.repetNum}"></td>
-                    <td th:text="${exersize.description}"></td>
-                    <td th:text="${exersize.link}"></td>
+                <tr th:each="meal : ${meal}" style="cursor: pointer">
+                    <td th:text="${meal.mealInDay}"></td>
+                    <td th:text="${meal.calories}"></td>
+                    <td th:text="${meal.items}"></td>
                 </tr>
                 </tbody>
             </table>

@@ -13,27 +13,14 @@
 
 </head>
 <body>
-<div class="toolBar">
-  <div class="toolbarContent">
-    <a href="app/logout" class="logoutButton">Logout</a>
-    <span class="logoSpan">
-            <a th:href="@{'/settings/userId=' + ${subscriber.userId}}" class="settings">
-                <img th:src="@{/common/images/settings.png}" class="settings">
-            </a>
-        </span>
-    <span class="alertLogoSpan">
-            <a th:href="@{'/alert/userId=' + ${subscriber.userId}}" class="alert">
-                <img th:src="@{/common/images/bell.png}" class="alert">
-            </a>
-        </span>
-    <span class="reportLogoSpan">
-            <a th:href="@{'/report/userId=' + ${subscriber.userId}}" class="report">
-                <img th:src="@{/common/images/report3.png}" class="report">
-            </a>
-        </span>
-    <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
-  </div>
-</div>
+<ul>
+    <li style="padding-top: 10px;">
+        <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
+    </li>
+    <li style="float:right;font-weight: bold; font-size: 27px; color:gainsboro">
+        <a href="app/logout">Logout</a>
+    </li>
+</ul>
     <div class="board_container users">
         <div class="board_headline">
             <label class="table_headlines" id="users">Users</label>

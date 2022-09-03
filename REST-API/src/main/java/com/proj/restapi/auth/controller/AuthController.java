@@ -68,7 +68,7 @@ public class AuthController {
     }
 
     @PostMapping(value = "/registration", params="cancel")
-    public String registration(SubscriberInformation user, Model model){
+    public String cancel(SubscriberInformation user, Model model){
         model.addAttribute("userForm", new LoginInformation());
         return "index";
     }

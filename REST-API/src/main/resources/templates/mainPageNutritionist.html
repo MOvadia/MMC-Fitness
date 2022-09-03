@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>MMC Fitness</title>
+    <!-- Link the Bootstrap (from twitter) CSS framework in order to use its classes-->
+    <link rel="stylesheet" href="/mainMenuNutritionist/mainPageNutritionist.css">
+    <link rel="stylesheet" href="/common/bootstrap.min.css">
+    <link rel="stylesheet" href="/toolbar/toolbar.css">
+    <script src="/common/context-path-helper.js"></script>
+    <script src="/common/jquery-2.0.3.min.js"></script>
+    <script src="/mainMenuNutritionist/mainPageNutritionist.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<ul>
+    <li style="padding-top: 10px;">
+        <span class="userName" th:text="'Hello ' + ${nutritionist.firstName}"></span>
+    </li>
+    <li style="float:right;font-weight: bold; font-size: 27px; color:gainsboro">
+        <a href="app/logout">Logout</a>
+    </li>
+    <li style="float:right">
+        <a th:href="@{'/alert/userId=' + ${nutritionist.userId}}" class="icon-block">
+            <i class='far fa-bell' style='font-size:42px; color:gainsboro' ></i>
+        </a>
+    </li>
+</ul>
+
+<div id="Fitness_container">
+    <div class="board_container training">
+        <div class="board_headline">
+            <label class="table_headlines" id="Menus">Menus</label>
+
+                <button onclick="openForm()">
+                    <i class="fa fa-plus" aria-hidden="true" style="margin: 15px;border: solid;padding: 8px;border-radius: 10px;"></i>
+                </button>
+
+            <div class="form-popup" id="myForm">
+                <form action="/menu/add" method="post" object="${menuForm}" class="form-container">
+                    <h1>Add Menu</h1>
+
+                    <label for="menu"><b>Menu Name</b></label>
+                    <input type="text" placeholder="Enter menu name" name="menuName" required>
+                    <label for="meal in day"><b>Meal In Day</b></label>
+                    <input type="text" placeholder="Enter which meail in the day" name="mealInDay" required>
+                    <label for="meal type"><b>Meal Type</b></label>
+                    <input type="text" placeholder="Enter the meal type" name="type" required>
+                    <label for="meal information"><b>Meal Information</b></label>
+                    <input type="text" placeholder="Enter the meal information" name="item" required>
+                    <label for="calories"><b>Calories</b></label>
+                    <input type="text" placeholder="Enter calories" name="calories" required>
+                    <label for="protein"><b>Protein</b></label>
+                    <input type="text" placeholder="Enter protein" name="protein" required>
+                    <label for="assigned user"><b>Assigned user</b></label>
+                    <input type="email" id=email placeholder="Enter assigned user" name="assignedUser" required>
+
+                    <button type="submit" class="btn">Add Menu</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                </form>
+            </div>
+
+        </div>
+        <div class="board_content">
+            <table class="table table-dark">
+                <tbody>
+                <tr th:each="menu : ${menu}" style="cursor: pointer" >
+                    <td th:text="${menu.name}"></td>
+                    <td>
+                        <a th:href="@{'/open/menu/nutritionist/userId=' + ${nutritionist.userId}} + '/menu=' + ${menu.menuId}">
+                            <button type="button" class="openMenuButton">open</button>
+                        </a>
+                        <a th:href="@{'/edit/menu/nutritionist/userId=' + ${nutritionist.userId}} + '/menu=' + ${menu.menuId}">
+                            <button type="button" class="editMenuButton">edit</button>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+<script>
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
+

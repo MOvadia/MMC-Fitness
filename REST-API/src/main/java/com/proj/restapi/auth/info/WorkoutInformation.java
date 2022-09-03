@@ -7,16 +7,18 @@ public class WorkoutInformation {
     private Integer setNum;
     private Integer repNum;
     private String exerciseName;
+    private String focus;
 
     private String assignedUser;
 
-    public WorkoutInformation(String workoutName, String link, Integer setNum, Integer repNum, String exerciseName, String assignedUser) {
+    public WorkoutInformation(String workoutName, String link, Integer setNum, Integer repNum, String exerciseName, String assignedUser, String focus) {
         this.workoutName = workoutName;
         this.link = link;
         this.setNum = setNum;
         this.repNum = repNum;
         this.exerciseName = exerciseName;
         this.assignedUser = assignedUser;
+        this.focus = focus;
     }
 
     public WorkoutInformation() {
@@ -68,5 +70,13 @@ public class WorkoutInformation {
 
     public void setAssignedUser(String assignedUser) {
         this.assignedUser = assignedUser;
+    }
+
+    public String getFocus() {
+        return focus;
+    }
+
+    public void setFocus(String focus) {
+        this.focus = focus;
     }
 }

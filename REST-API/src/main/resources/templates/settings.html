@@ -4,16 +4,67 @@
   <meta charset="UTF-8">
   <title>MMC Fitness</title>
   <!-- Link the Bootstrap (from twitter) CSS framework in order to use its classes-->
-  <link rel="stylesheet" href="loginPage/LoginStyle.css">
-  <script src="/common/jquery-2.0.3.min.js"></script>
+  <link rel="stylesheet" href="/settingsPage/settingsPage.css">
+  <link rel="stylesheet" href="/common/bootstrap.min.css">
   <link rel="stylesheet" href="/toolbar/toolbar.css">
+  <script src="/common/context-path-helper.js"></script>
+  <script src="/common/jquery-2.0.3.min.js"></script>
+  <script src="/settingsPage/settingsPage.js"></script>
 </head>
 <body>
-<div class="toolBar">
-  <div class="toolbarContent">
-    <a href="app/logout" class="logoutButton">Logout</a>
-    <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
-  </div>
+<ul>
+    <li style="padding-top: 10px;">
+        <span class="userName" th:text="'Hello ' + ${subscriber.firstName}"></span>
+    </li>
+    <li style="float:right;font-weight: bold; font-size: 27px; color:gainsboro">
+        <a href="app/logout">Logout</a>
+    </li>
+    <li style="float:right">
+        <a th:href="@{'/settings/userId=' + ${subscriber.userId}}" class="icon-block">
+            <i class='fas fa-wrench' style='font-size:42px; color:gainsboro' ></i>
+        </a>
+    </li>
+    <li style="float:right">
+        <a th:href="@{'/alert/userId=' + ${subscriber.userId}}" class="icon-block">
+            <i class='far fa-bell' style='font-size:42px; color:gainsboro' ></i>
+        </a>
+    </li>
+    <li style="float:right">
+        <a th:href="@{'/report/userId=' + ${subscriber.userId}}" class="icon-block">
+            <i class='far fa-file-image' style='font-size:42px; color:gainsboro' ></i>
+        </a>
+    </li>
+</ul>
+
+<div class="container">
+  <form class="settingsForm" id="genericForm" th:action="submit" th:method="post" th:object="${settingsForm}">
+    <h1>Settings</h1>
+    <p>Please update your personal data</p>
+    <b>First name</b><br>
+    <input type="text" th:field="*{firstName}" th:placeholder="${subscriber.firstName}" name="firstname">
+    <br>
+    <b>Last name</b><br>
+    <input type="text" th:field="*{lastName}" th:placeholder="${subscriber.lastName}" name="lastname"><br>
+    <input type="text" th:field="*{email}" th:placeholder="${subscriber.email}" name="email" readonly style="display: none">
+    <b>Phone number</b><br>
+    <input type="text" th:field="*{phoneNumber}" th:placeholder="${subscriber.phoneNumber}" name="phonenumber"><br>
+    <div id="subscriberForm">
+      <b>Age</b><br>
+      <input type="number" name="age"  min="16" max="100" th:field="*{age}" th:placeholder="${subscriber.age}">
+      <br>
+      <b>height</b><br>
+      <input type="number" name="height" step="0.01" min="1.50" max="2.30" th:field="*{height}" th:placeholder="${subscriber.height}" ><br>
+      <b >weight</b><br>
+      <input type="number" name="weight"  step="0.01" min="50.00" max="200.00" th:field="*{weight}" th:placeholder="${subscriber.weight}" ><br>
+      <input type="number" name="workoutAmount" min="1" max="10" th:field="*{workoutAmount}" th:placeholder="${subscriber.workoutAmount}" ><br>
+      <b>target Weight</b><br>
+      <input type="number" name="targetWeight" step="0.01" min="50.00" max="200.00" th:field="*{targetWeight}" th:placeholder="${subscriber.targetWeight}" ><br>
+    </div>
+    <div class="clearfix">
+      <button th:value="cancel" th:name="cancel" type="cancel" class="cancelbtn">Cancel</button>
+      <button th:value="submit" th:name="submit" type="submit" class="signupbtn">Update</button>
+    </div>
+  </form>
 </div>
 </body>
 </html>
