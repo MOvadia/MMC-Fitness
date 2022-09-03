@@ -72,7 +72,7 @@
             <input type="number" min="0" max="60" name="seniority" th:field="*{seniority}" placeholder="Enter seniority" ><br>
         </div>
         <div class="clearfix">
-            <button th:value="cancel" th:name="cancel" type="button" class="cancelbtn">Cancel</button>
+            <button th:value="cancel" th:name="cancel" type="cancel" class="cancelbtn" formnovalidate>Cancel</button>
             <button th:value="submit" th:name="submit" type="submit" class="signupbtn">Sign Up</button>
         </div>
     </form>
