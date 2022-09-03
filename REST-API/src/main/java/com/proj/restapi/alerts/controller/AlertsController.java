@@ -74,42 +74,18 @@ public class AlertsController {
     @ResponseBody
     public List<Chat> chatMassages(@RequestParam int userId,@RequestParam int chatId,Model model)
     {
-       // string myUnknownQuerystring = Request.QueryString["unknownQuerystring"];
-
-        // int userId = parseInt("1");
-        //int chatId = parseInt("1");
-        List<User> usersList = new ArrayList<>();
-        usersList.addAll(UserManager.getUsersSet());
-        User myuser = usersList.stream().filter(users -> users.getUserId() == userId).collect(Collectors.toList()).get(0);
-        usersList.remove(myuser);
-        int chatManagerVersion = 0;
-//        int chatNum = Integer.parseInt(chatId);
-        List<Chat> chatEntries;
-    //        chatManagerVersion = chatManager.getVersion();
-           // chatEntries = chatManager.getChatEntries(chatVersion);
-       /// chatManager.addChatString("Me: Hi Dor! ",userId, chatId);
-    /*chatManager.addChatString("check3",chatId, userId);
-        chatManager.addChatString("check4",userId, chatId);
-
-        chatManager.addChatString("check5",chatId, chatId);
-        chatManager.addChatString("check6",userId, userId);
-        chatManager.addChatString("check7",userId, 3);
-        chatManager.addChatString("check8",3, userId);*/
-        String fullName = UserManager.getUserNameById(chatId);
-        String type = UserManager.getTypeById(chatId);
-        chatManager.addChatString("hi",userId,chatId);
+        chatManager.addChatString("hi",userId,chatId); //TODO: remove
         List<Chat> chatList = chatManager.getChatEntries(userId,chatId);
-        model.addAttribute("chatStrings", chatList);
-        model.addAttribute("subscriber", subscriberService.getUserById(userId));
-        model.addAttribute("massageForm", new Chat(userId, chatId));
-        model.addAttribute("users", usersList);
-        model.addAttribute("type", "Chat with " + type + " (" + fullName + ")");
 
-        // log and create the response json string
-       // ChatAndVersion cav = new ChatAndVersion(chatEntries, chatManagerVersion);
-       // logServerMessage("Server Chat version: " + chatManagerVersion + ", User '" + username + "' Chat version: " + chatVersion);
-        //logServerMessage(jsonResponse);
+        return chatList;
+    }
 
+    @RequestMapping(value = "/alert/send", method = GET)
+    @ResponseBody
+    public List<Chat> sendMassage(@RequestParam int userId,@RequestParam int chatId,@RequestParam String chatString)
+    {
+        chatManager.addChatString(chatString,userId,chatId); //TODO: remove
+        List<Chat> chatList = chatManager.getChatEntries(userId,chatId);
 
         return chatList;
     }

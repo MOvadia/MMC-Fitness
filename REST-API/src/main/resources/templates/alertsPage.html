@@ -57,9 +57,8 @@
                 </div>
             </div>
         </div>
-    <form th:action="@{'/alert/userId=' + ${userId} + '&chat=' + ${chatId}}" th:method="post" th:object="${massageForm}" th:class="massageForm">
+    <form id="send-msg">
     <input type="text"  id="userstring" name="userstring"/>
-    <button th:value="send" th:name="send" class="btn btn-primary" id="sendButton" type="submit">Send</button>
     </form>
     </div>
 </div>

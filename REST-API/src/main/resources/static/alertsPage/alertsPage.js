@@ -109,19 +109,30 @@ function startChatClicked(from,to) {
         {
             url:"/alert/chat" ,
             data: {
-                //action: 'runAlgo',
                 userId: from,
                 chatId: to
-                //creator: creator*/
             },
             type: 'GET',
             success: function(chat) {
-                //  window.location = '/alert/userslist';
-                //window.location = 'userId='+from;
-                //refreshUsersList(users);
 
                 var chatTable = $('#chat-table tbody');
                 var chatTablehead = $('#chat-table thead');
+                var form =$('#send-msg');
+
+                var btn = document.createElement('input');
+                btn.setAttribute('type', 'button');
+                btn.setAttribute('id', 'sendButton');
+                btn.setAttribute('class', 'btn btn-primary');
+                btn.setAttribute('value', 'send');
+                //btn.setAttribute('onclick', 'openChat(1,user.userId)');
+                //var openChat = $(document.createElement('td')).append(btn);
+                btn.setAttribute('onclick', 'sendClicked('+from+','+to+')');
+
+                var sendTD = $(document.createElement('td')).append(btn);
+
+
+                // btn.appendTo(form);
+                sendTD.appendTo(form);
 
                 chatTable.empty();
                 var chatList = chat;
@@ -132,13 +143,50 @@ function startChatClicked(from,to) {
 
                 chatList.forEach(function (chat) {
 
-                    //var name = user.fullName;
-                    //var type = user.type;
+                    var tr = $(document.createElement('tr'));
+
+                    var tdName = $(document.createElement('td')).text(chat.content);
+
+                    tdName.appendTo(tr);
+
+                    tr.appendTo(chatTable);
+
+                });
+            }
+        }
+    );
+}
+
+function sendClicked(from,to) {
+    var msg = document.getElementById("userstring").value;
+
+    $.ajax
+    (
+        {
+            url:"/alert/send" ,
+            data: {
+                userId: from,
+                chatId: to,
+                chatString: msg
+            },
+            type: 'GET',
+            success: function(chat) {
+                var chatTable = $('#chat-table tbody');
+                var chatTablehead = $('#chat-table thead');
+                const msgInput = document.getElementById('userstring');
+                msgInput.value = '';
+                chatTable.empty();
+                var chatList = chat;
+                var trType = $(document.createElement('tr'));
+                var thType = $(document.createElement('th')).text(chat[0].title);
+                thType.appendTo(trType);
+                trType.appendTo(chatTablehead);
+
+                chatList.forEach(function (chat) {
 
                     var tr = $(document.createElement('tr'));
 
                     var tdName = $(document.createElement('td')).text(chat.content);
-                   // var tdType = $(document.createElement('td')).text("check2");
 
                     tdName.appendTo(tr);
 
@@ -155,6 +203,7 @@ function refreshUsersList(users) {
     var usersTable = $('#usersTable tbody');
     usersTable.empty();
     var userList = users;
+    var id =1;
     userList.forEach(function (user) {
 
         var name = user.fullName;
@@ -182,7 +231,7 @@ function refreshUsersList(users) {
         btn.setAttribute('value', 'chat');
         //btn.setAttribute('onclick', 'openChat(1,user.userId)');
         //var openChat = $(document.createElement('td')).append(btn);
-        btn.setAttribute('onclick', 'startChatClicked(1,1)');
+        btn.setAttribute('onclick', 'startChatClicked(1,'+user.userId+')');
 
         var chat = $(document.createElement('td')).append(btn);
 
