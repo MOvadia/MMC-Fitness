@@ -24,11 +24,11 @@ public class RegistrationService {
         {
             int userId = getAvalibleId();
             if(info.getType().equals("Subscriber")) {
-                sqlInsert = "insert into $tableName values (?,?,?,?,?,?,?,?,?,?,?)";
+                sqlInsert = "insert into $tableName values (?,?,?,?,?,?,?,?,?,?)";
                 String query = sqlInsert.replace("$tableName", info.getType());
                 val3 = jdbcTemplate.update(query, userId , info.getAge(), info.getHeight(),info.getWeight(),
-                        info.getDietaryLimitationsString(),"none",info.getGender(),info.getWorkoutAmount(),
-                        info.getTargetFatPercentage(),info.getTargetWeight(),info.getBmi());
+                        info.getGender(),info.getWorkoutAmount(),
+                        info.getTargetFatPercentage(),info.getTargetWeight(),info.getBmi(),info.getDietaryLimitationsString());
                 String sysEvent = "insert into $tableName values (?,?,?)";
                 query = sysEvent.replace("$tableName", "SystemEvents");
                 int val4 = jdbcTemplate.update(query, userId , info.getWeight(), 1);
