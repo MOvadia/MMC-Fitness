@@ -106,7 +106,10 @@ function startChatClicked(from,to) {
 */
     document.getElementById("send-msg").style.display = "block";
     document.getElementById("content").style.display = "block";
-
+    var X = document.getElementsByClassName("btn btn-primary send");
+    for (let x of X) {
+        x.parentNode.removeChild(x);
+    }
     $.ajax
     (
         {
@@ -125,7 +128,7 @@ function startChatClicked(from,to) {
                 var btn = document.createElement('input');
                 btn.setAttribute('type', 'button');
                 btn.setAttribute('id', 'sendButton'+to);
-                btn.setAttribute('class', 'btn btn-primary');
+                btn.setAttribute('class', 'btn btn-primary send');
                 btn.setAttribute('value', 'send');
                 //btn.setAttribute('onclick', 'openChat(1,user.userId)');
                 //var openChat = $(document.createElement('td')).append(btn);
