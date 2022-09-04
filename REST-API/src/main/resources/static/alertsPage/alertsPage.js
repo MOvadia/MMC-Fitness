@@ -114,42 +114,42 @@ function refreshUsersList(users,myId) {
     var usersTable = $('#usersTable tbody');
     usersTable.empty();
     var userList = users;
-    var id =1;
     userList.forEach(function (user) {
+        if(user.userId != myId) {
+            var name = user.fullName;
+            var type = user.type;
 
-        var name = user.fullName;
-        var type = user.type;
+            var tr = $(document.createElement('tr'));
 
-        var tr = $(document.createElement('tr'));
+            var tdName = $(document.createElement('td')).text(name);
+            var tdType = $(document.createElement('td')).text(type);
 
-        var tdName = $(document.createElement('td')).text(name);
-        var tdType = $(document.createElement('td')).text(type);
+            tdName.appendTo(tr);
+            tdType.appendTo(tr);
 
-        tdName.appendTo(tr);
-        tdType.appendTo(tr);
+            var form = document.createElement('form');
+            form.setAttribute('th:action', '@{/alert/userId=1&chat=1}');
+            form.setAttribute('th:method', 'post');
+            form.setAttribute('th:object', '${usersChatForm}');
+            form.setAttribute('class', 'usersForm');
+            var formBtn = $(document.createElement('td')).append(form);
 
-        var form = document.createElement('form');
-        form.setAttribute('th:action', '@{/alert/userId=1&chat=1}');
-        form.setAttribute('th:method', 'post');
-        form.setAttribute('th:object', '${usersChatForm}');
-        form.setAttribute('class', 'usersForm');
-        var formBtn = $(document.createElement('td')).append(form);
+            var btn = document.createElement('input');
+            btn.setAttribute('type', 'button');
+            btn.setAttribute('id', 'submitButton');
+            btn.setAttribute('class', 'btn btn-primary');
+            btn.setAttribute('value', 'chat');
+            btn.setAttribute('onclick', 'startChatClicked(' + myId + ',' + user.userId + ')');
 
-        var btn = document.createElement('input');
-        btn.setAttribute('type', 'button');
-        btn.setAttribute('id', 'submitButton');
-        btn.setAttribute('class', 'btn btn-primary');
-        btn.setAttribute('value', 'chat');
-        btn.setAttribute('onclick', 'startChatClicked('+myId+','+user.userId+')');
-
-        var chat = $(document.createElement('td')).append(btn);
+            var chat = $(document.createElement('td')).append(btn);
 
 
-        // btn.appendTo(form);
-        chat.appendTo(formBtn);
+            // btn.appendTo(form);
+            chat.appendTo(formBtn);
 
-        formBtn.appendTo(tr);
-        tr.appendTo(usersTable);
+            formBtn.appendTo(tr);
+            tr.appendTo(usersTable);
+        }
 
     });
 }
