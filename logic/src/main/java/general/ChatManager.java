@@ -36,16 +36,21 @@ public class ChatManager {
         chatList1.addAll(chatList2);
         String type = UserManager.getTypeById(to);
         String nameTo = UserManager.getUserNameById(to);
+
         for (Chat chat: chatList1) {
             Chat chatElement;
-            if(chat.getUserId() == from)
+            if(chat.getContent() == "")
             {
-                chatElement = new Chat("Me: " + chat.getContent(), from, to, chat.getMessageNum());
+                chatElement = new Chat(chat.getContent(), from, to, chat.getMessageNum());
                 chatElement.setTitle("Chat with " + type + " (" + nameTo + ")");
+
             }
             else {
-                chatElement = new Chat(type + ": " + chat.getContent(), to, from, chat.getMessageNum());
-                chatElement.setTitle("Chat with " + type + " (" + nameTo + ")");
+                if (chat.getUserId() == from) {
+                    chatElement = new Chat("Me: " + chat.getContent(), from, to, chat.getMessageNum());
+                } else {
+                    chatElement = new Chat(type + ": " + chat.getContent(), to, from, chat.getMessageNum());
+                }
             }
 
             chatListFixed.add(chatElement);

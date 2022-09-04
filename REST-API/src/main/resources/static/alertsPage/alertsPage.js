@@ -182,6 +182,7 @@ function sendClicked(from,to) {
                 const msgInput = document.getElementById('userstring');
                 msgInput.value = '';
                 chatTable.empty();
+                chatTablehead.empty();
                 var chatList = chat;
                 var trType = $(document.createElement('tr'));
                 var thType = $(document.createElement('th')).text(chat[0].title);

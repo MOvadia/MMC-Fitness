@@ -74,6 +74,7 @@ public class AlertsController {
     @ResponseBody
     public List<Chat> chatMassages(@RequestParam int userId,@RequestParam int chatId,Model model)
     {
+        chatManager.addChatString("",userId,chatId); //TODO: remove
         List<Chat> chatList = chatManager.getChatEntries(userId,chatId);
 
         return chatList;
