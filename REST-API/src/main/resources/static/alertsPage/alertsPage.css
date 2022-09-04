@@ -55,13 +55,14 @@
     font-weight: bold;
     margin-top: -305px;
     font-size: 1em;
-    /* display: none;*/
+     display: none;
     /* position: fixed; */
 }
 
-.massageForm{
+#send-msg{
     margin-top:100px;
-    margin-left:20px
+    margin-left:20px;
+    display: none;
 }
 
 #userstring{

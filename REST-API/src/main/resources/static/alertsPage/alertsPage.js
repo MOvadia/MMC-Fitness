@@ -104,6 +104,9 @@ function startChatClicked(from,to) {
     //sessionStorage.setItem("user", name);
     sessionStorage.setItem("xmlIndex", tableId);
 */
+    document.getElementById("send-msg").style.display = "block";
+    document.getElementById("content").style.display = "block";
+
     $.ajax
     (
         {
@@ -121,7 +124,7 @@ function startChatClicked(from,to) {
 
                 var btn = document.createElement('input');
                 btn.setAttribute('type', 'button');
-                btn.setAttribute('id', 'sendButton');
+                btn.setAttribute('id', 'sendButton'+to);
                 btn.setAttribute('class', 'btn btn-primary');
                 btn.setAttribute('value', 'send');
                 //btn.setAttribute('onclick', 'openChat(1,user.userId)');
@@ -133,7 +136,7 @@ function startChatClicked(from,to) {
 
                 // btn.appendTo(form);
                 sendTD.appendTo(form);
-
+                chatTablehead.empty();
                 chatTable.empty();
                 var chatList = chat;
                 var trType = $(document.createElement('tr'));
