@@ -110,7 +110,7 @@ function sendClicked(from,to) {
 }
 
 
-function refreshUsersList(users) {
+function refreshUsersList(users,myId) {
     var usersTable = $('#usersTable tbody');
     usersTable.empty();
     var userList = users;
@@ -140,7 +140,7 @@ function refreshUsersList(users) {
         btn.setAttribute('id', 'submitButton');
         btn.setAttribute('class', 'btn btn-primary');
         btn.setAttribute('value', 'chat');
-        btn.setAttribute('onclick', 'startChatClicked(1,'+user.userId+')');
+        btn.setAttribute('onclick', 'startChatClicked('+myId+','+user.userId+')');
 
         var chat = $(document.createElement('td')).append(btn);
 
@@ -162,9 +162,10 @@ function ajaxUsersList() {
         crossDomain: false,
         async:true,
         success: function(users) {
-          //  window.location = '/alert/userslist';
-           // var users = document.getElementById('usersList');
-            refreshUsersList(users);
+            var url = window.location.href;
+            const lastSegment = url.split("/").pop();
+            const myId = url.split("=").pop();
+            refreshUsersList(users,myId);
         }});
 }
 
@@ -201,7 +202,6 @@ function ajaxChatString() {
 
 //activate the timer calls after the page is loaded
 $(function() {
-
     //The users list is refreshed automatically every second
     setInterval(ajaxUsersList, refreshRate);
 });

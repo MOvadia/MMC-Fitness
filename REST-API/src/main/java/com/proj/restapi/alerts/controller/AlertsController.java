@@ -28,16 +28,6 @@ public class AlertsController {
     private SubscriberService subscriberService;
     ChatManager chatManager = new ChatManager();
 
-    /*@RequestMapping("/alert/userslist")
-    public String getAjaxViewPage(HttpServletRequest request,Model model) {
-        List<User> usersList = new ArrayList<>();
-        usersList.addAll(UserManager.getUsersSet());
-        model.addAttribute("users", usersList);
-        String query = request.getQueryString();
-
-        return "alertsPage";
-
-    }*/
 
     @RequestMapping(value = "/alert/userslist", method = POST)
     @ResponseBody
@@ -56,16 +46,16 @@ public class AlertsController {
         usersList.remove(myuser);
         model.addAttribute("users", usersList);
         model.addAttribute("subscriber", subscriberService.getUserById(userId));
-        model.addAttribute("massageForm", new Chat(userId, 2));
+       // model.addAttribute("id", userId);
 
         return "alertsPage";
     }
 
     @RequestMapping(value = "/alert/chat", method = GET)
     @ResponseBody
-    public List<Chat> chatMassages(@RequestParam int userId,@RequestParam int chatId,Model model)
+    public List<Chat> chatMassages(@RequestParam int userId,@RequestParam int chatId)
     {
-        chatManager.addChatString("",userId,chatId); //TODO: remove
+        chatManager.addChatString("",userId,chatId);
         List<Chat> chatList = chatManager.getChatEntries(userId,chatId);
 
         return chatList;
@@ -75,7 +65,7 @@ public class AlertsController {
     @ResponseBody
     public List<Chat> sendMassage(@RequestParam int userId,@RequestParam int chatId,@RequestParam String chatString)
     {
-        chatManager.addChatString(chatString,userId,chatId); //TODO: remove
+        chatManager.addChatString(chatString,userId,chatId);
         List<Chat> chatList = chatManager.getChatEntries(userId,chatId);
 
         return chatList;
@@ -90,25 +80,4 @@ public class AlertsController {
         return chatList;
     }
 
-    @PostMapping(value = "/alert/userId={userId}&chat={chatId}", params="send")
-    public String sendMassages(@PathVariable int userId,@PathVariable int chatId, Chat chat, Model model)
-    {
-        List<User> usersList = new ArrayList<>();
-        usersList.addAll(UserManager.getUsersSet());
-        User myuser = usersList.stream().filter(users -> users.getUserId() == userId).collect(Collectors.toList()).get(0);
-        usersList.remove(myuser);
-        chatManager.addChatString(chat.getContent(),userId, chat.getChatId());
-        List<Chat> chatList = chatManager.getChatEntries(userId,chat.getChatId());
-        String fullName = UserManager.getUserNameById(chatId);
-        String type = UserManager.getTypeById(chatId);
-        model.addAttribute("chatStrings", chatList);
-        model.addAttribute("massageForm", new Chat(chat.getUserId(),chat.getChatId()));
-        model.addAttribute("users", usersList);
-        model.addAttribute("subscriber", subscriberService.getUserById(userId));
-        model.addAttribute("type", "Chat with " + type + " (" + fullName + ")");
-
-
-
-        return "alertsPage";
-    }
 }
