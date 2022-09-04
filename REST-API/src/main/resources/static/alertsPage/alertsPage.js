@@ -1,115 +1,20 @@
 var chatVersion = 0;
 var refreshRate = 2000; //milli seconds
+var from_glob;
+var to_glob;
 var USER_LIST_URL = buildUrlWithContextPath("userslist");
-var CHAT_LIST_URL = buildUrlWithContextPath("userId={userId}&chat={chat}");
+var CHAT_STRING_URL = buildUrlWithContextPath("chatString");
 
-//entries = the added chat strings represented as a single string
-function appendToChatArea(entries) {
-//    $("#chatarea").children(".success").removeClass("success");
-
-    // add the relevant entries
-    $.each(entries || [], appendChatEntry);
-
-    // handle the scroller to auto scroll to the end of the chat area
-    var scroller = $("#chatarea");
-    var height = scroller[0].scrollHeight - $(scroller).height();
-    $(scroller).stop().animate({ scrollTop: height }, "slow");
-}
-
-function appendChatEntry(index, entry){
-    var entryElement = createChatEntry(entry);
-    $("#chatarea").append(entryElement).append("<br>");
-}
-
-function createChatEntry (entry){
-    entry.chatString = entry.chatString.replace (":)", "<img class='smiley-image' src='../../common/images/smiley.png'/>");
-    return $("<span class=\"success\">").append(entry.username + "> " + entry.chatString);
-}
-
-
-//call the server and get the chat version
-//we also send it the current chat version so in case there was a change
-//in the chat content, we will get the new string as well
-function ajaxChatContent() {
-    $.ajax({
-        url: CHAT_LIST_URL,
-        data: "chatversion=" + chatVersion,
-        dataType: 'json',
-        success: function(data) {
-            /*
-             data will arrive in the next form:
-             {
-                "entries": [
-                    {
-                        "chatString":"Hi",
-                        "username":"bbb",
-                        "time":1485548397514
-                    },
-                    {
-                        "chatString":"Hello",
-                        "username":"bbb",
-                        "time":1485548397514
-                    }
-                ],
-                "version":1
-             }
-             */
-            console.log("Server chat version: " + data.version + ", Current chat version: " + chatVersion);
-            if (data.version !== chatVersion) {
-                chatVersion = data.version;
-                appendToChatArea(data.entries);
-            }
-            triggerAjaxChatContent();
-        },
-        error: function(error) {
-            triggerAjaxChatContent();
-        }
-    });
-}
-
-//add a method to the button in order to make that form use AJAX
-//and not actually submit the form
-$(function() { // onload...do
-    //add a function to the submit event
-    $("#chatform").submit(function() {
-        $.ajax({
-            data: $(this).serialize(),
-            url: this.action,
-            timeout: 2000,
-            error: function() {
-                console.error("Failed to submit");
-            },
-            success: function(r) {
-                //do not add the user string to the chat area
-                //since it's going to be retrieved from the server
-                //$("#result h1").text(r);
-            }
-        });
-
-        $("#userstring").val("");
-        // by default - we'll always return false so it doesn't redirect the user.
-        return false;
-    });
-});
-
-function triggerAjaxChatContent() {
-    setTimeout(ajaxChatContent, refreshRate);
-}
 
 function startChatClicked(from,to) {
-    /*var name = getUserName();
-    var tableId = val;
-    var rows = document.getElementsByTagName("tbody")[0].rows;
-    var creator = rows[tableId - 1].getElementsByTagName("td")[2].innerText;
-    //sessionStorage.setItem("user", name);
-    sessionStorage.setItem("xmlIndex", tableId);
-*/
     document.getElementById("send-msg").style.display = "block";
     document.getElementById("content").style.display = "block";
     var X = document.getElementsByClassName("btn btn-primary send");
     for (let x of X) {
         x.parentNode.removeChild(x);
     }
+    from_glob = from;
+    to_glob=to;
     $.ajax
     (
         {
@@ -130,14 +35,10 @@ function startChatClicked(from,to) {
                 btn.setAttribute('id', 'sendButton'+to);
                 btn.setAttribute('class', 'btn btn-primary send');
                 btn.setAttribute('value', 'send');
-                //btn.setAttribute('onclick', 'openChat(1,user.userId)');
-                //var openChat = $(document.createElement('td')).append(btn);
                 btn.setAttribute('onclick', 'sendClicked('+from+','+to+')');
 
                 var sendTD = $(document.createElement('td')).append(btn);
 
-
-                // btn.appendTo(form);
                 sendTD.appendTo(form);
                 chatTablehead.empty();
                 chatTable.empty();
@@ -161,6 +62,9 @@ function startChatClicked(from,to) {
             }
         }
     );
+
+    setInterval(ajaxChatString, refreshRate);
+
 }
 
 function sendClicked(from,to) {
@@ -236,8 +140,6 @@ function refreshUsersList(users) {
         btn.setAttribute('id', 'submitButton');
         btn.setAttribute('class', 'btn btn-primary');
         btn.setAttribute('value', 'chat');
-        //btn.setAttribute('onclick', 'openChat(1,user.userId)');
-        //var openChat = $(document.createElement('td')).append(btn);
         btn.setAttribute('onclick', 'startChatClicked(1,'+user.userId+')');
 
         var chat = $(document.createElement('td')).append(btn);
@@ -264,6 +166,37 @@ function ajaxUsersList() {
            // var users = document.getElementById('usersList');
             refreshUsersList(users);
         }});
+}
+
+function ajaxChatString() {
+    $.ajax({
+        type: 'GET',
+        url: CHAT_STRING_URL,
+        contentType: 'text/plain',
+        data: {
+            userId: from_glob,
+            chatId: to_glob,
+        },
+        crossDomain: false,
+        async:true,
+        success: function(strings) {
+            var chatTable = $('#chat-table tbody');
+            chatTable.empty();
+            var chatList = strings;
+
+            chatList.forEach(function (chat) {
+
+                var tr = $(document.createElement('tr'));
+
+                var tdName = $(document.createElement('td')).text(chat.content);
+
+                tdName.appendTo(tr);
+
+                tr.appendTo(chatTable);
+
+            });
+        }
+    });
 }
 
 //activate the timer calls after the page is loaded

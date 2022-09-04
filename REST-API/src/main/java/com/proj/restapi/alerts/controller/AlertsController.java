@@ -61,15 +61,6 @@ public class AlertsController {
         return "alertsPage";
     }
 
-   /* @GetMapping("/alert/userslist")
-    public String userList(Model model)
-    {
-        List<String> usersList = UserManager.getUsersSet();
-        model.addAttribute("users", usersList);
-        return "alertsPage";
-    }
-*/
-
     @RequestMapping(value = "/alert/chat", method = GET)
     @ResponseBody
     public List<Chat> chatMassages(@RequestParam int userId,@RequestParam int chatId,Model model)
@@ -85,6 +76,15 @@ public class AlertsController {
     public List<Chat> sendMassage(@RequestParam int userId,@RequestParam int chatId,@RequestParam String chatString)
     {
         chatManager.addChatString(chatString,userId,chatId); //TODO: remove
+        List<Chat> chatList = chatManager.getChatEntries(userId,chatId);
+
+        return chatList;
+    }
+
+    @RequestMapping(value = "/alert/chatString", method = GET)
+    @ResponseBody
+    public List<Chat> getMassages(@RequestParam int userId,@RequestParam int chatId)
+    {
         List<Chat> chatList = chatManager.getChatEntries(userId,chatId);
 
         return chatList;
