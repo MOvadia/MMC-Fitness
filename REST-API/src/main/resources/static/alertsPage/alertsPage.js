@@ -1,4 +1,3 @@
-var chatVersion = 0;
 var refreshRate = 2000; //milli seconds
 var from_glob;
 var to_glob;
@@ -8,6 +7,8 @@ var CHAT_STRING_URL = buildUrlWithContextPath("chatString");
 
 function startChatClicked(from,to) {
     document.getElementById("send-msg").style.display = "block";
+    document.getElementById("send-msg").style.display = "table";
+
     document.getElementById("content").style.display = "block";
     var X = document.getElementsByClassName("btn btn-primary send");
     for (let x of X) {
@@ -37,9 +38,18 @@ function startChatClicked(from,to) {
                 btn.setAttribute('value', 'send');
                 btn.setAttribute('onclick', 'sendClicked('+from+','+to+')');
 
-                var sendTD = $(document.createElement('td')).append(btn);
+               // var x = document.createElement("INPUT");
+              //  x.setAttribute("type", "text");
+
+                var sendTD = $(document.createElement('td')).attr('id', 'sendTd').append(btn);
+
+               // var inputElem = document.getElementById('userstring');
+                //var TD_send = document.getElementById('userstring');
+
+               // sendTD.appendChild(inputElem);
 
                 sendTD.appendTo(form);
+                document.getElementById("sendTd").style.marginLeft = "340px";
                 chatTablehead.empty();
                 chatTable.empty();
                 var chatList = chat;
@@ -53,7 +63,6 @@ function startChatClicked(from,to) {
                     var tr = $(document.createElement('tr'));
 
                     var tdName = $(document.createElement('td')).text(chat.content);
-
                     tdName.appendTo(tr);
 
                     tr.appendTo(chatTable);
@@ -100,7 +109,6 @@ function sendClicked(from,to) {
                     var tdName = $(document.createElement('td')).text(chat.content);
 
                     tdName.appendTo(tr);
-
                     tr.appendTo(chatTable);
 
                 });
@@ -128,9 +136,7 @@ function refreshUsersList(users,myId) {
             tdType.appendTo(tr);
 
             var form = document.createElement('form');
-            form.setAttribute('th:action', '@{/alert/userId=1&chat=1}');
             form.setAttribute('th:method', 'post');
-            form.setAttribute('th:object', '${usersChatForm}');
             form.setAttribute('class', 'usersForm');
             var formBtn = $(document.createElement('td')).append(form);
 
@@ -143,8 +149,6 @@ function refreshUsersList(users,myId) {
 
             var chat = $(document.createElement('td')).append(btn);
 
-
-            // btn.appendTo(form);
             chat.appendTo(formBtn);
 
             formBtn.appendTo(tr);

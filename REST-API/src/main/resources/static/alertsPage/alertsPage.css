@@ -9,9 +9,6 @@
 
 }
 
-.send{
-    margin-left: 340px;
-}
 
 .usersTable thead tr {
     background-color: rgba(136, 136, 140, 0.25);
@@ -41,7 +38,6 @@
     font-weight: bold;
     color: rgba(136, 136, 140, 0.25);
 }
-
 
 .content {
     overflow-y: scroll;
