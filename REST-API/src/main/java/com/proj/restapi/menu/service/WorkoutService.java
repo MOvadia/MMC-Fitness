@@ -1,22 +1,33 @@
 package com.proj.restapi.menu.service;
 
 import com.proj.restapi.actionresult.ActionResult;
+import general.SubscriberToMenu;
+import general.SubscriberToWorkout;
 import general.Workout;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+@Service
 public class WorkoutService {
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-    public static List<Workout> getWorkoutPerUserId(int userId){
-        //TODO - get workout for the relevant user
-        return Arrays.asList(
-                new Workout(1, "Power Hands", 1, "This ...",40f ),
-                new Workout(2, "Power legs", 2,"This ...", 20f ),
-                new Workout(3, "Pilatis", 3, "This ...", 60f )
-        );
+    public List<Workout> getWorkoutPerUserId(int userId){
+        String sqlWorkoutsIds = "SELECT * FROM [SubscriberToWorkout] where userId = " + userId;
+        List<SubscriberToWorkout> workoutsId = jdbcTemplate.query(sqlWorkoutsIds, BeanPropertyRowMapper.newInstance(SubscriberToWorkout.class));
+        List<Workout> workouts = new ArrayList<>();
+        for (SubscriberToWorkout stoW: workoutsId) {
+            String sqlWorkouts = "SELECT * FROM [Workout] where workoutId = " + stoW.getWorkoutId();
+            Workout workout = jdbcTemplate.queryForObject(sqlWorkouts, BeanPropertyRowMapper.newInstance(Workout.class));
+            workouts.add(workout);
+        }
+        return workouts;
     }
 
     public static Workout getWorkoutForUserByWorkoutId(int userId, int workoutId){

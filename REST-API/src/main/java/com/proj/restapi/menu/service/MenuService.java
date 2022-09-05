@@ -16,7 +16,6 @@ public class MenuService {
     private JdbcTemplate jdbcTemplate;
 
     public Menu getMenuById(int userId) {
-        //TODO - get menu from db - to open transaction
         String sqlSubToMenu = "SELECT * FROM [SubscriberToMenu] where userId=" + userId;
         SubscriberToMenu subscriberToMenu = jdbcTemplate.queryForObject(sqlSubToMenu, BeanPropertyRowMapper.newInstance(SubscriberToMenu.class));
         String sqlMenu = "SELECT * FROM [Menu] where menuId=" + subscriberToMenu.getMenuId();

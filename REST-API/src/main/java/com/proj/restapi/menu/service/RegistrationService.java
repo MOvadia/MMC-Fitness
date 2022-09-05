@@ -1,13 +1,16 @@
 package com.proj.restapi.menu.service;
 import com.proj.restapi.auth.info.SubscriberInformation;
+import general.Menu;
 import general.Subscriber;
 import general.User;
+import general.Workout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 import static java.sql.JDBCType.NULL;
 
@@ -26,17 +29,42 @@ public class RegistrationService {
             if(info.getType().equals("Subscriber")) {
                 sqlInsert = "insert into $tableName values (?,?,?,?,?,?,?,?,?,?)";
                 String query = sqlInsert.replace("$tableName", info.getType());
+                StringBuilder dietaryLim = new StringBuilder(info.getDietaryLimitationsString());
+                dietaryLim.deleteCharAt(info.getDietaryLimitationsString().length() - 1);
+
                 val3 = jdbcTemplate.update(query, userId , info.getAge(), info.getHeight(),info.getWeight(),
                         info.getGender(),info.getWorkoutAmount(),
-                        info.getTargetFatPercentage(),info.getTargetWeight(),info.getBmi(),info.getDietaryLimitationsString());
+                        info.getTargetFatPercentage(),info.getTargetWeight(),info.getBmi(),dietaryLim);
                 String sysEvent = "insert into $tableName values (?,?,?)";
                 query = sysEvent.replace("$tableName", "SystemEvents");
                 int val4 = jdbcTemplate.update(query, userId , info.getWeight(), 1);
+
+                //generating to new subscriber menu
+
+                String sqlMenus = "SELECT * FROM [Menu] where [type] = '$dietaryLim'";
+                sqlMenus = sqlMenus.replace("$dietaryLim", dietaryLim);
+                List<Menu> limMenus = jdbcTemplate.query(sqlMenus, BeanPropertyRowMapper.newInstance(Menu.class));
+                Random rand = new Random();
+                int randMenu = rand.nextInt(limMenus.size());
+                Menu menu = limMenus.get(randMenu);
+                sqlInsert = "insert into [SubscriberToMenu] values (?,?)";
+                jdbcTemplate.update(sqlInsert, userId, menu.getMenuId());
+
+                String sqlWorkouts = "SELECT * FROM [Workout]";
+                List<Workout> workouts = jdbcTemplate.query(sqlWorkouts, BeanPropertyRowMapper.newInstance(Workout.class));
+                int[] workoutsGenerated = new Random().ints(0, workouts.size()).distinct().limit(info.getWorkoutAmount()).toArray();
+
+                for (Integer w:workoutsGenerated) {
+                    sqlInsert = "insert into [SubscriberToWorkout] values (?,?)";
+                    jdbcTemplate.update(sqlInsert, userId, workouts.get(w).getWorkoutId());
+                }
+
             }
             else {
                 sqlInsert = "insert into $tableName values (?,?)";
                 String query = sqlInsert.replace("$tableName", info.getType());
                 val3 = jdbcTemplate.update(query, userId, info.getSeniority());
+
             }
 
             sqlInsert = "insert into [User] values (?,?,?,?,?)";
@@ -45,6 +73,7 @@ public class RegistrationService {
 
             sqlInsert = "insert into [Auth] values (?,?)";
             val2 = jdbcTemplate.update(sqlInsert, userId,info.getPsw());
+
 
         }
         return val1*val2*val3;

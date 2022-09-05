@@ -25,6 +25,8 @@ public class MenuController {
     @Autowired
     private MenuService menuService;
     @Autowired
+    private WorkoutService workoutService;
+    @Autowired
     private MealService mealService;
     @Autowired
     private NutritionistService nutritionistService;
@@ -46,7 +48,7 @@ public class MenuController {
         //TODO - menu for each user
         model.addAttribute("subscriber", subscriberService.getSubscriberById(id));
         model.addAttribute("gender", subscriber.getGender());
-        model.addAttribute("workout", WorkoutService.getWorkoutPerUserId(1));
+        model.addAttribute("workout", workoutService.getWorkoutPerUserId(id));
         model.addAttribute("menu", menuService.getMenuById(userId));
         model.addAttribute("meals", menuService.getMenuMealsById(userId));
 
