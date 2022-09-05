@@ -5,12 +5,11 @@ import java.util.Objects;
 
 public class SubscriberToWorkout {
     private Integer userId;
-    private List<Integer> workoutId;
+    private Integer workoutId;
 
-    public SubscriberToWorkout(Integer userId, List<Integer> workoutId) {
-        this.userId = userId;
-        this.workoutId = workoutId;
+    public SubscriberToWorkout() {
     }
+
 
     public Integer getUserId() {
         return userId;
@@ -20,11 +19,11 @@ public class SubscriberToWorkout {
         this.userId = userId;
     }
 
-    public List<Integer> getWorkoutId() {
+    public Integer getWorkoutId() {
         return workoutId;
     }
 
-    public void setWorkoutId(List<Integer> workoutId) {
+    public void setWorkoutId(Integer workoutId) {
         this.workoutId = workoutId;
     }
 
@@ -33,7 +32,7 @@ public class SubscriberToWorkout {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SubscriberToWorkout that = (SubscriberToWorkout) o;
-        return userId.equals(that.userId) && workoutId.equals(that.workoutId);
+        return Objects.equals(userId, that.userId) && Objects.equals(workoutId, that.workoutId);
     }
 
     @Override
@@ -41,3 +40,4 @@ public class SubscriberToWorkout {
         return Objects.hash(userId, workoutId);
     }
 }
+
