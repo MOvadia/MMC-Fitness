@@ -1,4 +1,8 @@
+
 var counter = 1;
+window.onload = function () {
+    document.getElementById("option1").click();
+}
 $(document).ready(function() {
 
     var erroEle = $('.error-message'),
