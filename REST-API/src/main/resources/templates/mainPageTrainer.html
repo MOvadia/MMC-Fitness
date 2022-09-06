@@ -18,7 +18,7 @@
         <span class="userName" th:text="'Hello ' + ${trainer.firstName}"></span>
     </li>
     <li style="float:right;font-weight: bold; font-size: 27px; color:gainsboro">
-        <a href="app/logout">Logout</a>
+        <a th:href="@{'/logout/userId=' + ${subscriber.userId}}">Logout</a>
     </li>
     <li style="float:right">
         <a th:href="@{'/alert/userId=' + ${trainer.userId}}" class="icon-block">

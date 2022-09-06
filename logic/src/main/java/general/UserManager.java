@@ -21,8 +21,17 @@ public class UserManager {
         usersSet.add(user);
     }
 
-    public synchronized void removeUser(String username) {
-        usersSet.remove(username);
+    public synchronized void removeUser(Integer userId) {
+        int userIdToRemove = -1;
+        for (int i = 0; i< UserManager.usersSet.size(); i++) {
+            if(UserManager.usersSet.get(i).getUserId() == userId){
+                userIdToRemove = i;
+                break;
+            }
+        }
+        if(userIdToRemove != -1){
+            UserManager.usersSet.remove(userIdToRemove);
+        }
     }
 
     public boolean isUserExists(String username) {

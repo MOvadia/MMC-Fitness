@@ -3,21 +3,16 @@ package com.proj.restapi.auth.controller;
 import com.proj.restapi.auth.info.LoginInformation;
 import com.proj.restapi.auth.info.SubscriberInformation;
 import com.proj.restapi.menu.service.RegistrationService;
-import com.proj.restapi.menu.service.SubscriberService;
 import general.User;
 import general.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import static general.UserManager.*;
 
 @Controller
 public class AuthController {
@@ -77,6 +72,12 @@ public class AuthController {
     public String submit(SubscriberInformation user, Model model){
         int val = registrationService.createUser(user);
         model.addAttribute("userForm", new LoginInformation());
+        return "redirect:/";
+    }
+
+    @GetMapping(value = "/logout/userId={userId}")
+    private String logout(@PathVariable int userId, Model model){
+        m_userManager.removeUser(userId);
         return "redirect:/";
     }
 
