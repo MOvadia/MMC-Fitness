@@ -18,7 +18,7 @@
         <span class="userName" th:text="'Hello ' + ${nutritionist.firstName}"></span>
     </li>
     <li style="float:right;font-weight: bold; font-size: 27px; color:gainsboro">
-        <a th:href="@{'/logout/userId=' + ${subscriber.userId}}">Logout</a>
+        <a th:href="@{'/logout/userId=' + ${nutritionist.userId}}">Logout</a>
     </li>
     <li style="float:right">
         <a th:href="@{'/alert/userId=' + ${nutritionist.userId}}" class="icon-block">
