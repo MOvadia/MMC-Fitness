@@ -12,7 +12,12 @@
 <div class="container">
     <form th:action="login" th:method="post" th:object="${userForm}" th:class="loginForm">
         <h2>Login Form</h2>
-        <p>please choose user type</p>
+        <div class="alert alert-error text-center" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+        <div class="alert alert-success text-center" th:if="${successMessage}" th:text="${successMessage}"></div>
+        <div>
+            <label id="chooseLabel">please choose user type</label>
+        </div>
+
         <div class="radio-group">
             <input type="radio" id="option1" name="option1" class="custom-control-input" value="Subscriber" th:field="*{type}" checked="checked">
             <label class="custom-control-label" for="option1">Subscriber</label>
@@ -28,7 +33,6 @@
             <input type="password" th:field="*{password}" placeholder="Password" name="password" required/>
         </div>
         <br>
-        <span class="error-msg" th:if="${errorMessage}"  th:text="${errorMessage}" >Error</span>
         <button th:value="login" th:name="login" class="btn btn-primary" id="submitButton" type="submit">Log In</button>
         <button th:value="signin" th:name="signin" class="btn btn-primary" id="signupButton" type="submit" formnovalidate>Sign Up</button>
     </form>

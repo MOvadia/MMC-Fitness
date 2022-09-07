@@ -58,13 +58,13 @@ public class AuthController {
     @PostMapping(value = "/login", params="signin")
     public String register(@ModelAttribute LoginInformation user, Model model){
         model.addAttribute("registrationForm", new SubscriberInformation());
-        //TODO - move to signup page
         return "registrationPage";
     }
 
     @PostMapping(value = "/registration", params="cancel")
     public String cancel(SubscriberInformation user, Model model){
         model.addAttribute("userForm", new LoginInformation());
+        model.addAttribute("errorMessage", "User not created");
         return "index";
     }
 
@@ -72,7 +72,8 @@ public class AuthController {
     public String submit(SubscriberInformation user, Model model){
         int val = registrationService.createUser(user);
         model.addAttribute("userForm", new LoginInformation());
-        return "redirect:/";
+        model.addAttribute("successMessage", "User created successfully!");
+        return "index";
     }
 
     @GetMapping(value = "/logout/userId={userId}")

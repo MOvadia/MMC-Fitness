@@ -119,3 +119,24 @@ label + input[type=radio] + label {
     color: black;
     font-weight: bold;
 }
+
+.alert{
+    position: center;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.alert.alert-error{
+    background: #e29593;
+}
+
+.alert.alert-success{
+    background: #a1e293;
+}
+
+#chooseLabel{
+    color: black;
+    font-size: medium;
+}
