@@ -9,6 +9,7 @@
     <script src="/common/context-path-helper.js"></script>
     <script src="/common/jquery-2.0.3.min.js"></script>
     <script src="/workoutSubscriber/workoutSubscriber.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <ul>
@@ -31,6 +32,11 @@
     <li style="float:right">
         <a th:href="@{'/report/userId=' + ${subscriber.userId}}" class="icon-block">
             <i class='far fa-file-image' style='font-size:42px; color:gainsboro' ></i>
+        </a>
+    </li>
+    <li style="float:right">
+        <a th:href="@{'/menu/userId=' + ${subscriber.userId}}" class="icon-block">
+            <i class='fas fa-house-user' style='font-size:42px; color:gainsboro' ></i>
         </a>
     </li>
 </ul>
