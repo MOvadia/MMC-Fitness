@@ -67,8 +67,11 @@
       <b>target Weight</b><br>
       <input type="number" name="targetWeight" step="0.01" min="50.00" max="200.00" th:field="*{targetWeight}" th:placeholder="${subscriber.targetWeight}" ><br>
     </div>
+      <div class="alertSettings alert-info text-center" th:if="${resetMessage}" th:text="${resetMessage}"></div>
+      <div class="alertSettings alert-error text-center" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+      <div class="alertSettings alert-success text-center" th:if="${updateMessage}" th:text="${updateMessage}"></div>
     <div class="clearfix">
-      <button th:value="cancel" th:name="cancel" type="cancel" class="cancelbtn">Cancel</button>
+      <button th:value="cancel" th:name="cancel" type="cancel" class="cancelbtn">Reset</button>
       <button th:value="submit" th:name="submit" type="submit" class="signupbtn">Update</button>
     </div>
   </form>

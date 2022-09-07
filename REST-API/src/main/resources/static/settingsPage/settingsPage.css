@@ -170,3 +170,25 @@ li a {
     font-size: 40px;
     color:gainsboro;
 }
+
+.alertSettings{
+    position: center;
+    height: 10%;
+    width: 80%;
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: center;
+    margin: 5px 0 22px 0;
+}
+
+.alertSettings.alert-error{
+    background: #e29593;
+}
+
+.alert.alert-success{
+    background: #a1e293;
+}
+
+.alert.alert-info{
+    background: #ffdc94;
+}
