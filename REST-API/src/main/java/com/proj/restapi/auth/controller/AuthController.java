@@ -71,8 +71,13 @@ public class AuthController {
     @PostMapping(value = "/registration", params="submit")
     public String submit(SubscriberInformation user, Model model){
         int val = registrationService.createUser(user);
+        if(val != 0){
+            model.addAttribute("successMessage", "User created successfully!");
+        }
+        else{
+            model.addAttribute("errorMessage", "Failed to create user!");
+        }
         model.addAttribute("userForm", new LoginInformation());
-        model.addAttribute("successMessage", "User created successfully!");
         return "index";
     }
 
