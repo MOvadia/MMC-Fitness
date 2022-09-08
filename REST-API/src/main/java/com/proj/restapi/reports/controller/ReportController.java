@@ -23,6 +23,7 @@ public class ReportController {
 
     @GetMapping("/report/userId={userId}")
     public String reportPage(@PathVariable int userId, Model model){
+        double lastweek,total;
         model.addAttribute("subscriber", subscriberService.getSubscriberById(userId));
         Map<String, Double> graphData = new TreeMap<>();
         List<SystemEvents> sysEvent = reportsService.getSysEvents(userId);
@@ -31,8 +32,14 @@ public class ReportController {
             graphData.put("week " + event.getWeek(),event.getCurrentWeight());
         }
 
-        double lastweek = sysEvent.get(sysEvent.size()-1).getCurrentWeight() - sysEvent.get(sysEvent.size()-2).getCurrentWeight();
-        double total = sysEvent.get(sysEvent.size()-1).getCurrentWeight() - sysEvent.get(0).getCurrentWeight();
+         total = sysEvent.get(sysEvent.size()-1).getCurrentWeight() - sysEvent.get(0).getCurrentWeight();
+
+        if(sysEvent.size()<2){
+            lastweek = total;
+        }
+        else{
+            lastweek = sysEvent.get(sysEvent.size()-1).getCurrentWeight() - sysEvent.get(sysEvent.size()-2).getCurrentWeight();
+        }
 
         lastweek =Double.parseDouble(new DecimalFormat("##.###").format(lastweek));
         total =Double.parseDouble(new DecimalFormat("##.###").format(total));
