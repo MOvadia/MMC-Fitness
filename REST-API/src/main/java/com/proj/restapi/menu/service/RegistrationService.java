@@ -1,9 +1,6 @@
 package com.proj.restapi.menu.service;
 import com.proj.restapi.auth.info.SubscriberInformation;
-import general.Menu;
-import general.Subscriber;
-import general.User;
-import general.Workout;
+import general.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -55,11 +52,15 @@ public class RegistrationService {
                 int[] workoutsGenerated = new Random().ints(0, workouts.size()).distinct().limit(info.getWorkoutAmount()).toArray();
 
                 for (Integer w:workoutsGenerated) {
-                    sqlInsert = "insert into [SubscriberToWorkout] values (?,?)";
-                    jdbcTemplate.update(sqlInsert, userId, workouts.get(w).getWorkoutId());
+                   String sqlSelect = "select TOP 5 exercise from Exercise where workoutId = " + workouts.get(w).getWorkoutId();
+                    List<Exercise> exercises = jdbcTemplate.query(sqlSelect, BeanPropertyRowMapper.newInstance(Exercise.class));
+                    sqlInsert = "insert into [SubscriberToExercise] values (?,?)";
+                    for (int i = 0; i < exercises.size(); i++) {
+                        jdbcTemplate.update(sqlInsert, userId, exercises.get(i));
+                    }
                 }
 
-            }
+                }
             else {
                 sqlInsert = "insert into $tableName values (?,?)";
                 String query = sqlInsert.replace("$tableName", info.getType());

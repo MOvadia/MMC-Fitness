@@ -23,7 +23,7 @@ public class WorkoutController {
     @GetMapping("/workout/userId={userId}/workout={workoutId}")
     public String workoutPage(@PathVariable int userId, @PathVariable int workoutId, Model model){
         model.addAttribute("subscriber", subscriberService.getSubscriberById(userId));
-        model.addAttribute("exersize", exerciseService.getExercisesByWorkoutId(workoutId));
+        model.addAttribute("exersize", exerciseService.getExercisesByWorkoutIdAndUserId(workoutId, userId));
         return "workoutSubscriber";
     }
 

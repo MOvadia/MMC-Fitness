@@ -23,4 +23,15 @@ public class ExerciseService {
 
         return exercises;
     }
+
+    public List<Exercise> getExercisesByWorkoutIdAndUserId(int workoutId, int userId) {
+        String sqlExerciseTable = "  select e.workoutId, e.exercise, e.setNum, e.repetNum, e.description, e.link from Exercise e, SubscriberToExercise s" +
+                "  where e.exercise = s.exerciseName" +
+                "  and userId = " + userId +
+                "  and workoutId = " + workoutId;
+        List<Exercise> exercises = jdbcTemplate.query(sqlExerciseTable,
+                BeanPropertyRowMapper.newInstance(Exercise.class));
+
+        return exercises;
+    }
 }

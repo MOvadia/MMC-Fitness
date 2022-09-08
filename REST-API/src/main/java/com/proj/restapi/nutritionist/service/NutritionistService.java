@@ -58,8 +58,8 @@ public class NutritionistService {
     public void addMenu(MenuInformation mi, Integer menuId) {
         String sqlInsert = "insert into [Meal] values (?,?,?,?)";
         jdbcTemplate.update(sqlInsert, menuId, mi.getMealInDay(), mi.getCalories(), mi.getItem());
-        String sqlInsertToSubscriberToWorkout = "insert into [MenuToWorkout] values (?,?)";
-        jdbcTemplate.update(sqlInsertToSubscriberToWorkout, getUserIdByEmail(mi.getAssignedUser()), menuId);
+        String sqlInsertToSubscriberToMenu = "insert into [SubscriberToMenu] values (?,?)";
+        jdbcTemplate.update(sqlInsertToSubscriberToMenu, getUserIdByEmail(mi.getAssignedUser()), menuId);
     }
 
     public int getUserIdByEmail(String email){

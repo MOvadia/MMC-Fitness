@@ -8,7 +8,7 @@ public class DBInfo {
         Trainer,
         Menu,
         SubscriberToMenu,
-        SubscriberToWorkout,
+        SubscriberToExersice,
         Workout,
         SystemEvents
     };

@@ -2,9 +2,10 @@ package com.proj.restapi.menu.service;
 
 import com.proj.restapi.actionresult.ActionResult;
 import general.SubscriberToMenu;
-import general.SubscriberToWorkout;
+import general.SubscriberToExercise;
 import general.Workout;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -19,20 +20,25 @@ public class WorkoutService {
     private JdbcTemplate jdbcTemplate;
 
     public List<Workout> getWorkoutPerUserId(int userId){
-        String sqlWorkoutsIds = "SELECT * FROM [SubscriberToWorkout] where userId = " + userId;
-        List<SubscriberToWorkout> workoutsId = jdbcTemplate.query(sqlWorkoutsIds, BeanPropertyRowMapper.newInstance(SubscriberToWorkout.class));
+        String sqlExersice = "SELECT * FROM [SubscriberToExercise] where userId = " + userId;
+        List<SubscriberToExercise> exercises = jdbcTemplate.query(sqlExersice, BeanPropertyRowMapper.newInstance(SubscriberToExercise.class));
         List<Workout> workouts = new ArrayList<>();
-        for (SubscriberToWorkout stoW: workoutsId) {
-            String sqlWorkouts = "SELECT * FROM [Workout] where workoutId = " + stoW.getWorkoutId();
-            Workout workout = jdbcTemplate.queryForObject(sqlWorkouts, BeanPropertyRowMapper.newInstance(Workout.class));
-            workouts.add(workout);
+        Workout workout;
+        for (SubscriberToExercise stoW: exercises) {
+            String sqlWorkouts = "  select w.workoutId, w.name, w.createdBy, w.focus from Workout w, Exercise e" +
+                    " where w.workoutId = e.workoutId " +
+                    " and e.exercise = '" + stoW.getExerciseName() + "'";
+            try {
+                workout = jdbcTemplate.queryForObject(sqlWorkouts, BeanPropertyRowMapper.newInstance(Workout.class));
+                workouts.add(workout);
+
+            } catch (EmptyResultDataAccessException e) {
+                workout = null;
+            }
         }
         return workouts;
     }
 
-    public static Workout getWorkoutForUserByWorkoutId(int userId, int workoutId){
-        return new Workout(1, "Power Hands", 1,"This ...", 40f );
-    }
 
     public ActionResult<String> addWorkout(Workout workout){
         try {
