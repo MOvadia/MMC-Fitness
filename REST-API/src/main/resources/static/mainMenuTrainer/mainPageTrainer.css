@@ -221,6 +221,12 @@ body {font-family: Arial, Helvetica, sans-serif;}
     left: 50px;
 }
 
+select {
+    background: #ffffff;
+    padding: 6px;
+    border-radius: 9px;
+}
+
 
 .toolBar {
     height: 50px;

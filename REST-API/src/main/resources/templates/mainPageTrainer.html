@@ -40,10 +40,23 @@
                 <form action="/workout/add" method="post" object="${workoutForm}" class="form-container">
                     <h1>Add Workout</h1>
 
-                    <label for="workout"><b>Workout Name</b></label>
-                    <input type="text" placeholder="Enter workout name" name="workoutName" required>
-                    <label for="exercise"><b>Exercise</b></label>
-                    <input type="text" placeholder="Enter exercise name" name="exerciseName" required>
+                    <label for="workout"><b>Workout Type</b></label>
+                    <select name="workoutName" id="workoutName">
+                        <option value="Power legs">Power legs</option>
+                        <option value="Power">Power</option>
+                        <option value="Yoga">Yoga</option>
+                        <option value="Lyft">Lyft</option>
+                        <option value="Pilates">Pilates</option>
+                        <option value="Aerobic">Aerobic</option>
+                        <option value="Zumba">Zumba</option>
+                        <option value="Kick box">Kick box</option>
+                        <option value="Body bit">Body bit</option>
+                        <option value="TRX">TRX</option>
+                    </select>
+                    <div>
+                        <label for="exercise"><b>Exercise</b></label>
+                        <input type="text" placeholder="Enter exercise name" name="exerciseName" required>
+                    </div>
                     <label for="number of sets"><b>Number of sets</b></label>
                     <input type="text" placeholder="Enter number of sets" name="setNum" required>
                     <label for="number of reps"><b>Number of reps</b></label>
