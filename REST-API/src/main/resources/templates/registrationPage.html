@@ -45,14 +45,16 @@
         <b >weight</b><br>
         <input type="number" name="weight" step="0.01" min="50.00" max="200.00" placeholder="Enter Weight" ><br>
         <b>dietary Limitations</b><br>
-        <input type="checkbox" id="gluten" name="dietaryLimitations" value="gluten" th:field="*{dietaryLimitations}">
+        <input type="radio" id="gluten" name="dietaryLimitations" value="gluten" th:field="*{dietaryLimitations}">
             <label for="gluten"> Gluten-free </label> <br>
-            <input type="checkbox" id="glucose" name="dietaryLimitations" value="glucose" th:field="*{dietaryLimitations}">
+            <input type="radio" id="glucose" name="dietaryLimitations" value="glucose" th:field="*{dietaryLimitations}">
             <label for="glucose"> Glucose-free </label> <br>
-            <input type="checkbox" id="vegan" name="dietaryLimitations" value="vegan" th:field="*{dietaryLimitations}">
-            <label for="glucose"> Vegan </label> <br>
-            <input type="checkbox" id="vegetarian" name="dietaryLimitations" value="vegetarian" th:field="*{dietaryLimitations}">
+            <input type="radio" id="vegan" name="dietaryLimitations" value="vegan" th:field="*{dietaryLimitations}">
+            <label for="vegan"> Vegan </label> <br>
+            <input type="radio" id="vegetarian" name="dietaryLimitations" value="vegetarian" th:field="*{dietaryLimitations}">
             <label for="vegetarian"> Vegetarian </label> <br>
+            <input type="radio" id="regular" name="dietaryLimitations" value="regular" th:field="*{dietaryLimitations}">
+            <label for="regular"> None </label> <br>
             <b>Gender</b><br>
             <div class="radio-group">
                 <input type="radio" id="female" name="female" class="custom-control-input" value="female" th:field="*{gender}">

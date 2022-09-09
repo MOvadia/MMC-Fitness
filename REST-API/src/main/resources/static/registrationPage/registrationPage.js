@@ -2,6 +2,8 @@
 var counter = 1;
 window.onload = function () {
     document.getElementById("option1").click();
+    document.getElementById("regular").click();
+
 }
 $(document).ready(function() {
 
