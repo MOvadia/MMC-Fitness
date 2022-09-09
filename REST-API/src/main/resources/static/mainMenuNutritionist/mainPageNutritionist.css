@@ -273,3 +273,10 @@ li a {
     font-size: 40px;
     color:gainsboro;
 }
+
+select {
+    background: #ffffff;
+    padding: 6px;
+    border-radius: 9px;
+}
+

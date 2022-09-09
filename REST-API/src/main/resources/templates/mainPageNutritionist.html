@@ -39,11 +39,20 @@
             <div class="form-popup" id="myForm">
                 <form action="/menu/add" method="post" object="${menuForm}" class="form-container">
                     <h1>Add Menu</h1>
-
-                    <label for="menu"><b>Menu Name</b></label>
-                    <input type="text" placeholder="Enter menu name" name="menuName" required>
-                    <label for="meal in day"><b>Meal In Day</b></label>
-                    <input type="text" placeholder="Enter which meail in the day" name="mealInDay" required>
+                    <label for="menu"><b>Menu Type</b></label>
+                    <select name="menuName" id="menuName">
+                        <option value="1000 Calories menu">1200 Calories menu</option>
+                        <option value="1200 Calories menu">1200 Calories menu</option>
+                        <option value="1500 Calories menu">1200 Calories menu</option>
+                        <option value="1800 Calories menu">1200 Calories menu</option>
+                        <option value="2000 Calories menu">1200 Calories menu</option>
+                        <option value="2200 Calories menu">1200 Calories menu</option>
+                        <option value="2500 Calories menu">1200 Calories menu</option>
+                    </select>
+                    <div>
+                        <label for="meal in day"><b>Meal In Day</b></label>
+                        <input type="text" placeholder="Enter which meail in the day" name="mealInDay" required>
+                    </div>
                     <label for="meal type"><b>Meal Type</b></label>
                     <input type="text" placeholder="Enter the meal type" name="type" required>
                     <label for="meal information"><b>Meal Information</b></label>
