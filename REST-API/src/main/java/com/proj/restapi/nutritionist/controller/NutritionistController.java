@@ -19,10 +19,23 @@ public class NutritionistController {
     private NutritionistService nutritionistService = new NutritionistService();
 
     @PostMapping(value = "/menu/add")
-    public String addmenu(Model model, MenuInformation menuInfo) {
+    public String addMenu(Model model, MenuInformation menuInfo) {
         int id = nutritionistService.getUserId();
         nutritionistService.addMenu(menuInfo);
 
+        model.addAttribute("menuForm", menuInfo);
+        model.addAttribute("userForm", new LoginInformation());
+        model.addAttribute("nutritionist", nutritionistService.getNutritionistId(id));
+        model.addAttribute("menu", nutritionistService.getAllMenus());
+        model.addAttribute("gender", "Male"); //TODO ???
+        //   model.addAttribute("menu", menuService.getmenuPerUserId(1));
+        return "mainPageNutritionist";
+    }
+
+    @PostMapping(value = "/menu/edit")
+    public String editMenu(Model model, MenuInformation menuInfo) {
+        int id = nutritionistService.getUserId();
+        nutritionistService.editMenu(menuInfo);
         model.addAttribute("menuForm", menuInfo);
         model.addAttribute("userForm", new LoginInformation());
         model.addAttribute("nutritionist", nutritionistService.getNutritionistId(id));
