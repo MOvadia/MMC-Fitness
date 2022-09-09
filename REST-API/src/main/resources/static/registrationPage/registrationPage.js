@@ -3,7 +3,7 @@ var counter = 1;
 window.onload = function () {
     document.getElementById("option1").click();
     document.getElementById("regular").click();
-
+    document.getElementById("male").click();
 }
 $(document).ready(function() {
 
