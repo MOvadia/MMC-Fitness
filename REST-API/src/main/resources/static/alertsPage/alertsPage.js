@@ -38,15 +38,7 @@ function startChatClicked(from,to) {
                 btn.setAttribute('value', 'send');
                 btn.setAttribute('onclick', 'sendClicked('+from+','+to+')');
 
-               // var x = document.createElement("INPUT");
-              //  x.setAttribute("type", "text");
-
                 var sendTD = $(document.createElement('td')).attr('id', 'sendTd').append(btn);
-
-               // var inputElem = document.getElementById('userstring');
-                //var TD_send = document.getElementById('userstring');
-
-               // sendTD.appendChild(inputElem);
 
                 sendTD.appendTo(form);
                 document.getElementById("sendTd").style.marginLeft = "340px";
@@ -122,8 +114,14 @@ function refreshUsersList(users,myId) {
     var usersTable = $('#usersTable tbody');
     usersTable.empty();
     var userList = users;
+    var myType;
     userList.forEach(function (user) {
-        if(user.userId != myId) {
+        if(user.userId == myId){
+            myType=user.type;
+        }
+    })
+    userList.forEach(function (user) {
+        if(user.userId != myId && user.type!=myType) {
             var name = user.fullName;
             var type = user.type;
 
