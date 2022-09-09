@@ -118,6 +118,7 @@ li a {
 
 .board_headline{
     outline: #2e6da4 solid medium;
+    text-align: center;
 }
 
 .table_headlines{

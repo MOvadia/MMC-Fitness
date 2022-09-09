@@ -99,6 +99,7 @@ body{
     outline: #2e6da4 solid medium;
     color: rgba(105,163,213,0.76);
     display: flex;
+    text-align: center;
 
 }
 

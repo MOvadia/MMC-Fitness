@@ -115,9 +115,22 @@ function refreshUsersList(users,myId) {
     usersTable.empty();
     var userList = users;
     var myType;
-    userList.forEach(function (user) {
-        if(user.userId == myId){
-            myType=user.type;
+    var i = 0;
+    var j=0;
+    userList.forEach(function (user,index) {
+        if(user.userId == myId) {
+            myType = user.type;
+            userList.splice(index, 1);
+        }
+    })
+    userList.forEach(function (user,index) {
+        if(myType === "Trainer" && user.type=== "Nutritionist" )
+        {
+            userList.splice(index, 1);
+        }
+        else if(myType === "Nutritionist" && user.type=== "Trainer" )
+        {
+            userList.splice(index, 1);
         }
     })
     userList.forEach(function (user) {
