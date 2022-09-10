@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.text.DecimalFormat;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 @Controller
 public class ReportController {
@@ -25,9 +23,9 @@ public class ReportController {
     public String reportPage(@PathVariable int userId, Model model){
         double lastweek,total;
         model.addAttribute("subscriber", subscriberService.getSubscriberById(userId));
-        Map<String, Double> graphData = new TreeMap<>();
+        LinkedHashMap<String, Double> graphData = new LinkedHashMap<>();
         List<SystemEvents> sysEvent = reportsService.getSysEvents(userId);
-
+        Collections.sort(sysEvent, new SystemEvents());
         for (SystemEvents event: sysEvent) {
             graphData.put("week " + event.getWeek(),event.getCurrentWeight());
         }
