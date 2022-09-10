@@ -53,7 +53,7 @@ public class TrainerService {
 
     public void addExercise(WorkoutInformation wi, Integer workoutId) {
         String sqlInsert = "insert into [Exercise] values (?,?,?,?,?,?)";
-        jdbcTemplate.update(sqlInsert, workoutId, wi.getExerciseName(), wi.getSetNum(), wi.getRepNum(), wi.getFocus(), wi.getLink());
+        jdbcTemplate.update(sqlInsert, workoutId, wi.getExerciseName(), wi.getSetNum(), wi.getRepNum(), wi.getDescription(), wi.getLink());
         String sqlInsertToSubscriberToExercise = "insert into [SubscriberToExercise] values (?,?)";
         jdbcTemplate.update(sqlInsertToSubscriberToExercise, getUserIdByEmail(wi.getAssignedUser()), wi.getExerciseName());
 

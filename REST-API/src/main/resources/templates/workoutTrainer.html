@@ -50,7 +50,9 @@
                     <td th:text="${exersize.setNum}"></td>
                     <td th:text="${exersize.repetNum}"></td>
                     <td th:text="${exersize.description}"></td>
-                    <td th:text="${exersize.link}"></td>
+                    <td>
+                        <a th:href="${exersize.link}">Open link</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
