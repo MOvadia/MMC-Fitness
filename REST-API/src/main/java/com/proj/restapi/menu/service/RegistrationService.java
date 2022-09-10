@@ -22,45 +22,53 @@ public class RegistrationService {
         String sqlInsert;
         if (!isUserExistByEmail(info.getEmail()))
         {
+
             int userId = getAvalibleId();
             if(info.getType().equals("Subscriber")) {
-                sqlInsert = "insert into $tableName values (?,?,?,?,?,?,?,?,?,?)";
-                String query = sqlInsert.replace("$tableName", info.getType());
-                StringBuilder dietaryLim = new StringBuilder(info.getDietaryLimitationsString());
-                dietaryLim.deleteCharAt(info.getDietaryLimitationsString().length() - 1);
+                try{
+                    sqlInsert = "insert into $tableName values (?,?,?,?,?,?,?,?,?,?)";
+                    String query = sqlInsert.replace("$tableName", info.getType());
+                    StringBuilder dietaryLim = new StringBuilder(info.getDietaryLimitationsString());
+                    dietaryLim.deleteCharAt(info.getDietaryLimitationsString().length() - 1);
 
-                val3 = jdbcTemplate.update(query, userId , info.getAge(), info.getHeight(),info.getWeight(),
-                        info.getGender(),info.getWorkoutAmount(),
-                        info.getTargetFatPercentage(),info.getTargetWeight(),info.getBmi(),dietaryLim);
-                String sysEvent = "insert into $tableName values (?,?,?)";
-                query = sysEvent.replace("$tableName", "SystemEvents");
-                int val4 = jdbcTemplate.update(query, userId , info.getWeight(), 1);
+                    val3 = jdbcTemplate.update(query, userId , info.getAge(), info.getHeight(),info.getWeight(),
+                            info.getGender(),info.getWorkoutAmount(),
+                            info.getTargetFatPercentage(),info.getTargetWeight(),info.getBmi(),dietaryLim);
+                    String sysEvent = "insert into $tableName values (?,?,?)";
+                    query = sysEvent.replace("$tableName", "SystemEvents");
+                    int val4 = jdbcTemplate.update(query, userId , info.getWeight(), 1);
+                    //generating to new subscriber menu
+                    String sqlMenus = "SELECT * FROM [Menu] where [type] = '$dietaryLim'";
+                    sqlMenus = sqlMenus.replace("$dietaryLim", dietaryLim);
+                    List<Menu> limMenus = jdbcTemplate.query(sqlMenus, BeanPropertyRowMapper.newInstance(Menu.class));
+                    Random rand = new Random();
+                    int randMenu = rand.nextInt(limMenus.size());
+                    Menu menu = limMenus.get(randMenu);
+                    sqlInsert = "insert into [SubscriberToMenu] values (?,?)";
+                    jdbcTemplate.update(sqlInsert, userId, menu.getMenuId());
+                }
+                catch (Exception ex){
+                    // TODO handle exception
+                }
 
-                //generating to new subscriber menu
+                try{
+                    String sqlWorkouts = "SELECT * FROM [Workout]";
+                    List<Workout> workouts = jdbcTemplate.query(sqlWorkouts, BeanPropertyRowMapper.newInstance(Workout.class));
+                    int[] workoutsGenerated = new Random().ints(0, workouts.size()).distinct().limit(info.getWorkoutAmount()).toArray();
 
-                String sqlMenus = "SELECT * FROM [Menu] where [type] = '$dietaryLim'";
-                sqlMenus = sqlMenus.replace("$dietaryLim", dietaryLim);
-                List<Menu> limMenus = jdbcTemplate.query(sqlMenus, BeanPropertyRowMapper.newInstance(Menu.class));
-                Random rand = new Random();
-                int randMenu = rand.nextInt(limMenus.size());
-                Menu menu = limMenus.get(randMenu);
-                sqlInsert = "insert into [SubscriberToMenu] values (?,?)";
-                jdbcTemplate.update(sqlInsert, userId, menu.getMenuId());
-
-                String sqlWorkouts = "SELECT * FROM [Workout]";
-                List<Workout> workouts = jdbcTemplate.query(sqlWorkouts, BeanPropertyRowMapper.newInstance(Workout.class));
-                int[] workoutsGenerated = new Random().ints(0, workouts.size()).distinct().limit(info.getWorkoutAmount()).toArray();
-
-                for (Integer w:workoutsGenerated) {
-                   String sqlSelect = "select TOP 5 exercise from Exercise where workoutId = " + workouts.get(w).getWorkoutId();
-                    List<Exercise> exercises = jdbcTemplate.query(sqlSelect, BeanPropertyRowMapper.newInstance(Exercise.class));
-                    sqlInsert = "insert into [SubscriberToExercise] values (?,?)";
-                    for (int i = 0; i < exercises.size(); i++) {
-                        jdbcTemplate.update(sqlInsert, userId, exercises.get(i));
+                    for (Integer w:workoutsGenerated) {
+                        String sqlSelect = "select TOP 5 * from Exercise where workoutId = " + workouts.get(w).getWorkoutId();
+                        List<Exercise> exercises = jdbcTemplate.query(sqlSelect, BeanPropertyRowMapper.newInstance(Exercise.class));
+                        sqlInsert = "insert into [SubscriberToExercise] values (?,?)";
+                        for (int i = 0; i < exercises.size(); i++) {
+                            jdbcTemplate.update(sqlInsert, userId, exercises.get(i));
+                        }
                     }
                 }
-
+                catch (Exception ex){
+                    // TODO handle exception
                 }
+            }
             else {
                 sqlInsert = "insert into $tableName values (?,?)";
                 String query = sqlInsert.replace("$tableName", info.getType());
