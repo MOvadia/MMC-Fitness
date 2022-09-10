@@ -69,6 +69,27 @@
                 </form>
             </div>
 
+            <div class="form-popup" id="editForm">
+                <form action="/menu/edit" method="post" object="${menuForm}" class="form-container">
+                    <h1>Edit Menu</h1>
+                    <label for="meal in day"><b>Meal In Day</b></label>
+                    <input type="text" placeholder="${menuForm.mealInDay}" name="mealInDay" required>
+                    <label for="meal type"><b>Meal Type</b></label>
+                    <input type="text" placeholder="Enter the meal type" name="type" required>
+                    <label for="meal information"><b>Meal Information</b></label>
+                    <input type="text" placeholder="Enter the meal information" name="item" required>
+                    <label for="calories"><b>Calories</b></label>
+                    <input type="text" placeholder="Enter calories" name="calories" required>
+                    <label for="protein"><b>Protein</b></label>
+                    <input type="text" placeholder="Enter protein" name="protein" required>
+                    <label for="assigned user"><b>Assigned user</b></label>
+                    <input type="email" id=email placeholder="Enter assigned user" name="assignedUser" required>
+
+                    <button type="submit" class="btn">Edit Menu</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                </form>
+            </div>
+
         </div>
         <div class="board_content">
             <table class="table table-dark">
@@ -79,9 +100,8 @@
                         <a th:href="@{'/open/menu/nutritionist/userId=' + ${nutritionist.userId}} + '/menu=' + ${menu.menuId}">
                             <button type="button" class="openMenuButton">open</button>
                         </a>
-                        <a th:href="@{'/edit/menu/nutritionist/userId=' + ${nutritionist.userId}} + '/menu=' + ${menu.menuId}">
-                            <button type="button" class="editMenuButton">edit</button>
-                        </a>
+
+                            <button onclick="openEditForm()" type="button" class="editMenuButton">edit</button>
                     </td>
                 </tr>
                 </tbody>
@@ -94,8 +114,14 @@
     function openForm() {
         document.getElementById("myForm").style.display = "block";
     }
+    function openEditForm() {
+        document.getElementById("editForm").style.display = "block";
+    }
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
+    }
+    function closeForm() {
+        document.getElementById("editForm").style.display = "none";
     }
 </script>
 
