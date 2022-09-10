@@ -167,6 +167,11 @@ function refreshUsersList(users,myId) {
         }
 
     });
+
+    if(users.size == 0)
+    {
+
+    }
 }
 
 function ajaxUsersList() {

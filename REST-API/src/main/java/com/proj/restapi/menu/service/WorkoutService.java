@@ -11,9 +11,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
 @Service
 public class WorkoutService {
     @Autowired
@@ -22,7 +21,7 @@ public class WorkoutService {
     public List<Workout> getWorkoutPerUserId(int userId){
         String sqlExersice = "SELECT * FROM [SubscriberToExercise] where userId = " + userId;
         List<SubscriberToExercise> exercises = jdbcTemplate.query(sqlExersice, BeanPropertyRowMapper.newInstance(SubscriberToExercise.class));
-        List<Workout> workouts = new ArrayList<>();
+        Set<Workout> workouts =  new HashSet<>();
         Workout workout;
         for (SubscriberToExercise stoW: exercises) {
             String sqlWorkouts = "  select w.workoutId, w.name, w.createdBy, w.focus from Workout w, Exercise e" +
@@ -36,7 +35,8 @@ public class WorkoutService {
                 workout = null;
             }
         }
-        return workouts;
+        List<Workout> workoutList = new ArrayList<>(workouts);
+        return workoutList;
     }
 
 

@@ -69,7 +69,7 @@ public class Workout {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Workout workout = (Workout) o;
-        return workoutId.equals(workout.workoutId) && name.equals(workout.name) && createdBy.equals(workout.createdBy) && description.equals(workout.description) && popularity.equals(workout.popularity);
+        return workoutId.equals(workout.workoutId) && name.equals(workout.name) && createdBy.equals(workout.createdBy);
     }
 
     @Override

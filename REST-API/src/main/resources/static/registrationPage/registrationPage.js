@@ -3,7 +3,7 @@ var counter = 1;
 window.onload = function () {
     document.getElementById("option1").click();
     document.getElementById("regular").click();
-
+    document.getElementById("male").click();
 }
 $(document).ready(function() {
 
@@ -174,4 +174,17 @@ function validateEmail(email) {
 function validatePhone(phone) {
     var re = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
     return re.test(phone);
+}
+
+function openForm() {
+    document.getElementById("subscriberForm").style.display = "block";
+    document.getElementById("professionalForm").style.display = "none";
+    $('#subscriberForm').find('input').prop("required", true);
+    $('#professionalForm').find('input').prop("required", false);
+}
+function closeForm() {
+    document.getElementById("subscriberForm").style.display = "none";
+    document.getElementById("professionalForm").style.display = "block";
+    $('#subscriberForm').find('input').prop("required", false);
+    $('#professionalForm').find('input').prop("required", true);
 }

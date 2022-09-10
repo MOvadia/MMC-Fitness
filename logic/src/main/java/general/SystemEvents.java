@@ -1,9 +1,10 @@
 package general;
 
 import java.sql.Timestamp;
+import java.util.Comparator;
 import java.util.Objects;
 
-public class SystemEvents {
+public class SystemEvents implements Comparator<SystemEvents> {
     private Integer userId;
     private double currentWeight;
     private int week;
@@ -50,5 +51,10 @@ public class SystemEvents {
     @Override
     public int hashCode() {
         return Objects.hash(userId, currentWeight, week);
+    }
+
+    public int compare(SystemEvents a, SystemEvents b)
+    {
+        return a.week - b.week;
     }
 }
