@@ -50,7 +50,6 @@ public class AuthController {
             return "redirect:/trainer/login/userId=" + id;
         }
         return "redirect:/nutritionist/login/userId=" + id;
-        //model.addAttribute("userForm", new LoginInformation());
         //TODO - if the user already registered move to menu
         //TODO - else need to add error
     }

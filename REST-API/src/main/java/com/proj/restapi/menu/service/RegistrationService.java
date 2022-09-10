@@ -61,7 +61,7 @@ public class RegistrationService {
                         List<Exercise> exercises = jdbcTemplate.query(sqlSelect, BeanPropertyRowMapper.newInstance(Exercise.class));
                         sqlInsert = "insert into [SubscriberToExercise] values (?,?)";
                         for (int i = 0; i < exercises.size(); i++) {
-                            jdbcTemplate.update(sqlInsert, userId, exercises.get(i));
+                            jdbcTemplate.update(sqlInsert, userId, exercises.get(i).getExercise());
                         }
                     }
                 }
