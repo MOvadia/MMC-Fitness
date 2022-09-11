@@ -1,6 +1,7 @@
 package com.proj.restapi.menu.controller;
 
 import com.proj.restapi.auth.info.LoginInformation;
+import com.proj.restapi.auth.info.MenuInformation;
 import com.proj.restapi.menu.service.MealService;
 import com.proj.restapi.menu.service.MenuService;
 import com.proj.restapi.menu.service.SubscriberService;
@@ -59,6 +60,13 @@ public class MenuController {
 
     @GetMapping("/open/menu/nutritionist/userId={userId}/menu={menuId}")
     public String workoutTrainerPage(@PathVariable int userId, @PathVariable int menuId, Model model){
+        model.addAttribute("nutritionist", nutritionistService.getNutritionistId(userId));
+        model.addAttribute("meal", mealService.getMealsByMenuId(menuId));
+        return "menuNutritionist";
+    }
+
+    @GetMapping("/edit/menu/nutritionist/userId={userId}/menu={menuId}")
+    public String editMenuPage(@PathVariable int userId, @PathVariable int menuId, Model model){
         model.addAttribute("nutritionist", nutritionistService.getNutritionistId(userId));
         model.addAttribute("meal", mealService.getMealsByMenuId(menuId));
         return "menuNutritionist";

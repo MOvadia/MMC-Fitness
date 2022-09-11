@@ -36,6 +36,23 @@ public class NutritionistService {
         return nutritionist;
     }
 
+    public void editMenu(Menu menu) {
+//        userId = id;
+//        String sql = "UPDATE meal SET menuId = " + mi.getMenuId() + " ,mealInDay = " + mi.getMealInDay() + ", calories = " + mi.;
+//        List<User> users = jdbcTemplate.update(sqlUser,
+//                BeanPropertyRowMapper.newInstance(User.class));
+//        String sqlNutritionist = "SELECT * FROM Nutritionist where userId=" + id;
+//        List<Nutritionist> n = jdbcTemplate.query(sqlNutritionist,
+//                BeanPropertyRowMapper.newInstance(Nutritionist.class));
+//        Nutritionist nutritionist = new Nutritionist(users.get(0), n.get(0));
+//        return nutritionist;
+//
+//        UPDATE table_name
+//        SET column1 = value1, column2 = value2, ...
+//        WHERE condition;
+//        addMenu(mi, 1);
+
+    }
 
     public void addMenu(MenuInformation mi) {
         Integer menuId;
@@ -47,7 +64,7 @@ public class NutritionistService {
         if(menus.isEmpty()) {
             String sqlInsert = "insert into [Menu] values (?,?,?,?,?,?)";
             menuId = menu.getMenuId() + 1;
-            jdbcTemplate.update(sqlInsert, menuId, mi.getMenuName(), userId, mi.getType(), mi.getFatPercentage(), mi.getProtein());
+            jdbcTemplate.update(sqlInsert, menuId, mi.getMenuName(), userId, mi.getFatPercentage(), mi.getProtein(), mi.getType());
         } else {
             menuId = getMenuIdByName(mi.getMenuName());
         }
@@ -55,9 +72,18 @@ public class NutritionistService {
 
    }
 
+
     public void addMenu(MenuInformation mi, Integer menuId) {
-        String sqlInsert = "insert into [Meal] values (?,?,?,?)";
-        jdbcTemplate.update(sqlInsert, menuId, mi.getMealInDay(), mi.getCalories(), mi.getItem());
+        String sqlInsertBreakfast = "insert into [Meal] values (?,?,?)";
+        jdbcTemplate.update(sqlInsertBreakfast, menuId, "Breakfast", mi.getBreakfast());
+        String sqlInsertSnake1 = "insert into [Meal] values (?,?,?)";
+        jdbcTemplate.update(sqlInsertSnake1, menuId, "Snake", mi.getSnake1());
+        String sqlInsertLunch = "insert into [Meal] values (?,?,?)";
+        jdbcTemplate.update(sqlInsertLunch, menuId, "Lunch", mi.getLunch());
+        String sqlInsertSnake2 = "insert into [Meal] values (?,?,?)";
+        jdbcTemplate.update(sqlInsertSnake2, menuId, "Snake", mi.getSnake2());
+        String sqlInsertDinner = "insert into [Meal] values (?,?,?)";
+        jdbcTemplate.update(sqlInsertDinner, menuId, "Dinner", mi.getDinner());
         String sqlInsertToSubscriberToMenu = "insert into [SubscriberToMenu] values (?,?)";
         jdbcTemplate.update(sqlInsertToSubscriberToMenu, getUserIdByEmail(mi.getAssignedUser()), menuId);
     }

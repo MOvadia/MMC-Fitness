@@ -40,52 +40,29 @@
                 <form action="/menu/add" method="post" object="${menuForm}" class="form-container">
                     <h1>Add Menu</h1>
                     <label for="menu"><b>Menu Type</b></label>
-                    <select name="menuName" id="menuName">
-                        <option value="1000 Calories menu">1200 Calories menu</option>
-                        <option value="1200 Calories menu">1200 Calories menu</option>
-                        <option value="1500 Calories menu">1200 Calories menu</option>
-                        <option value="1800 Calories menu">1200 Calories menu</option>
-                        <option value="2000 Calories menu">1200 Calories menu</option>
-                        <option value="2200 Calories menu">1200 Calories menu</option>
-                        <option value="2500 Calories menu">1200 Calories menu</option>
-                    </select>
-                    <div>
-                        <label for="meal in day"><b>Meal In Day</b></label>
-                        <input type="text" placeholder="Enter which meail in the day" name="mealInDay" required>
-                    </div>
+                    <input type="text" placeholder="Enter the menu name" name="menuName" required>
                     <label for="meal type"><b>Meal Type</b></label>
                     <input type="text" placeholder="Enter the meal type" name="type" required>
-                    <label for="meal information"><b>Meal Information</b></label>
-                    <input type="text" placeholder="Enter the meal information" name="item" required>
+                    <label for="breakfast"><b>Breakfast</b></label>
+                    <input type="text" placeholder="Enter the meal information" name="breakfast" required>
+                    <label for="snake"><b>Snake</b></label>
+                    <input type="text" placeholder="Enter the meal information" name="snake1" required>
+                    <label for="lunch"><b>Lunch</b></label>
+                    <input type="text" placeholder="Enter the meal information" name="lunch" required>
+                    <label for="snake"><b>Snake</b></label>
+                    <input type="text" placeholder="Enter the meal information" name="snake2" required>
+                    <label for="dinner"><b>Dinner</b></label>
+                    <input type="text" placeholder="Enter the meal information" name="dinner" required>
                     <label for="calories"><b>Calories</b></label>
                     <input type="text" placeholder="Enter calories" name="calories" required>
+                    <label for="fat percentage"><b>Fat Percentage</b></label>
+                    <input type="text" placeholder="Enter fat percentage" name="fatPercentage" required>
                     <label for="protein"><b>Protein</b></label>
                     <input type="text" placeholder="Enter protein" name="protein" required>
                     <label for="assigned user"><b>Assigned user</b></label>
                     <input type="email" id=email placeholder="Enter assigned user" name="assignedUser" required>
 
                     <button type="submit" class="btn">Add Menu</button>
-                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                </form>
-            </div>
-
-            <div class="form-popup" id="editForm">
-                <form action="/menu/edit" method="post" object="${menuForm}" class="form-container">
-                    <h1>Edit Menu</h1>
-                    <label for="meal in day"><b>Meal In Day</b></label>
-                    <input type="text" placeholder="${menuForm.mealInDay}" name="mealInDay" required>
-                    <label for="meal type"><b>Meal Type</b></label>
-                    <input type="text" placeholder="Enter the meal type" name="type" required>
-                    <label for="meal information"><b>Meal Information</b></label>
-                    <input type="text" placeholder="Enter the meal information" name="item" required>
-                    <label for="calories"><b>Calories</b></label>
-                    <input type="text" placeholder="Enter calories" name="calories" required>
-                    <label for="protein"><b>Protein</b></label>
-                    <input type="text" placeholder="Enter protein" name="protein" required>
-                    <label for="assigned user"><b>Assigned user</b></label>
-                    <input type="email" id=email placeholder="Enter assigned user" name="assignedUser" required>
-
-                    <button type="submit" class="btn">Edit Menu</button>
                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                 </form>
             </div>
@@ -101,7 +78,6 @@
                             <button type="button" class="openMenuButton">open</button>
                         </a>
 
-                            <button onclick="openEditForm()" type="button" class="editMenuButton">edit</button>
                     </td>
                 </tr>
                 </tbody>
@@ -114,14 +90,8 @@
     function openForm() {
         document.getElementById("myForm").style.display = "block";
     }
-    function openEditForm() {
-        document.getElementById("editForm").style.display = "block";
-    }
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
-    }
-    function closeForm() {
-        document.getElementById("editForm").style.display = "none";
     }
 </script>
 

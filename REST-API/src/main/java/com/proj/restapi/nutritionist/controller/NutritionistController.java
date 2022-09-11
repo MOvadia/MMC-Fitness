@@ -2,7 +2,10 @@ package com.proj.restapi.nutritionist.controller;
 
 import com.proj.restapi.auth.info.LoginInformation;
 import com.proj.restapi.auth.info.MenuInformation;
+import com.proj.restapi.menu.service.MenuService;
 import com.proj.restapi.nutritionist.service.NutritionistService;
+import general.Menu;
+import general.Subscriber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class NutritionistController {
     @Autowired
     private NutritionistService nutritionistService = new NutritionistService();
+    @Autowired
+    private MenuService menuService = new MenuService();
 
     @PostMapping(value = "/menu/add")
     public String addMenu(Model model, MenuInformation menuInfo) {
@@ -27,21 +32,18 @@ public class NutritionistController {
         model.addAttribute("userForm", new LoginInformation());
         model.addAttribute("nutritionist", nutritionistService.getNutritionistId(id));
         model.addAttribute("menu", nutritionistService.getAllMenus());
-        model.addAttribute("gender", "Male"); //TODO ???
-        //   model.addAttribute("menu", menuService.getmenuPerUserId(1));
         return "mainPageNutritionist";
     }
 
-    @PostMapping(value = "/menu/edit")
-    public String editMenu(Model model, MenuInformation menuInfo) {
+    @PostMapping(value = "/menu/edit/menuId={menuId}")
+    public String editMenu(Model model, @PathVariable int menuId) {
         int id = nutritionistService.getUserId();
-        nutritionistService.editMenu(menuInfo);
-        model.addAttribute("menuForm", menuInfo);
+        Menu menu = menuService.getMenuById(menuId);
+        nutritionistService.editMenu(menu);
+        model.addAttribute("menuForm", menu);
         model.addAttribute("userForm", new LoginInformation());
         model.addAttribute("nutritionist", nutritionistService.getNutritionistId(id));
         model.addAttribute("menu", nutritionistService.getAllMenus());
-        model.addAttribute("gender", "Male"); //TODO ???
-        //   model.addAttribute("menu", menuService.getmenuPerUserId(1));
         return "mainPageNutritionist";
     }
 

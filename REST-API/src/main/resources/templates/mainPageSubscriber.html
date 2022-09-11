@@ -116,14 +116,12 @@
                 <tr>
                     <th scope="col">Meal in day</th>
                     <th scope="col">Meal</th>
-                    <th scope="col">Calories</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="meal : ${meals}" >
                     <td th:text="${meal.mealInDay}"></td>
                     <td th:text="${meal.items}"></td>
-                    <td th:text="${meal.calories}"></td>
                 </tr>
                 </tbody>
             </table>

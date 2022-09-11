@@ -9,9 +9,13 @@ public class MenuInformation {
     private Integer protein;
     private String assignedUser;
     private String mealInDay;
-    private String item;
+    private String breakfast;
+    private String snake1;
+    private String lunch;
+    private String snake2;
+    private String dinner;
 
-    public MenuInformation(String menuName, Float fatPercentage, String type, Integer calories, Integer protein, String assignedUser, String mealInDay, String item) {
+    public MenuInformation(String menuName, Float fatPercentage, String type, Integer calories, Integer protein, String assignedUser, String mealInDay, String breakfast, String snake1, String lunch, String snake2, String dinner) {
         this.menuName = menuName;
         this.fatPercentage = fatPercentage;
         this.type = type;
@@ -19,7 +23,11 @@ public class MenuInformation {
         this.protein = protein;
         this.assignedUser = assignedUser;
         this.mealInDay = mealInDay;
-        this.item = item;
+        this.breakfast = breakfast;
+        this.snake1 = snake1;
+        this.lunch = lunch;
+        this.snake2 = snake2;
+        this.dinner = dinner;
     }
 
     public String getMealInDay() {
@@ -30,12 +38,44 @@ public class MenuInformation {
         this.mealInDay = mealInDay;
     }
 
-    public String getItem() {
-        return item;
+    public String getBreakfast() {
+        return breakfast;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setBreakfast(String breakfast) {
+        this.breakfast = breakfast;
+    }
+
+    public String getSnake1() {
+        return snake1;
+    }
+
+    public void setSnake1(String snake1) {
+        this.snake1 = snake1;
+    }
+
+    public String getLunch() {
+        return lunch;
+    }
+
+    public void setLunch(String lunch) {
+        this.lunch = lunch;
+    }
+
+    public String getSnake2() {
+        return snake2;
+    }
+
+    public void setSnake2(String snake2) {
+        this.snake2 = snake2;
+    }
+
+    public String getDinner() {
+        return dinner;
+    }
+
+    public void setDinner(String dinner) {
+        this.dinner = dinner;
     }
 
     public Float getFatPercentage() {

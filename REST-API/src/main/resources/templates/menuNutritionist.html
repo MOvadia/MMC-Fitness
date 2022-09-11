@@ -37,14 +37,12 @@
                 <thead>
                 <tr>
                     <th scope="col">Meal</th>
-                    <th scope="col">Calories</th>
                     <th scope="col">Description</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="meal : ${meal}" style="cursor: pointer">
                     <td th:text="${meal.mealInDay}"></td>
-                    <td th:text="${meal.calories}"></td>
                     <td th:text="${meal.items}"></td>
                 </tr>
                 </tbody>
