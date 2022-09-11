@@ -17,8 +17,13 @@ public class UserManager {
     }
 
 
-    public synchronized void addUser(User user) {
-        usersSet.add(user);
+    public synchronized void addUser(User user2) {
+        List<User> userList= usersSet.stream().filter(users -> users.getUserId() == user2.getUserId()).collect(Collectors.toList());
+
+        if(userList.size()!=0){
+            return;
+        }
+        usersSet.add(user2);
     }
 
     public synchronized void removeUser(Integer userId) {
