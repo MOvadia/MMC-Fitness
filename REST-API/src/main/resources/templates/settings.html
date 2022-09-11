@@ -47,25 +47,24 @@
     <h1>Settings</h1>
     <p>Please update your personal data</p>
     <b>First name</b><br>
-    <input type="text" th:field="*{firstName}" th:placeholder="${subscriber.firstName}" name="firstname">
+    <input type="text" th:field="*{firstName}" th:placeholder="${subscriber.firstName}" name="firstname" required>
     <br>
     <b>Last name</b><br>
-    <input type="text" th:field="*{lastName}" th:placeholder="${subscriber.lastName}" name="lastname"><br>
-    <input type="text" th:field="*{email}" th:placeholder="${subscriber.email}" name="email" readonly style="display: none">
+    <input type="text" th:field="*{lastName}" th:placeholder="${subscriber.lastName}" name="lastname" required><br>
     <b>Phone number</b><br>
-    <input type="text" th:field="*{phoneNumber}" th:placeholder="${subscriber.phoneNumber}" name="phonenumber"><br>
+    <input type="text" th:field="*{phoneNumber}" th:placeholder="${subscriber.phoneNumber}" name="phonenumber" pattern="[0-9]{10}" required><br>
     <div id="subscriberForm">
       <b>Age</b><br>
       <input type="number" name="age"  min="16" max="100" th:field="*{age}" th:placeholder="${subscriber.age}">
       <br>
       <b>height</b><br>
-      <input type="number" name="height" step="0.01" min="1.50" max="2.30" th:field="*{height}" th:placeholder="${subscriber.height}" ><br>
+      <input type="number" name="height" step="0.01" min="1.50" max="2.30" th:field="*{height}" th:placeholder="${subscriber.height}" required><br>
       <b >weight</b><br>
-      <input type="number" name="weight"  step="0.01" min="50.00" max="200.00" th:field="*{weight}" th:placeholder="${subscriber.weight}" ><br>
+      <input type="number" name="weight"  step="0.01" min="50.00" max="200.00" th:field="*{weight}" th:placeholder="${subscriber.weight}" required><br>
         <b >Workout Amount</b><br>
-      <input type="number" name="workoutAmount" min="1" max="10" th:field="*{workoutAmount}" th:placeholder="${subscriber.workoutAmount}" ><br>
+      <input type="number" name="workoutAmount" min="1" max="10" th:field="*{workoutAmount}" th:placeholder="${subscriber.workoutAmount}" required><br>
       <b>target Weight</b><br>
-      <input type="number" name="targetWeight" step="0.01" min="50.00" max="200.00" th:field="*{targetWeight}" th:placeholder="${subscriber.targetWeight}" ><br>
+      <input type="number" name="targetWeight" step="0.01" min="50.00" max="200.00" th:field="*{targetWeight}" th:placeholder="${subscriber.targetWeight}" required><br>
     </div>
       <div class="alertSettings alert-info text-center" th:if="${resetMessage}" th:text="${resetMessage}"></div>
       <div class="alertSettings alert-error text-center" th:if="${errorMessage}" th:text="${errorMessage}"></div>
